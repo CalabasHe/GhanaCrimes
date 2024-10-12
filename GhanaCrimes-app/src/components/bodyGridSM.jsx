@@ -2,10 +2,10 @@ const BodyGridSM = () => {
   return (
     <main className="block md:hidden mx-[20px]">
       <div>
-        <div className="flex justify-center space-x-8  mt-9 flex-wrap">
-          <div className="w-[350px]">
+        <div className="flex grow justify-center   mt-9 ">
+          <div className="">
             {/*Image Holder*/}
-            <div className="bg-slate-500 max-w-[350px] h-[181px]" />
+            <div className="bg-slate-500 w-full  h-[181px]" />
             <div className="py-4">
               {/*Topic Holder*/}
               <p className="text-sm text-[#f06c00]">Business</p>

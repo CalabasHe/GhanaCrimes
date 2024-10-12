@@ -1,19 +1,19 @@
 const Footer = () => {
   return (
     <>
-      <footer className="flex grow m-0 w-full bg-black px-6 py-12 md:px-14 lg:px-[10%]">
+      <footer className="flex grow m-0 w-full bg-[#404040] px-6 py-12 md:px-14 lg:px-[10%]">
         <div className="flex flex-col gap-10 text-sm text-white">
           <p className="text-lg font-semibold">
             {" "}
-            ©2024, <span className="text-xl font-bold">CalabasHe</span>{" "}
+            ©2024 <span className="text-xl font-bold">GhanaCrimes</span>{" "}
           </p>
 
           <section className="subpixel-antialiased flex flex-col gap-6 leading-relaxed  md:grid md:grid-cols-2 md:gap-7 lg:gap-8 ">
             <article>
-              Calabashe is a platform where everyone can share their experiences
-              with doctors and clinics. By sharing your reviews, you help others
-              make informed healthcare choices and encourage better service from
-              medical professionals.
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos
+              iure, expedita ullam ipsum adipisci sit nobis illum, quos quam
+              perferendis in. Autem magni dolores et corrupti aperiam saepe!
+              Reiciendis, in?
             </article>
 
             <address className="flex flex-col gap-4 text-xs lg:text-sm">
