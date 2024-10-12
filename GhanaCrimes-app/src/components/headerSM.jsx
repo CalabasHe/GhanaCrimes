@@ -13,10 +13,11 @@ const HeaderSM = () => {
   };
   return (
     <main className="block md:hidden">
-      <div className="flex space-x-[80px] justify-center items-center mt-6 container">
-        <div>
+      <div className="flex px-10 items-center mt-6 container flex-wrap">
+        {/*Menu Hamburger*/}
+        <div className=" flex-auto">
           <svg
-            className="cursor-pointer"
+            className="cursor-pointer "
             onClick={toggleMenu}
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -32,7 +33,10 @@ const HeaderSM = () => {
             />
           </svg>
         </div>
-        <Link to="/" className="text-3xl font-EB font-bold text-[#f06c00]">
+        <Link
+          to="/"
+          className="text-3xl flex-auto font-EB font-bold text-[#f06c00]"
+        >
           GhanaCrimes
         </Link>
         <div>
