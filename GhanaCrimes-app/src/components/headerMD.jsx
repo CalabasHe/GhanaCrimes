@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-
+import LoginOverlay from "../components/loginOverlay";
 const HeaderMD = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -24,7 +24,7 @@ const HeaderMD = () => {
       {/* Navbar Wrapper */}
       <div className="flex flex-wrap justify-between mt-6 items-center text-lg px-4">
         {/* Left Section (Menu Toggle + Search) */}
-        <div className="flex items-center md:space-x-2 lg:space-x-4">
+        <div className="flex items-center  lg:space-x-4">
           <div>
             <svg
               onClick={toggleMenu}
@@ -62,7 +62,7 @@ const HeaderMD = () => {
         </div>
 
         {/* Nav Links */}
-        <nav className="flex-1 justify-center md:text-sm hidden md:flex">
+        <nav className="flex-1 justify-center md:text-sm hidden lg:flex">
           <div className="space-x-5 text-[#828282] font-semibold">
             <Link to="/">EUROPE NEWS</Link>
             <Link to="/">TRAVEL NEWS</Link>
@@ -73,11 +73,16 @@ const HeaderMD = () => {
         </nav>
 
         {/* Right Section (Login + Become a Member Button) */}
+        <LoginOverlay />
         <div className="flex space-x-3 items-center md:text-sm">
-          <Link className="text-[#828282] text-base font-semibold" to="/">
+          <Link
+            onClick={() => setIsLoginOpen(true)}
+            className="text-[#828282] text-base font-semibold"
+            to="/"
+          >
             Log in
           </Link>
-          <Link className="bg-[#f06c00] text-white rounded-full px-4 py-2 font-semibold text-sm hidden lg:block">
+          <Link className="bg-[#f06c00] text-white rounded-full px-4 py-2 font-semibold text-sm hidden md:block">
             BECOME A MEMBER
           </Link>
         </div>
