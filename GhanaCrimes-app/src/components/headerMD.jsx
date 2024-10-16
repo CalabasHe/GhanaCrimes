@@ -22,7 +22,7 @@ const HeaderMD = () => {
   };
 
   return (
-    <main className="hidden md:block">
+    <main className="hidden md:block px-[8%]">
       {/* Logo */}
       <Link className="flex justify-center mt-6" to="/home">
         <p className="font-EB font-bold lg:text-4xl text-[#f06c00]">
@@ -31,7 +31,7 @@ const HeaderMD = () => {
       </Link>
 
       {/* Navbar Wrapper */}
-      <div className="flex flex-wrap justify-between mt-6 items-center text-lg px-4">
+      <div className="flex flex-wrap justify-between mt-6 items-center text-lg">
         {/* Left Section (Menu Toggle + Search) */}
         <div className="flex items-center  lg:space-x-4">
           <div>
