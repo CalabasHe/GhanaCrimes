@@ -139,7 +139,7 @@ const HeaderMD = () => {
       ></div>
       {isLoginOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 overflow-y-auto ">
-          <div className="bg-white p-6 relative w-11/12 max-w-md  ">
+          <div className="bg-white p-6 relative w-11/12 max-w-md max-h-[90vh] overflow-y-auto ">
             <p className="text-[#f06c00] font-EB font-bold text-4xl text-center pt-7 ">
               GhanaCrimes
             </p>
