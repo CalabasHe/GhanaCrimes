@@ -92,7 +92,7 @@ const HeaderMD = () => {
             Log in
           </Link>
           <Link className="bg-[#f06c00] text-white rounded-full px-4 py-2 font-semibold text-sm hidden md:block">
-            BECOME A MEMBER
+            CREATE AN ACCOUNT
           </Link>
         </div>
       </div>
