@@ -40,6 +40,7 @@ const HeaderMD = () => {
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
+              className="cursor-pointer"
               fill="none"
             >
               <path
@@ -91,8 +92,11 @@ const HeaderMD = () => {
           >
             Log in
           </Link>
-          <Link className="bg-[#f06c00] text-white rounded-full px-4 py-2 font-semibold text-sm hidden md:block">
-            BECOME A MEMBER
+          <Link
+            onClick={switchToLogin}
+            className="bg-[#f06c00] text-white rounded-full px-4 py-2 font-semibold text-sm hidden md:block"
+          >
+            CREATE AN ACCOUNT
           </Link>
         </div>
       </div>
@@ -106,10 +110,31 @@ const HeaderMD = () => {
         } fixed top-0 left-0 lg:w-3/12 w-3/6 h-full bg-white text-black transition-transform duration-300 ease-in-out z-50`}
       >
         <div className="flex lg:mt-[120px] mt-[70px] mr-3 flex-col items-start p-5 space-y-4">
-          <p className="text-lg font-semibold">Topic</p>
+          <div className="flex space-x-3 items-center md:text-sm self-end">
+            <Link className="text-[#828282] text-base font-semibold" to="/">
+              Log in
+            </Link>
+            <Link
+              onClick={switchToLogin}
+              className="bg-[#f06c00] text-white rounded-full px-4 py-2 font-semibold text-sm hidden md:block"
+            >
+              CREATE AN ACCOUNT
+            </Link>
+          </div>
           <button onClick={toggleMenu} className="self-end">
-            Close
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24px"
+              height="24px"
+              viewBox="0 0 32 32"
+            >
+              <path
+                fill="black"
+                d="M16 2C8.2 2 2 8.2 2 16s6.2 14 14 14s14-6.2 14-14S23.8 2 16 2m5.4 21L16 17.6L10.6 23L9 21.4l5.4-5.4L9 10.6L10.6 9l5.4 5.4L21.4 9l1.6 1.6l-5.4 5.4l5.4 5.4z"
+              />
+            </svg>
           </button>
+          <p className="text-lg font-semibold">Topic</p>
 
           <Link to="/" className=" text-lg ml-8">
             EUROPE NEWS
@@ -139,7 +164,7 @@ const HeaderMD = () => {
       ></div>
       {isLoginOpen && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50 overflow-y-auto ">
-          <div className="bg-white p-6 relative w-11/12 max-w-md  ">
+          <div className="bg-white p-6 relative w-11/12 max-w-md max-h-[90vh] overflow-y-auto ">
             <p className="text-[#f06c00] font-EB font-bold text-4xl text-center pt-7 ">
               GhanaCrimes
             </p>
@@ -337,8 +362,39 @@ const HeaderMD = () => {
                     placeholder="Email"
                   />
                 </div>
+                <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={24}
+                    height={24}
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="none"
+                      stroke="black"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2zm3-2V7a4 4 0 1 1 8 0v4m-1 5h.01m-3 0h.01m-3 0h.01"
+                    ></path>
+                  </svg>
+                  <input
+                    className="border-none outline-none"
+                    type="password"
+                    name=""
+                    id=""
+                    placeholder="Password"
+                  />
+                </div>
+                <div className="flex justify-between mt-4">
+                  <div className="flex space-x-3">
+                    <input type="checkbox" name="" id="" />
+                    <p>Stay logged in</p>
+                  </div>
+                  <Link className="text-[#f06c00]">I forgot my password</Link>
+                </div>
                 <button className="rounded-full w-full bg-[#f06c00] mt-6 p-3 text-center text-white">
-                  <Link>Next</Link>
+                  <Link>Sign in</Link>
                 </button>
                 <hr className="mt-11" />
                 <p className="text-center mt-11 text-[#828282]">
