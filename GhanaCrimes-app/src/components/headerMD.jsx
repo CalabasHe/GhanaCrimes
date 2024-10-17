@@ -22,7 +22,7 @@ const HeaderMD = () => {
   };
 
   return (
-    <main className="hidden md:block px-[8%]">
+    <main className="hidden md:block px-[4%]">
       {/* Logo */}
       <Link className="flex justify-center mt-6" to="/home">
         <p className="font-EB font-bold lg:text-4xl text-[#f06c00]">
