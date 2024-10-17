@@ -1,6 +1,6 @@
 const BodyGridSM = () => {
   return (
-    <main className="block md:hidden mx-auto">
+    <main className="hidden mx-auto">
       <div>
         <div className="flex grow justify-center   mt-9 ">
           <div className="">
