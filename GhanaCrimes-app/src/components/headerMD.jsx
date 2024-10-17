@@ -40,6 +40,7 @@ const HeaderMD = () => {
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
+              className="cursor-pointer"
               fill="none"
             >
               <path
@@ -91,8 +92,11 @@ const HeaderMD = () => {
           >
             Log in
           </Link>
-          <Link className="bg-[#f06c00] text-white rounded-full px-4 py-2 font-semibold text-sm hidden md:block">
-            BECOME A MEMBER
+          <Link
+            onClick={switchToLogin}
+            className="bg-[#f06c00] text-white rounded-full px-4 py-2 font-semibold text-sm hidden md:block"
+          >
+            CREATE AN ACCOUNT
           </Link>
         </div>
       </div>
@@ -106,10 +110,31 @@ const HeaderMD = () => {
         } fixed top-0 left-0 lg:w-3/12 w-3/6 h-full bg-white text-black transition-transform duration-300 ease-in-out z-50`}
       >
         <div className="flex lg:mt-[120px] mt-[70px] mr-3 flex-col items-start p-5 space-y-4">
-          <p className="text-lg font-semibold">Topic</p>
+          <div className="flex space-x-3 items-center md:text-sm self-end">
+            <Link className="text-[#828282] text-base font-semibold" to="/">
+              Log in
+            </Link>
+            <Link
+              onClick={switchToLogin}
+              className="bg-[#f06c00] text-white rounded-full px-4 py-2 font-semibold text-sm hidden md:block"
+            >
+              CREATE AN ACCOUNT
+            </Link>
+          </div>
           <button onClick={toggleMenu} className="self-end">
-            Close
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24px"
+              height="24px"
+              viewBox="0 0 32 32"
+            >
+              <path
+                fill="black"
+                d="M16 2C8.2 2 2 8.2 2 16s6.2 14 14 14s14-6.2 14-14S23.8 2 16 2m5.4 21L16 17.6L10.6 23L9 21.4l5.4-5.4L9 10.6L10.6 9l5.4 5.4L21.4 9l1.6 1.6l-5.4 5.4l5.4 5.4z"
+              />
+            </svg>
           </button>
+          <p className="text-lg font-semibold">Topic</p>
 
           <Link to="/" className=" text-lg ml-8">
             EUROPE NEWS
