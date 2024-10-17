@@ -337,8 +337,39 @@ const HeaderMD = () => {
                     placeholder="Email"
                   />
                 </div>
+                <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={24}
+                    height={24}
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="none"
+                      stroke="black"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2zm3-2V7a4 4 0 1 1 8 0v4m-1 5h.01m-3 0h.01m-3 0h.01"
+                    ></path>
+                  </svg>
+                  <input
+                    className="border-none outline-none"
+                    type="password"
+                    name=""
+                    id=""
+                    placeholder="Password"
+                  />
+                </div>
+                <div className="flex justify-between mt-4">
+                  <div className="flex space-x-3">
+                    <input type="checkbox" name="" id="" />
+                    <p>Stay logged in</p>
+                  </div>
+                  <Link className="text-[#f06c00]">I forgot my password</Link>
+                </div>
                 <button className="rounded-full w-full bg-[#f06c00] mt-6 p-3 text-center text-white">
-                  <Link>Next</Link>
+                  <Link>Sign in</Link>
                 </button>
                 <hr className="mt-11" />
                 <p className="text-center mt-11 text-[#828282]">
