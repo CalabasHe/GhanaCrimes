@@ -6,7 +6,7 @@ const BodyGridLG = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-4">
           {/*First Column*/}
           <div className="lg:col-span-2 md:col-span-1 space-y-4">
-            <Link className="">
+            <Link to={"/news"} className="">
               <div className="bg-slate-500 h-40 object-cover" />
               <p className="text-sm text-[#f06c00]">Business</p>
               <p className="text-[#393939] text-xl lg:text-2xl leading-tight  hover:text-[#f06c00] font-EB font-semibold">
