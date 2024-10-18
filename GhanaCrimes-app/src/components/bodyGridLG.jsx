@@ -1,5 +1,21 @@
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+
+import { getCrimes } from "../api/authAPI";
+
 const BodyGridLG = () => {
+  useEffect(() => {
+    const getCrimeData = async () => {
+      try {
+        const data = await getCrimes();
+        console.log(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getCrimeData();
+  }, []);
+
   return (
     <main className="overflow-x-hidden  md:block">
       <div className="px-[4%] overflow-x-hidden mt-4">
