@@ -21,6 +21,11 @@ const HeaderMD = () => {
     setIsCreatingAccount(false);
   };
 
+  const handleLoginClick = (e) => {
+    e.preventDefault();
+    setIsLoginOpen(true);
+  };
+
   return (
     <main className="hidden md:block px-[4%]">
       {/* Logo */}
@@ -85,19 +90,23 @@ const HeaderMD = () => {
         {/* Right Section (Login + Become a Member Button) */}
 
         <div className="flex space-x-3 items-center md:text-sm">
-          <Link
-            onClick={() => setIsLoginOpen(true)}
-            className="text-[#828282] text-base font-semibold"
+          <a
+            onClick={handleLoginClick}
+            className="text-[#828282] text-base font-semibold cursor-pointer"
             to="/"
           >
             Log in
-          </Link>
-          <Link
-            onClick={switchToLogin}
-            className="bg-[#f06c00] text-white rounded-full px-4 py-2 font-semibold text-sm hidden md:block"
+          </a>
+          <a
+            onClick={(e) => {
+              e.preventDefault();
+              setIsLoginOpen(true);
+              switchToCreateAccount();
+            }}
+            className="bg-[#f06c00] text-white rounded-full px-4 py-2 font-semibold text-sm hidden md:block cursor-pointer"
           >
             CREATE AN ACCOUNT
-          </Link>
+          </a>
         </div>
       </div>
 
@@ -111,15 +120,23 @@ const HeaderMD = () => {
       >
         <div className="flex lg:mt-[120px] mt-[70px] mr-3 flex-col items-start p-5 space-y-4">
           <div className="flex space-x-3 items-center md:text-sm self-end">
-            <Link className="text-[#828282] text-base font-semibold" to="/">
+            <a
+              onClick={handleLoginClick}
+              className="text-[#828282] text-base font-semibold cursor-pointer"
+              to="/"
+            >
               Log in
-            </Link>
-            <Link
-              onClick={switchToLogin}
-              className="bg-[#f06c00] text-white rounded-full px-4 py-2 font-semibold text-sm hidden md:block"
+            </a>
+            <a
+              onClick={(e) => {
+                e.preventDefault();
+                setIsLoginOpen(true);
+                switchToCreateAccount();
+              }}
+              className="bg-[#f06c00] text-white rounded-full px-4 py-2 font-semibold text-sm hidden md:block cursor-pointer"
             >
               CREATE AN ACCOUNT
-            </Link>
+            </a>
           </div>
           <button onClick={toggleMenu} className="self-end">
             <svg
@@ -189,7 +206,9 @@ const HeaderMD = () => {
               <div>
                 <p className="font-semibold text-lg mt-6">Create Account</p>
                 <div className="text-[#f06c00] flex justify-between">
-                  <Link onClick={switchToLogin}>or create account</Link>
+                  <Link onClick={switchToLogin}>
+                    or log in an existing account
+                  </Link>
 
                   <Link>Log in help</Link>
                 </div>
