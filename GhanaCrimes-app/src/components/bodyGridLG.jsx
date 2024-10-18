@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 const BodyGridLG = () => {
   return (
-    <main className="overflow-x-hidden  md:block">
-      <div className="px-[4%] overflow-x-hidden mt-4">
+    <main className="overflow-x-hidden px-10  md:block">
+      <div className="overflow-x-hidden mt-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-4">
           {/*First Column*/}
           <div className="lg:col-span-2 md:col-span-1 space-y-4">
@@ -74,12 +74,12 @@ const BodyGridLG = () => {
           </div>
         </div>
       </div>
-      <div className="px-[4%] flex gap-3 mt-8 items-center">
+      <div className="flex gap-3 mt-8 items-center">
         <div className="bg-[#f74548] w-4 h-4" />
         <p className="font-EB font-bold text-lg">TRAVEL NEWS</p>
       </div>
-      <hr className="mx-[4%] mb-4" />
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3 mt-11 px-[4%]">
+      <hr className=" mb-4" />
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3 mt-11">
         <Link>
           <div className="bg-slate-500  h-40 object-cover" />
           <p className="text-sm text-[#f06c00]">Business</p>
@@ -109,7 +109,7 @@ const BodyGridLG = () => {
           </p>
         </Link>
       </div>
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3 mt-11 px-[4%]">
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3 mt-11">
         <Link>
           <div className="bg-slate-500  h-40 object-cover" />
           <p className="text-sm text-[#f06c00]">Business</p>
@@ -139,12 +139,12 @@ const BodyGridLG = () => {
           </p>
         </Link>
       </div>
-      <div className="px-[4%] flex gap-3 mt-8 items-center">
+      <div className=" flex gap-3 mt-8 items-center">
         <div className="bg-[#f74548] w-4 h-4" />
         <p className="font-EB font-bold text-lg">TRAVEL NEWS</p>
       </div>
-      <hr className="mx-[4%] mb-4" />
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3 mt-11 px-[4%]">
+      <hr className="mb-4" />
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3 mt-11">
         <Link>
           <div className="bg-slate-500  h-40 object-cover" />
           <p className="text-sm text-[#f06c00]">Business</p>
