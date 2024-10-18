@@ -36,9 +36,9 @@ const HeaderMD = () => {
       </Link>
 
       {/* Navbar Wrapper */}
-      <div className="flex flex-wrap justify-between mt-6 items-center text-lg">
+      <div className="flex flex-wrap justify-between space-x-4 mt-6 items-center text-lg">
         {/* Left Section (Menu Toggle + Search) */}
-        <div className="flex items-center  lg:space-x-4">
+        <div className="flex items-center lg:space-x-4">
           <div>
             <svg
               onClick={toggleMenu}
@@ -77,7 +77,7 @@ const HeaderMD = () => {
         </div>
 
         {/* Nav Links */}
-        <nav className="flex-1 justify-center md:text-sm hidden lg:flex">
+        <nav className="flex-1 justify-start md:text-sm hidden lg:flex">
           <div className="space-x-5 text-[#828282] font-semibold">
             <Link to="/">EUROPE NEWS</Link>
             <Link to="/">TRAVEL NEWS</Link>
