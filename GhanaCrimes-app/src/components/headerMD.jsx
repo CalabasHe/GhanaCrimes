@@ -21,6 +21,11 @@ const HeaderMD = () => {
     setIsCreatingAccount(false);
   };
 
+  const handleLoginClick = (e) => {
+    e.preventDefault();
+    setIsLoginOpen(true);
+  };
+
   return (
     <main className="hidden md:block px-[4%]">
       {/* Logo */}
@@ -84,16 +89,23 @@ const HeaderMD = () => {
         {/* Right Section (Login + Become a Member Button) */}
 
         <div className="flex space-x-3 items-center md:text-sm">
-          <Link
+          <a
             onClick={() => setIsLoginOpen(true)}
             className="text-[#828282] text-base font-semibold"
             to="/"
           >
             Log in
-          </Link>
-          <Link className="bg-[#f06c00] text-white rounded-full px-4 py-2 font-semibold text-sm hidden md:block">
+          </a>
+          <a
+            onClick={(e) => {
+              e.preventDefault();
+              setIsLoginOpen(true);
+              switchToCreateAccount();
+            }}
+            className="bg-[#f06c00] text-white rounded-full px-4 py-2 font-semibold text-sm hidden md:block"
+          >
             CREATE AN ACCOUNT
-          </Link>
+          </a>
         </div>
       </div>
 
