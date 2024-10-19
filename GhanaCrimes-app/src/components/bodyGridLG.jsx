@@ -1,14 +1,18 @@
 import { Link } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { getCrimes } from "../api/authAPI";
 
 const BodyGridLG = () => {
+  const [articles, setArticles] = useState([]);
+
   useEffect(() => {
     const getCrimeData = async () => {
       try {
         const data = await getCrimes();
-        console.log(data);
+        setArticles(data.results);
+
+        console.log(data.results);
       } catch (err) {
         console.log(err);
       }
@@ -16,13 +20,17 @@ const BodyGridLG = () => {
     getCrimeData();
   }, []);
 
+  useEffect(() => {
+    console.log(articles[0]);
+  }, [articles]);
+
   return (
     <main className="overflow-x-hidden md:px-[5%]  md:block">
       <div className="overflow-x-hidden mt-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-4">
           {/*First Column*/}
           <div className="lg:col-span-2 md:col-span-1 space-y-4">
-            <Link to={"/news"} className="">
+            <Link className="">
               <div className="bg-slate-500 h-40 object-cover" />
               <p className="text-sm text-[#f06c00]">Business</p>
               <p className="text-[#393939] text-xl lg:text-2xl leading-tight  hover:text-[#f06c00] font-EB font-semibold">
@@ -39,37 +47,38 @@ const BodyGridLG = () => {
           </div>
 
           {/*Second Column*/}
-          <div className="lg:col-span-3 md:col-span-1 order-first lg:order-none">
-            <div className="h-full flex flex-col space-y-4">
-              {/*First Section*/}
-              <Link>
-                <div className="bg-slate-500 h-[251px] object-cover" />
-                <p className="text-sm text-[#f06c00]">Business</p>
-                <p className="text-[#393939] text-xl lg:text-4xl leading-tight  hover:text-[#f06c00] font-EB font-semibold">
-                  Michelin pauses some French tyre factories as demand falls
-                </p>
-                <p>
-                  More than 400 white-collar workers will be laid off from
-                  Northvolt, split across the battery manufacturer's sites in
-                  Skellefteå, Stockholm and Västerås.
-                </p>
-              </Link>
-              <hr className="mt-4 mb-4 w-full" />
-              {/*Second Section*/}
-              <Link className="flex gap-3">
-                {/* Text Div - Appears first on larger screens */}
-                <div className="order-2 sm:order-1">
-                  <p className="text-sm text-[#f06c00]">Business</p>
-                  <p className="text-[#393939] text-xl lg:text-2xl leading-tight hover:text-[#f06c00] font-EB font-semibold">
-                    Michelin pauses some French tyre factories as demand falls
-                  </p>
-                </div>
+          {articles.length > 0 && (
+            <div className="lg:col-span-3 md:col-span-1 order-first lg:order-none">
+              <div className="h-full flex flex-col space-y-4">
+                {/*First Section*/}
 
-                {/* Image Div - Appears first on mobile (default order for mobile) */}
-                <div className="bg-slate-500 w-[185px] h-[123px] object-cover flex-shrink-0 order-1 sm:order-2" />
-              </Link>
+                <Link to={"/news"}>
+                  <div className="bg-slate-500 h-[251px] object-cover"></div>
+                  <p className="text-sm text-[#f06c00]">
+                    {articles[0].topic.toUpperCase()}
+                  </p>
+                  <p className="text-[#393939] text-xl lg:text-4xl leading-tight  hover:text-[#f06c00] font-EB font-semibold">
+                    {articles[0].main_title}
+                  </p>
+                  <p>{articles[0].sub_title}</p>
+                </Link>
+                <hr className="mt-4 mb-4 w-full" />
+                {/*Second Section*/}
+                <Link className="flex gap-3">
+                  {/* Text Div - Appears first on larger screens */}
+                  <div className="order-2 sm:order-1">
+                    <p className="text-sm text-[#f06c00]">Business</p>
+                    <p className="text-[#393939] text-xl lg:text-2xl leading-tight hover:text-[#f06c00] font-EB font-semibold">
+                      Michelin pauses some French tyre factories as demand falls
+                    </p>
+                  </div>
+
+                  {/* Image Div - Appears first on mobile (default order for mobile) */}
+                  <div className="bg-slate-500 w-[185px] h-[123px] object-cover flex-shrink-0 order-1 sm:order-2" />
+                </Link>
+              </div>
             </div>
-          </div>
+          )}
 
           {/*Third Column*/}
           <div className="space-y-8 lg:col-span-2 md:col-span-2">

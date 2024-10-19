@@ -1,6 +1,6 @@
 const NewsComponent = () => {
   return (
-    <main className="overflow-x-hidden px-[4%]">
+    <main className="overflow-x-hidden px-[5%]">
       <div className="mt-8">
         <div>
           <p className="text-[#f06c00]">Science</p>
