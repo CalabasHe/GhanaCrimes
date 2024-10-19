@@ -25,59 +25,64 @@ const BodyGridLG = () => {
   }, [articles]);
 
   return (
-    <main className="overflow-x-hidden md:px-[5%]  md:block">
-      <div className="overflow-x-hidden mt-4">
+    <main className="overflow-x-hidden px-[5%]  md:block">
+      <div className="mt-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-4">
-          {/*First Column*/}
-          <div className="lg:col-span-2 md:col-span-1 space-y-4">
-            <Link className="">
-              <div className="bg-slate-500 h-40 object-cover" />
-              <p className="text-sm text-[#f06c00]">Business</p>
-              <p className="text-[#393939] text-xl lg:text-2xl leading-tight  hover:text-[#f06c00] font-EB font-semibold">
-                Michelin pauses some French tyre factories as demand falls
-              </p>
-            </Link>
-            <Link className="">
-              <div className="bg-slate-500 h-40 object-cover" />
-              <p className="text-sm text-[#f06c00]">Business</p>
-              <p className="text-[#393939] text-xl lg:text-2xl leading-tight  hover:text-[#f06c00] font-EB font-semibold">
-                Michelin pauses some French tyre factories as demand falls
-              </p>
-            </Link>
-          </div>
-
           {/*Second Column*/}
           {articles.length > 0 && (
-            <div className="lg:col-span-3 md:col-span-1 order-first lg:order-none">
-              <div className="h-full flex flex-col space-y-4">
-                {/*First Section*/}
-
-                <Link to={"/news"}>
-                  <div className="bg-slate-500 h-[251px] object-cover"></div>
+            <>
+              {/*First Column*/}
+              <div className="lg:col-span-2 md:col-span-1 space-y-4">
+                <Link className="">
+                  <div className="bg-slate-500 h-40 object-cover" />
                   <p className="text-sm text-[#f06c00]">
-                    {articles[0].topic.toUpperCase()}
+                    {articles[2].topic.toUpperCase()}
                   </p>
-                  <p className="text-[#393939] text-xl lg:text-4xl leading-tight  hover:text-[#f06c00] font-EB font-semibold">
-                    {articles[0].main_title}
+                  <p className="text-[#393939] text-xl lg:text-2xl leading-tight  hover:text-[#f06c00] font-EB font-semibold">
+                    {articles[2].main_title}
                   </p>
-                  <p>{articles[0].sub_title}</p>
                 </Link>
-                <hr className="mt-4 mb-4 w-full" />
-                {/*Second Section*/}
-                <Link className="flex gap-3">
-                  {/* Text Div - Appears first on larger screens */}
-                  <div className="order-2 sm:order-1">
-                    <p className="text-sm text-[#f06c00]">Business</p>
-                    <p className="text-[#393939] text-xl lg:text-2xl leading-tight hover:text-[#f06c00] font-EB font-semibold">
-                      Michelin pauses some French tyre factories as demand falls
-                    </p>
-                  </div>
-
-                  {/* Image Div - Appears first on mobile (default order for mobile) */}
-                  <div className="bg-slate-500 w-[185px] h-[123px] object-cover flex-shrink-0 order-1 sm:order-2" />
+                <Link className="">
+                  <div className="bg-slate-500 h-40 object-cover" />
+                  <p className="text-sm text-[#f06c00]">Business</p>
+                  <p className="text-[#393939] text-xl lg:text-2xl leading-tight  hover:text-[#f06c00] font-EB font-semibold">
+                    Michelin pauses some French tyre factories as demand falls
+                  </p>
                 </Link>
               </div>
-            </div>
+              <div className="lg:col-span-3 md:col-span-1 order-first lg:order-none">
+                <div className="h-full flex flex-col space-y-4">
+                  {/*First Section*/}
+
+                  <Link to={"/news"}>
+                    <div className="bg-slate-500 h-[251px] object-cover"></div>
+                    <p className="text-sm text-[#f06c00]">
+                      {articles[0].topic.toUpperCase()}
+                    </p>
+                    <p className="text-[#393939] text-xl lg:text-4xl leading-tight  hover:text-[#f06c00] font-EB font-semibold">
+                      {articles[0].main_title}
+                    </p>
+                    <p>{articles[0].sub_title}</p>
+                  </Link>
+                  <hr className="mt-4 mb-4 w-full" />
+                  {/*Second Section*/}
+                  <Link className="flex gap-3">
+                    {/* Text Div - Appears first on larger screens */}
+                    <div className="order-2 sm:order-1">
+                      <p className="text-sm text-[#f06c00]">
+                        {articles[1].topic.toUpperCase()}
+                      </p>
+                      <p className="text-[#393939] text-xl lg:text-2xl leading-tight hover:text-[#f06c00] font-EB font-semibold">
+                        {articles[1].main_title}
+                      </p>
+                    </div>
+
+                    {/* Image Div - Appears first on mobile (default order for mobile) */}
+                    <div className="bg-slate-500 w-[185px] h-[123px] object-cover lg:justify-end flex-shrink-0 order-1 sm:order-2" />
+                  </Link>
+                </div>
+              </div>
+            </>
           )}
 
           {/*Third Column*/}
