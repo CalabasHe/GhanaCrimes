@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 const BodyGridLG = () => {
   return (
-    <main className="overflow-x-hidden px-10  md:block">
+    <main className="overflow-x-hidden md:px-[5%]  md:block">
       <div className="overflow-x-hidden mt-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-4">
           {/*First Column*/}
