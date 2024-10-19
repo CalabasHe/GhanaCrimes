@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useEffect } from "react";
 
 const api = "https://ghanacrimes-api.onrender.com/api";
 
