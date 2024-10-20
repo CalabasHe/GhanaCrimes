@@ -1,10 +1,87 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
 
 const HeaderSM = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isCreatingAccount, setIsCreatingAccount] = useState(false);
+  const [first_name, setFirstname] = useState();
+  const [last_name, setLastname] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState('');
+  const [dob, Setdate] = useState();
+  const [error, SetErrors] = useState([]);
+  const [gender, SetGender] = useState("f");
+  const [dobError, setDobError] = useState(false);
+  const [emailError, SetEmailErorr] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const[isloading,SetLoading]=useState(false)
+
+
+  // const isOk = password.length>=8
+
+  const handleGenderMale = (e) => {
+    SetGender("m");
+    console.log(gender);
+  };
+
+  const handleGenderFemale = (e) => {
+    SetGender("f");
+    console.log(gender);
+  };
+
+  const handleFirstnameChange = (e) => {
+    setFirstname(e.target.value);
+  };
+  const handleLastnameChange = (e) => {
+    setLastname(e.target.value);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleDateChange = (e) => {
+    Setdate(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+
+    e.preventDefault();
+    SetLoading(true)
+    try {
+      const response = await axios.post(
+        "https://ghanacrimes-api.onrender.com/api/auth/signup/",
+        {
+          first_name,
+          last_name,
+          email,
+          password,
+          dob,
+          gender,
+        }
+      );
+      //console.log(isOk);
+      
+      console.log(response.data);
+      setFirstname("");
+      setLastname("");
+      setEmail("");
+      setPassword("");
+      Setdate("");
+      setIsCreatingAccount(false);
+      setIsLoginOpen(false);
+    } catch (error) {
+      SetErrors(error.response.data);
+      console.log(error.response.data);
+    }
+    SetLoading(false)
+  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -26,6 +103,18 @@ const HeaderSM = () => {
     e.preventDefault();
     setIsLoginOpen(true);
   };
+
+  //  if(error.email){
+  //    SetEmailErorr(true)
+  //    }
+  //    if(error.dob){
+  //     setDobError(true)
+  //    }
+
+  //    if(error.password){
+  //     setPasswordError(true)
+  //    }
+
   return (
     <main className="block md:hidden">
       <div className="flex px-10 items-center mt-6 container flex-wrap">
@@ -214,9 +303,13 @@ const HeaderSM = () => {
                   <input
                     className="border-none outline-none"
                     type="text"
+                    name="first_name"
                     placeholder="First Name"
+                    onChange={handleFirstnameChange}
                   />
+
                 </div>
+                {!first_name? <p className="text-red-500 mt-2"> *This fill is required </p> :<></>}
                 <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -234,9 +327,12 @@ const HeaderSM = () => {
                   <input
                     className="border-none outline-none"
                     type="text"
+                    name="last_name"
                     placeholder="Last Name"
+                    onChange={handleLastnameChange}
                   />
                 </div>
+                {!last_name? <p className="text-red-500 mt-2"> *This fill is required </p> :<></>}
                 <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -252,8 +348,21 @@ const HeaderSM = () => {
                   <input
                     className="border-none outline-none"
                     type="email"
+                    name="email"
                     placeholder="Email"
+                    onChange={handleEmailChange}
+                    required
                   />
+                </div>
+                <div>
+                {!email? <p className="text-red-500 mt-2"> *Email fill is required </p> :<></>}
+                  {error.email ? (
+                    <p className="text-red-500 mt-2">
+                      *This email is already in use
+                    </p>
+                  ) : (
+                    <></>
+                  )}{" "}
                 </div>
                 <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
                   <svg
@@ -275,8 +384,60 @@ const HeaderSM = () => {
                     className="border-none outline-none"
                     type="password"
                     placeholder="Password"
+                    name="password"
+                    onChange={handlePasswordChange}
                   />
                 </div>
+                <div>
+
+            {/* {password.length===0 ?  p :<></>} */}
+            {!password? <p className="text-red-500 mt-2"> *Password fill is required </p> :<></>}
+                  {error.password &&   (
+                    <p className="text-red-500 mt-2">
+                      *Ensure this field has at least 8 characters
+                    </p>
+                  ) }
+                </div>
+                <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={24}
+                    height={24}
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="black"
+                      fillRule="evenodd"
+                      d="M8 7a4 4 0 1 1 8 0a4 4 0 0 1-8 0m0 6a5 5 0 0 0-5 5a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3a5 5 0 0 0-5-5z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+
+                  <div>
+                    <input
+                      type="radio"
+                      name="gender"
+                      id="m"
+                      value="m"
+                      checked={gender === "m"}
+                      onChange={handleGenderMale}
+                    />
+                    <label for="male">Male</label>
+                  </div>
+                  <div>
+                    <input
+                      type="radio"
+                      name="gender"
+                      id="f"
+                      value="f"
+                      checked={gender === "f"}
+                      onChange={handleGenderFemale}
+                    />
+                    <label for="male">Female</label>
+                  </div>
+                </div>
+                
+
                 <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -297,8 +458,11 @@ const HeaderSM = () => {
                     className="border-none outline-none"
                     type="date"
                     placeholder="DOB"
+                    name="dob"
+                    onChange={handleDateChange}
                   />
                 </div>
+               
                 <p className="text-center mt-11 text-[#828282]">
                   Or continue with
                 </p>
@@ -329,9 +493,13 @@ const HeaderSM = () => {
                     </svg>
                   </Link>
                 </div>
-                <button className="rounded-full w-full bg-[#f06c00] mt-6 p-3 text-center text-white">
-                  Sign Up
+                <button
+                  className="rounded-full w-full bg-[#f06c00] mt-6 p-3 text-center text-white"
+                  onClick={handleSubmit}
+                >
+                  {isloading?'Signing Up ': 'Sign Up'}
                 </button>
+                {error.message}
               </div>
             ) : (
               <div>
