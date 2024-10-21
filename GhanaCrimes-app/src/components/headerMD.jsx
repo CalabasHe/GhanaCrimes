@@ -1,10 +1,134 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import axios from "axios";
 
 const HeaderMD = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
   const [isCreatingAccount, setIsCreatingAccount] = useState(false);
+  const [first_name, setFirstname] = useState();
+  const [last_name, setLastname] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState("");
+  const [dob, Setdate] = useState();
+  const [error, SetErrors] = useState([]);
+  const [gender, SetGender] = useState("f");
+  const [dobError, setDobError] = useState(false);
+  const [emailError, SetEmailErorr] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [isloading, SetLoading] = useState(false);
+  const [loginPassword, SetLoginPassword] = useState("");
+  const [loginEmail, SetLoginEmail] = useState("");
+
+  const handleLogin = async (e) => {
+    e.preventDefault(); // Prevent form submission
+    setIsLoginOpen(true); // Show login UI/modal (if that's the purpose)
+
+    console.log(loginEmail, loginPassword); // Log entered email and password for debugging
+
+    try {
+      // Set loading state to true while making the API request
+      SetLoading(true);
+
+      // Make the POST request to the server with email and password
+      const response = await axios.post(
+        "https://ghanacrimes-api.onrender.com/api/auth/login/",
+        {
+          email: loginEmail,
+          password: loginPassword,
+        }
+      );
+
+      // Check if the response status indicates successful login
+      if (response.status === 201) {
+        alert("Login successful");
+      } else {
+        alert("Unexpected response from the server.");
+      }
+
+      // Log the entire response object for debugging
+      console.log("Login Response: ", response);
+    } catch (error) {
+      // Log the error response for further debugging
+      console.log("Error Response: ", error.response);
+
+      // Check if there's an error message from the server and alert it, else show default message
+      const errorMessage =
+        error.response?.data?.message || "Invalid password or email";
+      alert(errorMessage);
+    } finally {
+      // Set loading state to false after request (whether it succeeds or fails)
+      SetLoading(false);
+    }
+  };
+
+  const handleGenderMale = (e) => {
+    SetGender("m");
+    console.log(gender);
+  };
+
+  const handleGenderFemale = (e) => {
+    SetGender("f");
+    console.log(gender);
+  };
+
+  const handleFirstnameChange = (e) => {
+    setFirstname(e.target.value);
+  };
+  const handleLastnameChange = (e) => {
+    setLastname(e.target.value);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleDateChange = (e) => {
+    Setdate(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    SetLoading(true);
+    try {
+      const response = await axios.post(
+        "https://ghanacrimes-api.onrender.com/api/auth/signup/",
+        {
+          first_name,
+          last_name,
+          email,
+          password,
+          dob,
+          gender,
+        }
+      );
+  
+      console.log(response.data);
+      // Reset form fields
+      setFirstname("");
+      setLastname("");
+      setEmail("");
+      setPassword("");
+      Setdate("");
+      setIsCreatingAccount(false);
+      setIsLoginOpen(false);
+    } catch (error) {
+      if (error.response) {
+        SetErrors(error.response.data);
+        console.log(error.response.data);
+      } else {
+        SetErrors("An unexpected error occurred.");
+        console.log("An unexpected error occurred.", error);
+      }
+    } finally {
+      SetLoading(false);
+    }
+  };
+  
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -23,7 +147,7 @@ const HeaderMD = () => {
 
   const handleLoginClick = (e) => {
     e.preventDefault();
-    
+
     setIsLoginOpen(true);
   };
 
@@ -228,9 +352,16 @@ const HeaderMD = () => {
                   <input
                     className="border-none outline-none"
                     type="text"
+                    name="first_name"
                     placeholder="First Name"
+                    onChange={handleFirstnameChange}
                   />
                 </div>
+                {!first_name ? (
+                  <p className="text-red-500 mt-2"> *This fill is required </p>
+                ) : (
+                  <></>
+                )}
                 <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -248,9 +379,16 @@ const HeaderMD = () => {
                   <input
                     className="border-none outline-none"
                     type="text"
+                    name="last_name"
                     placeholder="Last Name"
+                    onChange={handleLastnameChange}
                   />
                 </div>
+                {!last_name ? (
+                  <p className="text-red-500 mt-2"> *This fill is required </p>
+                ) : (
+                  <></>
+                )}
                 <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -266,8 +404,28 @@ const HeaderMD = () => {
                   <input
                     className="border-none outline-none"
                     type="email"
+                    name="email"
                     placeholder="Email"
+                    onChange={handleEmailChange}
+                    required
                   />
+                </div>
+                <div>
+                  {!email ? (
+                    <p className="text-red-500 mt-2">
+                      {" "}
+                      *Email fill is required{" "}
+                    </p>
+                  ) : (
+                    <></>
+                  )}
+                  {error.email ? (
+                    <p className="text-red-500 mt-2">
+                      *This email is already in use
+                    </p>
+                  ) : (
+                    <></>
+                  )}{" "}
                 </div>
                 <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
                   <svg
@@ -289,7 +447,62 @@ const HeaderMD = () => {
                     className="border-none outline-none"
                     type="password"
                     placeholder="Password"
+                    name="password"
+                    onChange={handlePasswordChange}
                   />
+                </div>
+                <div>
+                  {!password ? (
+                    <p className="text-red-500 mt-2">
+                      {" "}
+                      *Password fill is required{" "}
+                    </p>
+                  ) : (
+                    <></>
+                  )}
+                  {error.password && (
+                    <p className="text-red-500 mt-2">
+                      *Ensure this field has at least 8 characters
+                    </p>
+                  )}
+                </div>
+                <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width={24}
+                    height={24}
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="black"
+                      fillRule="evenodd"
+                      d="M8 7a4 4 0 1 1 8 0a4 4 0 0 1-8 0m0 6a5 5 0 0 0-5 5a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3a5 5 0 0 0-5-5z"
+                      clipRule="evenodd"
+                    ></path>
+                  </svg>
+
+                  <div>
+                    <input
+                      type="radio"
+                      name="gender"
+                      id="m"
+                      value="m"
+                      checked={gender === "m"}
+                      onChange={handleGenderMale}
+                    />
+                    <label for="male">Male</label>
+                  </div>
+                  <div>
+                    <input
+                      type="radio"
+                      name="gender"
+                      id="f"
+                      value="f"
+                      checked={gender === "f"}
+                      onChange={handleGenderFemale}
+                    />
+                    <label for="male">Female</label>
+                  </div>
                 </div>
                 <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
                   <svg
@@ -311,6 +524,8 @@ const HeaderMD = () => {
                     className="border-none outline-none"
                     type="date"
                     placeholder="DOB"
+                    name="dob"
+                    onChange={handleDateChange}
                   />
                 </div>
                 <p className="text-center mt-11 text-[#828282]">
@@ -343,8 +558,11 @@ const HeaderMD = () => {
                     </svg>
                   </Link>
                 </div>
-                <button className="rounded-full w-full bg-[#f06c00] mt-6 p-3 text-center text-white">
-                  Sign Up
+                <button
+                  onClick={handleSubmit}
+                  className="rounded-full w-full bg-[#f06c00] mt-6 p-3 text-center text-white"
+                >
+                  {isloading ? "Signing Up " : "Sign Up"}
                 </button>
               </div>
             ) : (
@@ -410,7 +628,7 @@ const HeaderMD = () => {
                   </div>
                   <Link className="text-[#f06c00]">I forgot my password</Link>
                 </div>
-                <button className="rounded-full w-full bg-[#f06c00] mt-6 p-3 text-center text-white">
+                <button onClick={handleLogin} className="rounded-full w-full bg-[#f06c00] mt-6 p-3 text-center text-white">
                   <Link>Sign in</Link>
                 </button>
                 <hr className="mt-11" />

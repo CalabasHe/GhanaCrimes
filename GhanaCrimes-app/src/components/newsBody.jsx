@@ -109,6 +109,7 @@ const NewsComponent = () => {
           </div>
           {/* Image and description */}
           <div>
+            
             <img className="bg-slate-500 h-[351px] object-cover mt-8" src={article?.image.image} alt="" />
             
             <p className="text-[#afafaf] mt-2">

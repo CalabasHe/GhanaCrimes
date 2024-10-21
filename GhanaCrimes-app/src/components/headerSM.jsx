@@ -21,7 +21,7 @@ const HeaderSM = () => {
   const[loginEmail,SetLoginEmail]=useState('')
 
 
-  // const isOk = password.length>=8
+
 
   const handleLogin = async (e) => {
     e.preventDefault(); // Prevent form submission
@@ -118,9 +118,11 @@ const HeaderSM = () => {
       Setdate("");
       setIsCreatingAccount(false);
       setIsLoginOpen(false);
+      SetLoading(false);
     } catch (error) {
       SetErrors(error.response.data);
       console.log(error.response.data);
+      SetLoading(false);
     }
     SetLoading(false)
   };
@@ -146,17 +148,7 @@ const HeaderSM = () => {
     setIsLoginOpen(true);
   };
 
-  //  if(error.email){
-  //    SetEmailErorr(true)
-  //    }
-  //    if(error.dob){
-  //     setDobError(true)
-  //    }
-
-  //    if(error.password){
-  //     setPasswordError(true)
-  //    }
-
+ 
   return (
     <main className="block md:hidden">
       <div className="flex px-10 items-center mt-6 container flex-wrap">
@@ -432,7 +424,6 @@ const HeaderSM = () => {
                 </div>
                 <div>
 
-            {/* {password.length===0 ?  p :<></>} */}
             {!password? <p className="text-red-500 mt-2"> *Password fill is required </p> :<></>}
                   {error.password &&   (
                     <p className="text-red-500 mt-2">
