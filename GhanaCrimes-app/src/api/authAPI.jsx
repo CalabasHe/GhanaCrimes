@@ -8,7 +8,7 @@ export const getCrimes = async () => {
 
     return response.data;
   } catch {
-    console.error("Error fetching crimes");
+    console.error("Error fetching news");
     return [];
   }
 };

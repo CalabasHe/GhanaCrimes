@@ -17,9 +17,51 @@ const HeaderSM = () => {
   const [emailError, SetEmailErorr] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
   const[isloading,SetLoading]=useState(false)
+  const[loginPassword,SetLoginPassword]=useState('')
+  const[loginEmail,SetLoginEmail]=useState('')
 
 
   // const isOk = password.length>=8
+
+  const handleLogin = async (e) => {
+    e.preventDefault(); // Prevent form submission
+    setIsLoginOpen(true); // Show login UI/modal (if that's the purpose)
+
+    console.log(loginEmail, loginPassword); // Log entered email and password for debugging
+
+    try {
+        // Set loading state to true while making the API request
+        SetLoading(true);
+
+        // Make the POST request to the server with email and password
+        const response = await axios.post('https://ghanacrimes-api.onrender.com/api/auth/login/', {
+            email: loginEmail,   
+            password: loginPassword,
+        });
+
+        // Check if the response status indicates successful login
+        if (response.status === 201) {
+            alert('Login successful');
+        } else {
+            alert('Unexpected response from the server.');
+        }
+
+        // Log the entire response object for debugging
+        console.log('Login Response: ', response);
+
+    } catch (error) {
+        // Log the error response for further debugging
+        console.log('Error Response: ', error.response);
+
+        // Check if there's an error message from the server and alert it, else show default message
+        const errorMessage = error.response?.data?.message || 'Invalid password or email';
+        alert(errorMessage);
+
+    } finally {
+        // Set loading state to false after request (whether it succeeds or fails)
+        SetLoading(false);
+    }
+};
 
   const handleGenderMale = (e) => {
     SetGender("m");
@@ -531,6 +573,7 @@ const HeaderSM = () => {
                     name=""
                     id=""
                     placeholder="Email"
+                    onChange={(e)=>SetLoginEmail(e.target.value)}
                   />
                 </div>
                 <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
@@ -555,6 +598,9 @@ const HeaderSM = () => {
                     name=""
                     id=""
                     placeholder="Password"
+                    onChange={(e)=>SetLoginPassword(e.target.value)}
+
+        
                   />
                 </div>
                 <div className="flex justify-between mt-4">
@@ -564,7 +610,7 @@ const HeaderSM = () => {
                   </div>
                   <Link className="text-[#f06c00]">I forgot my password</Link>
                 </div>
-                <button className="rounded-full w-full bg-[#f06c00] mt-6 p-3 text-center text-white">
+                <button className="rounded-full w-full bg-[#f06c00] mt-6 p-3 text-center text-white" onClick={handleLogin}>
                   <Link>Sign in</Link>
                 </button>
                 <hr className="mt-11" />

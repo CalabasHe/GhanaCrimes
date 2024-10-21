@@ -23,6 +23,7 @@ const HeaderMD = () => {
 
   const handleLoginClick = (e) => {
     e.preventDefault();
+    
     setIsLoginOpen(true);
   };
 
