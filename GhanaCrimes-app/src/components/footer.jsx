@@ -17,7 +17,9 @@ const Footer = () => {
               Reiciendis, in?
             </article>
             <div className="flex md:flex-col gap-4 font-bold">
-              <Link className="hover:text-[#f06c00]">About us</Link>
+              <Link to={"/about-us"} className="hover:text-[#f06c00]">
+                About us
+              </Link>
               <Link className="hover:text-[#f06c00]">Contact us</Link>
             </div>
             <div></div>
