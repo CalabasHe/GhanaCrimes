@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
+import { useContext
 
+ } from "react";
+import { AuthContext } from "../context/context";
 const HeaderSM = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoginOpen, setIsLoginOpen] = useState(false);
@@ -9,59 +12,78 @@ const HeaderSM = () => {
   const [first_name, setFirstname] = useState();
   const [last_name, setLastname] = useState();
   const [email, setEmail] = useState();
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState("");
   const [dob, Setdate] = useState();
   const [error, SetErrors] = useState([]);
   const [gender, SetGender] = useState("f");
   const [dobError, setDobError] = useState(false);
   const [emailError, SetEmailErorr] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
-  const[isloading,SetLoading]=useState(false)
-  const[loginPassword,SetLoginPassword]=useState('')
-  const[loginEmail,SetLoginEmail]=useState('')
+  const [isloading, SetLoading] = useState(false);
+  const [loginPassword, SetLoginPassword] = useState("");
+  const [loginEmail, SetLoginEmail] = useState("");
 
+// const { handleLogin } = useContext(AuthContext);
 
+ const handleLogin = async (e) => {
+  e.preventDefault(); // Prevent form submission
+  setIsLoginOpen(true); // Show login UI/modal
 
+  console.log("Logging in with:", loginEmail, loginPassword); // Log entered email and password
 
-  const handleLogin = async (e) => {
-    e.preventDefault(); // Prevent form submission
-    setIsLoginOpen(true); // Show login UI/modal (if that's the purpose)
+  try {
+      SetLoading(true); // Ensure correct state function is called
 
-    console.log(loginEmail, loginPassword); // Log entered email and password for debugging
+      // Make the POST request to the server with email and password
+      const response = await axios.post(
+          "https://ghanacrimes-api.onrender.com/api/auth/login/",
+          {
+              email: loginEmail,
+              password: loginPassword,
+          }
+      );
 
-    try {
-        // Set loading state to true while making the API request
-        SetLoading(true);
+      // Log the entire response object for debugging
+      console.log("Login Response: ", response);
+      toStorage(response.data.access,response.data.refresh)
 
-        // Make the POST request to the server with email and password
-        const response = await axios.post('https://ghanacrimes-api.onrender.com/api/auth/login/', {
-            email: loginEmail,   
-            password: loginPassword,
-        });
+      // Check if the response status indicates successful login
+      if (response.status === 201) {
+          const { access, refresh } = response.data; // Destructure the tokens from the response
 
-        // Check if the response status indicates successful login
-        if (response.status === 201) {
-            alert('Login successful');
-        } else {
-            alert('Unexpected response from the server.');
-        }
+          // Store tokens in localStorage
+          // localStorage.setItem("access_token", access);
+          // localStorage.setItem("refresh_token", refresh);
+          
+          // Log the tokens stored in localStorage
+          // console.log('Access Token stored:', localStorage.getItem('access_token'));
+          // console.log('Refresh Token stored:', localStorage.getItem('refresh_token'));
+          
+          alert("Login successful");
+      } else {
+          alert("Unexpected response from the server.");
+      }
+  } catch (error) {
+      // Log the error response for further debugging
+      console.log("Error Response: ", error.response);
 
-        // Log the entire response object for debugging
-        console.log('Login Response: ', response);
-
-    } catch (error) {
-        // Log the error response for further debugging
-        console.log('Error Response: ', error.response);
-
-        // Check if there's an error message from the server and alert it, else show default message
-        const errorMessage = error.response?.data?.message || 'Invalid password or email';
-        alert(errorMessage);
-
-    } finally {
-        // Set loading state to false after request (whether it succeeds or fails)
-        SetLoading(false);
-    }
+      // Check if there's an error message from the server and alert it, else show default message
+      const errorMessage = error.response?.data?.message || "Invalid password or email";
+      alert(errorMessage);
+  } finally {
+      SetLoading(false); // Ensure correct state function is called
+  }
 };
+
+
+const toStorage=(access,refresh)=>{
+  localStorage.setItem('faccess_token',access);
+  localStorage.setItem('refresh_token', refresh);
+  
+}
+
+
+
 
   const handleGenderMale = (e) => {
     SetGender("m");
@@ -93,9 +115,8 @@ const HeaderSM = () => {
   };
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
-    SetLoading(true)
+    SetLoading(true);
     try {
       const response = await axios.post(
         "https://ghanacrimes-api.onrender.com/api/auth/signup/",
@@ -109,7 +130,7 @@ const HeaderSM = () => {
         }
       );
       //console.log(isOk);
-      
+
       console.log(response.data);
       setFirstname("");
       setLastname("");
@@ -124,7 +145,7 @@ const HeaderSM = () => {
       console.log(error.response.data);
       SetLoading(false);
     }
-    SetLoading(false)
+    SetLoading(false);
   };
 
   const toggleMenu = () => {
@@ -148,7 +169,6 @@ const HeaderSM = () => {
     setIsLoginOpen(true);
   };
 
- 
   return (
     <main className="block md:hidden">
       <div className="flex px-10 items-center mt-6 container flex-wrap">
@@ -341,9 +361,12 @@ const HeaderSM = () => {
                     placeholder="First Name"
                     onChange={handleFirstnameChange}
                   />
-
                 </div>
-                {!first_name? <p className="text-red-500 mt-2"> *This fill is required </p> :<></>}
+                {!first_name ? (
+                  <p className="text-red-500 mt-2"> *This fill is required </p>
+                ) : (
+                  <></>
+                )}
                 <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -366,7 +389,11 @@ const HeaderSM = () => {
                     onChange={handleLastnameChange}
                   />
                 </div>
-                {!last_name? <p className="text-red-500 mt-2"> *This fill is required </p> :<></>}
+                {!last_name ? (
+                  <p className="text-red-500 mt-2"> *This fill is required </p>
+                ) : (
+                  <></>
+                )}
                 <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -386,10 +413,18 @@ const HeaderSM = () => {
                     placeholder="Email"
                     onChange={handleEmailChange}
                     required
+                    id="email"
                   />
                 </div>
                 <div>
-                {!email? <p className="text-red-500 mt-2"> *Email fill is required </p> :<></>}
+                  {!email ? (
+                    <p className="text-red-500 mt-2">
+                      {" "}
+                      *Email fill is required{" "}
+                    </p>
+                  ) : (
+                    <></>
+                  )}
                   {error.email ? (
                     <p className="text-red-500 mt-2">
                       *This email is already in use
@@ -420,16 +455,23 @@ const HeaderSM = () => {
                     placeholder="Password"
                     name="password"
                     onChange={handlePasswordChange}
+                    id="password"
                   />
                 </div>
                 <div>
-
-            {!password? <p className="text-red-500 mt-2"> *Password fill is required </p> :<></>}
-                  {error.password &&   (
+                  {!password ? (
+                    <p className="text-red-500 mt-2">
+                      {" "}
+                      *Password fill is required{" "}
+                    </p>
+                  ) : (
+                    <></>
+                  )}
+                  {error.password && (
                     <p className="text-red-500 mt-2">
                       *Ensure this field has at least 8 characters
                     </p>
-                  ) }
+                  )}
                 </div>
                 <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
                   <svg
@@ -469,7 +511,6 @@ const HeaderSM = () => {
                     <label for="male">Female</label>
                   </div>
                 </div>
-                
 
                 <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
                   <svg
@@ -495,7 +536,7 @@ const HeaderSM = () => {
                     onChange={handleDateChange}
                   />
                 </div>
-               
+
                 <p className="text-center mt-11 text-[#828282]">
                   Or continue with
                 </p>
@@ -530,7 +571,7 @@ const HeaderSM = () => {
                   className="rounded-full w-full bg-[#f06c00] mt-6 p-3 text-center text-white"
                   onClick={handleSubmit}
                 >
-                  {isloading?'Signing Up ': 'Sign Up'}
+                  {isloading ? "Signing Up " : "Sign Up"}
                 </button>
                 {error.message}
               </div>
@@ -564,7 +605,7 @@ const HeaderSM = () => {
                     name=""
                     id=""
                     placeholder="Email"
-                    onChange={(e)=>SetLoginEmail(e.target.value)}
+                    onChange={(e) => SetLoginEmail(e.target.value)}
                   />
                 </div>
                 <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
@@ -589,9 +630,7 @@ const HeaderSM = () => {
                     name=""
                     id=""
                     placeholder="Password"
-                    onChange={(e)=>SetLoginPassword(e.target.value)}
-
-        
+                    onChange={(e) => SetLoginPassword(e.target.value)}
                   />
                 </div>
                 <div className="flex justify-between mt-4">
@@ -601,7 +640,10 @@ const HeaderSM = () => {
                   </div>
                   <Link className="text-[#f06c00]">I forgot my password</Link>
                 </div>
-                <button className="rounded-full w-full bg-[#f06c00] mt-6 p-3 text-center text-white" onClick={handleLogin}>
+                <button
+                  className="rounded-full w-full bg-[#f06c00] mt-6 p-3 text-center text-white"
+                  onClick={handleLogin}
+                >
                   <Link>Sign in</Link>
                 </button>
                 <hr className="mt-11" />
@@ -636,6 +678,7 @@ const HeaderSM = () => {
                   </Link>
                 </div>
               </div>
+              
             )}
           </div>
         </div>

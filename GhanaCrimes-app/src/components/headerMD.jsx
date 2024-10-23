@@ -22,45 +22,61 @@ const HeaderMD = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault(); // Prevent form submission
-    setIsLoginOpen(true); // Show login UI/modal (if that's the purpose)
+    setIsLoginOpen(true); // Show login UI/modal
 
-    console.log(loginEmail, loginPassword); // Log entered email and password for debugging
+    console.log("Logging in with:", loginEmail, loginPassword); // Log entered email and password
 
     try {
-      // Set loading state to true while making the API request
-      SetLoading(true);
+        SetLoading(true); // Ensure correct state function is called
 
-      // Make the POST request to the server with email and password
-      const response = await axios.post(
-        "https://ghanacrimes-api.onrender.com/api/auth/login/",
-        {
-          email: loginEmail,
-          password: loginPassword,
+        // Make the POST request to the server with email and password
+        const response = await axios.post(
+            "https://ghanacrimes-api.onrender.com/api/auth/login/",
+            {
+                email: loginEmail,
+                password: loginPassword,
+            }
+        );
+
+        // Log the entire response object for debugging
+        console.log("Login Response: ", response);
+        toStorage(response.data.access,response.data.refresh)
+
+        // Check if the response status indicates successful login
+        if (response.status === 201) {
+            const { access, refresh } = response.data; // Destructure the tokens from the response
+
+            // Store tokens in localStorage
+            // localStorage.setItem("access_token", access);
+            // localStorage.setItem("refresh_token", refresh);
+            
+            // Log the tokens stored in localStorage
+            // console.log('Access Token stored:', localStorage.getItem('access_token'));
+            // console.log('Refresh Token stored:', localStorage.getItem('refresh_token'));
+            
+            alert("Login successful");
+        } else {
+            alert("Unexpected response from the server.");
         }
-      );
-
-      // Check if the response status indicates successful login
-      if (response.status === 201) {
-        alert("Login successful");
-      } else {
-        alert("Unexpected response from the server.");
-      }
-
-      // Log the entire response object for debugging
-      console.log("Login Response: ", response);
     } catch (error) {
-      // Log the error response for further debugging
-      console.log("Error Response: ", error.response);
+        // Log the error response for further debugging
+        console.log("Error Response: ", error.response);
 
-      // Check if there's an error message from the server and alert it, else show default message
-      const errorMessage =
-        error.response?.data?.message || "Invalid password or email";
-      alert(errorMessage);
+        // Check if there's an error message from the server and alert it, else show default message
+        const errorMessage = error.response?.data?.message || "Invalid password or email";
+        alert(errorMessage);
     } finally {
-      // Set loading state to false after request (whether it succeeds or fails)
-      SetLoading(false);
+        SetLoading(false); // Ensure correct state function is called
     }
-  };
+};
+
+
+  const toStorage=(access,refresh)=>{
+    localStorage.setItem('faccess_token',access);
+    localStorage.setItem('refresh_token', refresh);
+    
+  }
+  
 
   const handleGenderMale = (e) => {
     SetGender("m");
@@ -106,7 +122,7 @@ const HeaderMD = () => {
           gender,
         }
       );
-  
+
       console.log(response.data);
       // Reset form fields
       setFirstname("");
@@ -128,7 +144,7 @@ const HeaderMD = () => {
       SetLoading(false);
     }
   };
-  
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -628,7 +644,10 @@ const HeaderMD = () => {
                   </div>
                   <Link className="text-[#f06c00]">I forgot my password</Link>
                 </div>
-                <button onClick={handleLogin} className="rounded-full w-full bg-[#f06c00] mt-6 p-3 text-center text-white">
+                <button
+                  onClick={handleLogin}
+                  className="rounded-full w-full bg-[#f06c00] mt-6 p-3 text-center text-white"
+                >
                   <Link>Sign in</Link>
                 </button>
                 <hr className="mt-11" />
@@ -661,6 +680,7 @@ const HeaderMD = () => {
                       ></path>
                     </svg>
                   </Link>
+                  
                 </div>
               </div>
             )}
