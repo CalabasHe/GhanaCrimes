@@ -8,11 +8,11 @@ import { AuthProvider } from "./context/context.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider>
-    <Router>
-      <Routes>
-        <Route path="/*" element={<App />} />
-      </Routes>
-    </Router>
+      <Router>
+        <Routes>
+          <Route path="/*" element={<App />} />
+        </Routes>
+      </Router>
     </AuthProvider>
   </StrictMode>
 );
