@@ -82,7 +82,6 @@ export const AuthProvider = ({ children }) => {
       value={{
         isOpen,
         setIsOpen,
-        authData,
         handleLogin,
         handleLogout,
         loading,
