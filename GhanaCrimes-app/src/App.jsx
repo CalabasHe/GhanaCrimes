@@ -4,6 +4,8 @@ import HomePage from "./pages/homePage";
 import NewsPage from "./pages/newsPage";
 import AboutUs from "./pages/aboutUs";
 import ContactUs from "./pages/contactUS";
+
+
 function App() {
   return (
     <>
