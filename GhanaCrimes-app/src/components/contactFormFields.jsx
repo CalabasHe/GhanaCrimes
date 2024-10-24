@@ -1,4 +1,33 @@
+import { sendContactData } from "../api/contactUsAPI";
+import React, { useState } from "react";
+
 const ContactFormField = () => {
+  const [formData, setFormData] = useState({
+    full_name: "",
+    email: "",
+    title: "",
+    description: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await sendContactData(formData);
+      console.log(formData);
+      // Use the imported API function
+      alert("Your message has been sent successfully!");
+    } catch (error) {
+      alert("Failed to send message.");
+    }
+  };
+
   return (
     <main className="mt-8">
       <div className="grid md:grid-cols-2 gap-3">
@@ -7,37 +36,49 @@ const ContactFormField = () => {
             How can we help you?
           </p>
           <p className="my-4">Tell us why you want to contact us</p>
-          <form className="space-y-4" action="">
+          <form onSubmit={handleSubmit} className="space-y-4" action="">
             <input
-              required
               className="border px-3 py-2 w-full outline-none"
-              placeholder="Full Name"
               type="text"
-              id="full_name"
               name="full_name"
+              value={formData.full_name}
+              onChange={handleChange}
+              required
+              minLength={1}
+              maxLength={100}
+              placeholder="Full name"
             />
             <input
-              required
               className="border px-3 py-2 w-full outline-none"
-              placeholder="Email"
               type="email"
-              id="email"
               name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              maxLength={254}
+              placeholder="Email"
             />
             <input
-              required
               className="border px-3 py-2 w-full outline-none"
               placeholder="Title"
               type="text"
-              id="title"
               name="title"
+              value={formData.title}
+              onChange={handleChange}
+              required
+              maxLength={200}
             />
             <textarea
               className="border px-3 py-2 w-full outline-none h-52"
               name="description"
-              id=""
-            ></textarea>
-            <button className="border p-4 bg-[#f06c00] text-white">
+              value={formData.description}
+              onChange={handleChange}
+              required
+            />
+            <button
+              type="submit"
+              className="border p-4 bg-[#f06c00] text-white"
+            >
               Send message
             </button>
           </form>
