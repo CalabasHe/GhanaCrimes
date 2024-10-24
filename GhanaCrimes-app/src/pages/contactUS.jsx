@@ -1,14 +1,14 @@
 import Header from "../components/header";
+import ContactUsForm from "../components/contactUsForm";
 import Footer from "../components/footer";
-import NewsComponent from "../components/newsBody";
-const NewsPage = () => {
+const ContactUs = () => {
   return (
     <>
       <Header />
-      <NewsComponent />
+      <ContactUsForm />
       <Footer />
     </>
   );
 };
 
-export default NewsPage;
+export default ContactUs;

@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useEffect } from "react";
 
 const api = "https://ghanacrimes-api.onrender.com/api";
 
@@ -9,7 +8,7 @@ export const getCrimes = async () => {
 
     return response.data;
   } catch {
-    console.error("Error fetching crimes");
+    console.error("Error fetching news");
     return [];
   }
 };
