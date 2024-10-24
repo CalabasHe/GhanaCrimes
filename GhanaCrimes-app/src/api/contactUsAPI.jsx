@@ -2,26 +2,22 @@ import axios from "axios";
 
 const contactAPI = "https://ghanacrimes-api.onrender.com/api/contact-us";
 
-// Create axios instance with default config
-const apiClient = axios.create({
-  baseURL: "https://ghanacrimes-api.onrender.com/api",
-  headers: {
-    'Content-Type': 'application/json',
-  }
-});
-
 export const sendContactData = async (formData) => {
   try {
-    // Get the auth token from wherever you store it (localStorage, context, etc)
-    const token = localStorage.getItem('authToken'); // or however you store your token
-    
-    const response = await apiClient.post('/contact-us', formData, {
+    // Get the token from localStorage
+    const token = localStorage.getItem("token"); // or however you store your token
+
+    if (!token) {
+      throw new Error("Authentication required to send message");
+    }
+
+    const response = await axios.post(contactAPI, formData, {
       headers: {
-        // Include authorization header if token exists
-        ...(token && { 'Authorization': `Bearer ${token}` })
-      }
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`, // Add the token to headers
+      },
     });
-    
+
     return response.data;
   } catch (error) {
     if (error.response?.status === 401) {
