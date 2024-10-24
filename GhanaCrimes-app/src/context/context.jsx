@@ -76,7 +76,7 @@ export const AuthProvider = ({ children }) => {
     // Refresh the page
     window.location.reload();
   };
-
+   
   return (
     <AuthContext.Provider
       value={{

@@ -24,33 +24,14 @@ const ContactFormField = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check if user is authenticated
-    const token = localStorage.getItem("faccess_token");
-    // if (!token) {
-    //   alert("Please log in to send a message.");
-    //   navigate("/home");
-    //   setIsOpen(true);
-    //   return;
-    // }
-
-    try {
-      await sendContactData(formData);
-      alert("Your message has been sent successfully!");
-      setFormData({
-        full_name: "",
-        email: "",
-        title: "",
-        description: "",
-      });
-    } catch (error) {
-      // if (error.message === "Authentication required to send message") {
-      //   alert("Please log in to send a message.");
-      //   navigate("/home");
-      //   setIsOpen(true);
-      // } else {
-      //   alert("Failed to send message. Please try again later.");
-      // }
-    }
+    sendContactData(formData);
+    alert("Your message has been sent successfully!");
+    setFormData({
+      full_name: "",
+      email: "",
+      title: "",
+      description: "",
+    });
   };
 
   return (

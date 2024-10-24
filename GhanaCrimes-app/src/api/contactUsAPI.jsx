@@ -4,19 +4,7 @@ const contactAPI = "https://ghanacrimes-api.onrender.com/api/contact-us";
 
 export const sendContactData = async (formData) => {
   try {
-    // Get the token from localStorage
-    const token = localStorage.getItem("token"); // or however you store your token
-
-    if (!token) {
-      throw new Error("Authentication required to send message");
-    }
-
-    const response = await axios.post(contactAPI, formData, {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`, // Add the token to headers
-      },
-    });
+    const response = await axios.post(contactAPI, formData);
 
     return response.data;
   } catch (error) {
