@@ -1,7 +1,9 @@
 import { sendContactData } from "../api/contactUsAPI";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ContactFormField = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     full_name: "",
     email: "",
@@ -20,11 +22,22 @@ const ContactFormField = () => {
     e.preventDefault();
     try {
       await sendContactData(formData);
-      console.log(formData);
-      // Use the imported API function
       alert("Your message has been sent successfully!");
+      // Clear form after successful submission
+      setFormData({
+        full_name: "",
+        email: "",
+        title: "",
+        description: "",
+      });
     } catch (error) {
-      alert("Failed to send message.");
+      if (error.message === "Authentication required to send message") {
+        alert("Please log in to send a message.");
+        // Redirect to login page or show login modal
+        navigate("/home");
+      } else {
+        alert("Failed to send message. Please try again later.");
+      }
     }
   };
 
