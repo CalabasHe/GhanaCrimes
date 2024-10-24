@@ -1,5 +1,5 @@
 import ContactIMG from "../assets/images/Contact-Us-Banner-Image.jpeg";
-
+import ContactFormField from "./contactFormFields";
 const ContactUsFormMD = () => {
   return (
     <main className="overflow-x-hidden hidden md:block px-[5%]">
@@ -34,6 +34,7 @@ const ContactUsFormMD = () => {
           </div>
         </div>
       </div>
+      <ContactFormField />
     </main>
   );
 };
