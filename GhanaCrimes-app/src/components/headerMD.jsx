@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import { fetchNewsTopics } from "../api/newsReadAPI";
 
 const HeaderMD = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,6 +20,7 @@ const HeaderMD = () => {
   const [isloading, SetLoading] = useState(false);
   const [loginPassword, SetLoginPassword] = useState("");
   const [loginEmail, SetLoginEmail] = useState("");
+  const [topics, setTopics] = useState('');
 
   const handleLogin = async (e) => {
     e.preventDefault(); // Prevent form submission
@@ -167,6 +169,19 @@ const HeaderMD = () => {
     setIsLoginOpen(true);
   };
 
+  const getTopics = async () => {
+    try{
+      const topicData = await fetchNewsTopics()
+      setTopics(topicData.results);
+    }catch(err){
+      console.error(err)
+    }
+  }
+
+  useEffect(() => {
+    getTopics()
+  },  [])
+
   return (
     <main className="hidden md:block px-[5%]">
       {/* Logo */}
@@ -191,9 +206,9 @@ const HeaderMD = () => {
             >
               <path
                 stroke="#666"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M2.5 10h15M2.5 5h15M2.323 14.986h10"
               />
             </svg>
@@ -217,11 +232,14 @@ const HeaderMD = () => {
         {/* Nav Links */}
         <nav className="flex-1 justify-start md:text-sm hidden lg:flex">
           <div className="space-x-5 text-[#828282] font-semibold">
-            <Link to="/">EUROPE NEWS</Link>
-            <Link to="/">TRAVEL NEWS</Link>
-            <Link to="/">EUROPE NEWS</Link>
-            <Link to="/">EUROPE NEWS</Link>
-            <Link to="/">EUROPE NEWS</Link>
+            { topics.length > 0 &&
+            (topics.slice(0,5).map((topic) => (
+              <Link to={'/'} key={topic.id}>
+                {topic.name}
+              </Link>
+            )) )
+
+            }
           </div>
         </nav>
 
@@ -289,23 +307,12 @@ const HeaderMD = () => {
               />
             </svg>
           </button>
-          <p className="text-lg font-semibold">Topic</p>
-
-          <Link to="/" className=" text-lg ml-8">
-            EUROPE NEWS
-          </Link>
-          <Link to="/" className=" text-lg ml-8">
-            EUROPE NEWS
-          </Link>
-          <Link href="/" className=" text-lg ml-8">
-            EUROPE NEWS
-          </Link>
-          <Link to="/" className=" text-lg ml-8">
-            EUROPE NEWS
-          </Link>
-          <Link to="/" className=" text-lg ml-8">
-            EUROPE NEWS
-          </Link>
+          <p className="text-lg font-semibold">Topics</p>
+          {topics.length > 0 &&
+            (topics.slice(0,6).map((topic) => (
+              <Link key={topic.id} to='/' className=" text-lg ml-8">{topic.name}</Link>
+            )
+  ))}
         </div>
       </div>
 
@@ -506,7 +513,7 @@ const HeaderMD = () => {
                       checked={gender === "m"}
                       onChange={handleGenderMale}
                     />
-                    <label for="male">Male</label>
+                    <label htmlFor="male">Male</label>
                   </div>
                   <div>
                     <input
@@ -517,7 +524,7 @@ const HeaderMD = () => {
                       checked={gender === "f"}
                       onChange={handleGenderFemale}
                     />
-                    <label for="male">Female</label>
+                    <label htmlFor="male">Female</label>
                   </div>
                 </div>
                 <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">

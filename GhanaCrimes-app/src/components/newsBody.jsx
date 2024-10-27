@@ -108,16 +108,14 @@ const NewsComponent = () => {
             </Link>
           </div>
           {/* Image and description */}
-          <div>
-            
-            <img className="bg-slate-500 h-[351px] object-cover mt-8" src={article?.image.image} alt="" />
-            
+          <div className="w-full flex flex-col items-center">
+              <img className="bg-slate-500 h-[351px] md:w-[50%] object-contain mt-8" src={article?.image?.image} alt="" />            
             <p className="text-[#afafaf] mt-2">
-             {article?.image.image_description}
+             {article?.image?.image_description}
             </p>
           </div>
           {/* Sub title */}
-          <p className="font-EB font-bold lg:text-2xl mt-5">
+          <p className="font-EB font-bold lg:text-2xl mt-5 md:mt-8">
           {article?.sub_title}
           </p>
           {/* Main Description */}
