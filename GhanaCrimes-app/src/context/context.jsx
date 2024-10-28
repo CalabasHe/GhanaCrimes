@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
 // Create the context
@@ -12,6 +12,7 @@ export const AuthProvider = ({ children }) => {
   const [loginPassword, SetLoginPassword] = useState("");
   const [loginEmail, SetLoginEmail] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [comments, setComments] = useState([]);
 
   const [loading, setLoading] = useState(false);
 
@@ -20,6 +21,8 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("faccess_token", access);
     localStorage.setItem("refresh_token", refresh);
   };
+
+  
 
   // Login function (used by components)
   const handleLogin = async (e) => {
@@ -76,7 +79,7 @@ export const AuthProvider = ({ children }) => {
     // Refresh the page
     window.location.reload();
   };
-   
+
   return (
     <AuthContext.Provider
       value={{
@@ -89,6 +92,7 @@ export const AuthProvider = ({ children }) => {
         setIsLoggedIn,
         isLoginOpen,
         setIsLoginOpen,
+       
       }}
     >
       {children}

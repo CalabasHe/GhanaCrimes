@@ -1,14 +1,68 @@
 import { Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { fetchNewsArticle } from "../api/newsReadAPI";
+import { AuthContext } from "../context/context";
+import axios from "axios";
 import moment from "moment";
 const NewsComponent = () => {
   const [article, setArticle] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { slug } = useParams();
+  const [comments, setComments] = useState([]);
+  const [commentsLoading, setCommentsLoading] = useState(true);
+  const [commentsError, setCommentsError] = useState(null);
+  useEffect(() => {
+    const fetchComments = async () => {
+      setCommentsLoading(true);
+      setCommentsError(null);
 
+      try {
+        const response = await axios.get(
+          `https://ghanacrimes-api.onrender.com/api/comments/`
+        );
+
+        // Log the entire response to see its structure
+        console.log("Full response:", response);
+        console.log("Response data:", response.data);
+
+        // Check if response.data exists
+        if (response.data) {
+          // If response.data is not an array but has a data property that is an array
+          if (response.data.data && Array.isArray(response.data.data)) {
+            setComments(response.data.data);
+            console.log("Comments set from data.data:", response.data.data);
+          }
+          // If response.data itself is an array
+          else if (Array.isArray(response.data)) {
+            setComments(response.data);
+            console.log("Comments set directly:", response.data);
+          }
+          // If response.data has a results property that is an array
+          else if (
+            response.data.results &&
+            Array.isArray(response.data.results)
+          ) {
+            setComments(response.data.results);
+            console.log("Comments set from results:", response.data.results);
+          } else {
+            console.log("Unexpected data structure:", response.data);
+            throw new Error("Invalid comments data format");
+          }
+        } else {
+          throw new Error("No data received from the API");
+        }
+      } catch (error) {
+        console.error("Error fetching comments:", error);
+        setCommentsError(error.message);
+      } finally {
+        setCommentsLoading(false);
+      }
+    };
+
+    fetchComments();
+  }, []);
   useEffect(() => {
     async function loadArticle() {
       try {
@@ -126,19 +180,31 @@ const NewsComponent = () => {
             <span className="text-[#f06c00] cursor-pointer">here</span> to leave
             a comment.
           </p>
-          <div className="bg-[#f2f2f2] text-[#666666] p-6">
-            <p className="md:text-xs">John W</p>
-            <p className="md:text-xs">2024/10/22 00:20</p>
-            <p className="mt-3">
-              more American commercialisation introduced to get people to spend
-              their hard earned cash on (not so cheap) tack (rubbish) Black
-              Friday will be next, nothing to do with Europeans, a sale day
-              after thanksgiving (an American thing). The ultimate one for me
-              though (as a Brit) is when British shops push the US 4th July,
-              think about it? When they got independence at the cost of many
-              lives from who
-            </p>
-          </div>
+
+          {commentsLoading ? (
+            <p>Loading comments...</p>
+          ) : commentsError ? (
+            <p className="text-red-500">Error: {commentsError}</p>
+          ) : comments.length > 0 ? (
+            <div className=" text-[#666666]">
+              {comments.map((comment) => (
+                <div key={comment.id} className="bg-[#f2f2f2] mt-4 p-3 md:p-6">
+                  <div>
+                    <p cclassName="md:text-xs ">
+                      {comment.full_name || "Anonymous"}
+                    </p>
+                    <p className="md:text-xs">
+                      {moment(comment.created_at).format("YYYY/MM/DD HH:mm")}
+                    </p>
+                  </div>
+                  <p className="my-3">{comment.message}</p>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p>No comments available</p>
+          )}
+
           {/* See also section */}
           <div className="mt-8">
             <p className="font-EB font-bold text-lg">See also</p>
