@@ -126,6 +126,19 @@ const NewsComponent = () => {
             <span className="text-[#f06c00] cursor-pointer">here</span> to leave
             a comment.
           </p>
+          <div className="bg-[#f2f2f2] text-[#666666] p-6">
+            <p className="md:text-xs">John W</p>
+            <p className="md:text-xs">2024/10/22 00:20</p>
+            <p className="mt-3">
+              more American commercialisation introduced to get people to spend
+              their hard earned cash on (not so cheap) tack (rubbish) Black
+              Friday will be next, nothing to do with Europeans, a sale day
+              after thanksgiving (an American thing). The ultimate one for me
+              though (as a Brit) is when British shops push the US 4th July,
+              think about it? When they got independence at the cost of many
+              lives from who
+            </p>
+          </div>
           {/* See also section */}
           <div className="mt-8">
             <p className="font-EB font-bold text-lg">See also</p>
