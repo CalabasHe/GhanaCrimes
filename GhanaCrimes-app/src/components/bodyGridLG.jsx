@@ -33,7 +33,7 @@ const BodyGridLG = () => {
                       <img
                         src={articles[2].image.image}
                         alt={articles[2].main_title}
-                        className="w-full h-full object-fill"
+                        className="w-full h-full object-cover"
                       />
                     </div>
                     <p className="text-sm text-[#f06c00]">
@@ -88,7 +88,7 @@ const BodyGridLG = () => {
                         <img
                           src={articles[1].image.image}
                           alt={articles[1].main_title}
-                          className="w-full h-full object-fit"
+                          className="w-full h-full object-cover"
                         />
                       </div>
                       <div className="">
