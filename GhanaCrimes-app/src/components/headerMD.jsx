@@ -292,23 +292,18 @@ const HeaderMD = () => {
               />
             </svg>
           </button>
-          <p className="text-lg font-semibold">Topic</p>
+          <p className="text-lg font-semibold">Topics</p>
 
-          <Link to="/" className=" text-lg ml-8">
-            EUROPE NEWS
-          </Link>
-          <Link to="/" className=" text-lg ml-8">
-            EUROPE NEWS
-          </Link>
-          <Link href="/" className=" text-lg ml-8">
-            EUROPE NEWS
-          </Link>
-          <Link to="/" className=" text-lg ml-8">
-            EUROPE NEWS
-          </Link>
-          <Link to="/" className=" text-lg ml-8">
-            EUROPE NEWS
-          </Link>
+          <nav>
+            <div className="text-lg ml-8 flex-col flex space-y-4">
+              {topicData.length > 0 &&
+                topicData.map((topic, index) => (
+                  <Link key={index} to={`/${topic.name}`}>
+                    {topic.name.toUpperCase()}
+                  </Link>
+                ))}
+            </div>
+          </nav>
         </div>
       </div>
 
