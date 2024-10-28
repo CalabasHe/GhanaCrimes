@@ -29,7 +29,13 @@ const BodyGridLG = () => {
               <div className="lg:col-span-2 md:col-span-1 space-y-4">
                 {articles[2] && (
                   <Link to={`/news/${articles[2].slug}`}>
-                    <div className="bg-slate-500 h-40 object-cover" />
+                    <div className="h-40">
+                      <img
+                        src={articles[2].image.image}
+                        alt={articles[2].main_title}
+                        className="w-full h-full object-fill"
+                      />
+                    </div>
                     <p className="text-sm text-[#f06c00]">
                       {articles[2].topic.toUpperCase()}
                     </p>
@@ -53,7 +59,13 @@ const BodyGridLG = () => {
                   {/* First Section */}
                   {articles[0] && (
                     <Link to={`/news/${articles[0].slug}`}>
-                      <div className="bg-slate-500 h-[251px] object-cover" />
+                      <div className="h-[251px]">
+                        <img
+                          src={articles[0].image.image}
+                          alt={articles[0].main_title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
                       <p className="text-sm text-[#f06c00]">
                         {articles[0].topic.toUpperCase()}
                       </p>
@@ -68,8 +80,18 @@ const BodyGridLG = () => {
 
                   {/* Second Section */}
                   {articles[1] && (
-                    <Link to={`/news/${articles[1].slug}`} className="flex gap-3">
-                      <div className="order-2 sm:order-1">
+                    <Link
+                      to={`/news/${articles[1].slug}`}
+                      className="flex gap-3"
+                    >
+                      <div className=" w-[185px] h-[123px] lg:justify-end flex-shrink-0">
+                        <img
+                          src={articles[1].image.image}
+                          alt={articles[1].main_title}
+                          className="w-full h-full object-fit"
+                        />
+                      </div>
+                      <div className="">
                         <p className="text-sm text-[#f06c00]">
                           {articles[1].topic.toUpperCase()}
                         </p>
@@ -77,7 +99,6 @@ const BodyGridLG = () => {
                           {articles[1].main_title}
                         </p>
                       </div>
-                      <div className="bg-slate-500 w-[185px] h-[123px] object-cover lg:justify-end flex-shrink-0 order-1 sm:order-2" />
                     </Link>
                   )}
                 </div>
