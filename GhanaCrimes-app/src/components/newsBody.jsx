@@ -121,7 +121,11 @@ const NewsComponent = () => {
             <p className="font-EB font-bold text-lg">Comments</p>
             <hr className=" mb-4" />
           </div>
-          <p>Please log in here to leave a comment.</p>
+          <p>
+            Please log in{" "}
+            <span className="text-[#f06c00] cursor-pointer">here</span> to leave
+            a comment.
+          </p>
           {/* See also section */}
           <div className="mt-8">
             <p className="font-EB font-bold text-lg">See also</p>
