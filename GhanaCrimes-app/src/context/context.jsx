@@ -12,7 +12,8 @@ export const AuthProvider = ({ children }) => {
   const [loginPassword, SetLoginPassword] = useState("");
   const [loginEmail, SetLoginEmail] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [topicData, setTopicData] = useState([]);
+  const [comments, setComments] = useState([]);
+
   const [loading, setLoading] = useState(false);
 
   // Function to store tokens in localStorage
@@ -20,6 +21,8 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("faccess_token", access);
     localStorage.setItem("refresh_token", refresh);
   };
+
+  
 
   // Login function (used by components)
   const handleLogin = async (e) => {
@@ -107,7 +110,7 @@ export const AuthProvider = ({ children }) => {
         setIsLoggedIn,
         isLoginOpen,
         setIsLoginOpen,
-        topicData,
+       
       }}
     >
       {children}
