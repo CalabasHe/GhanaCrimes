@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import { getCrimes } from "../api/authAPI";
+import NewsCard from "./newsCard";
 
 const BodyGridLG = () => {
   const [articles, setArticles] = useState([]);
@@ -10,7 +11,7 @@ const BodyGridLG = () => {
     const getCrimeData = async () => {
       try {
         const data = await getCrimes();
-        console.log(data)
+        console.log(data);
         setArticles(data.results);
       } catch (err) {
         console.log(err);
@@ -49,8 +50,8 @@ const BodyGridLG = () => {
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <p className="text-sm text-[#f06c00] mt-2">
-                      {articles[2].topic.toUpperCase()}
+                    <p className="text-[0.65rem] font-medium text-[#f06c00] mt-2">
+                      {articles[2].topic?.toUpperCase()}
                     </p>
                     <p className="text-[#393939] text-xl lg:text-2xl leading-tight hover:text-[#f06c00] font-EB font-semibold">
                       {articles[2].main_title}
@@ -67,7 +68,7 @@ const BodyGridLG = () => {
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <p className="text-sm text-[#f06c00] mt-2">
+                      <p className="text-[0.65rem] font-medium text-[#f06c00] mt-2">
                         {articles[3].topic.toUpperCase()}
                       </p>
                       <p className="text-[#393939] text-xl lg:text-2xl leading-tight hover:text-[#f06c00] font-EB font-semibold">
@@ -91,8 +92,8 @@ const BodyGridLG = () => {
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <p className="text-sm text-[#f06c00] mt-2">
-                        {articles[0].topic.toUpperCase()}
+                      <p className="text-[0.65rem] font-medium text-[#f06c00] mt-2">
+                        {articles[0].topic?.toUpperCase()}
                       </p>
                       <p className="text-[#393939] text-xl lg:text-4xl leading-tight hover:text-[#f06c00] font-EB font-semibold">
                         {articles[0].main_title}
@@ -117,8 +118,8 @@ const BodyGridLG = () => {
                         />
                       </div>
                       <div className="">
-                        <p className="text-sm text-[#f06c00] mt-2">
-                          {articles[1].topic.toUpperCase()}
+                        <p className="text-[0.65rem] font-medium text-[#f06c00] mt-2">
+                          {articles[1].topic?.toUpperCase()}
                         </p>
                         <p className="text-[#393939] text-xl lg:text-2xl leading-tight hover:text-[#f06c00] font-EB font-semibold">
                           {articles[1].main_title}
@@ -142,7 +143,7 @@ const BodyGridLG = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <p className="text-sm text-[#f06c00] mt-2">
+                <p className="text-[0.65rem] font-medium text-[#f06c00] mt-2">
                   {" "}
                   {articles[4].topic.toUpperCase()}
                 </p>
@@ -162,7 +163,7 @@ const BodyGridLG = () => {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <p className="text-sm text-[#f06c00] mt-2">
+                  <p className="text-[0.65rem] font-medium text-[#f06c00] mt-2">
                     {" "}
                     {articles[5].topic.toUpperCase()}
                   </p>
@@ -177,107 +178,31 @@ const BodyGridLG = () => {
       </div>
 
       {/* Travel News Section */}
-      <div className="flex gap-3 mt-8 items-center">
-        <div className="bg-[#f74548] w-4 h-4" />
-        <p className="font-EB font-bold text-lg">TRAVEL NEWS</p>
-      </div>
-      <hr className="mb-4" />
 
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3 mt-11">
-        <Link>
-          <div className="bg-slate-500  h-40" />
-          <p className="text-sm text-[#f06c00]">Business</p>
-          <p className="text-[#393939] text-xl lg:text-2xl leading-tight hover:text-[#f06c00] font-EB font-semibold">
-            Michelin pauses some French tyre factories as demand falls
-          </p>
-        </Link>
-        <Link>
-          <div className="bg-slate-500  h-40" />
-          <p className="text-sm text-[#f06c00]">Business</p>
-          <p className="text-[#393939] text-xl lg:text-2xl leading-tight  hover:text-[#f06c00] font-EB font-semibold">
-            Michelin pauses some French tyre factories as demand falls
-          </p>
-        </Link>
-        <Link>
-          <div className="bg-slate-500  h-40" />
-          <p className="text-sm text-[#f06c00]">Business</p>
-          <p className="text-[#393939] text-xl lg:text-2xl leading-tight hover:text-[#f06c00] font-EB font-semibold">
-            Michelin pauses some French tyre factories as demand falls
-          </p>
-        </Link>
-        <Link>
-          <div className="bg-slate-500  h-40" />
-          <p className="text-sm text-[#f06c00]">Business</p>
-          <p className="text-[#393939] text-xl lg:text-2xl leading-tight hover:text-[#f06c00] font-EB font-semibold">
-            Michelin pauses some French tyre factories as demand falls
-          </p>
-        </Link>
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3 max-lg:gap-y-8 mt-16">
+        {articles.slice(6, 10)?.map((article) => (
+          <div key={article.id}>
+            <NewsCard articleData={article} />
+          </div>
+        ))}
       </div>
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3 mt-11">
-        <Link>
-          <div className="bg-slate-500  h-40" />
-          <p className="text-sm text-[#f06c00]">Business</p>
-          <p className="text-[#393939] text-xl lg:text-2xl leading-tight hover:text-[#f06c00] font-EB font-semibold">
-            Michelin pauses some French tyre factories as demand falls
-          </p>
-        </Link>
-        <Link>
-          <div className="bg-slate-500  h-40" />
-          <p className="text-sm text-[#f06c00]">Business</p>
-          <p className="text-[#393939] text-xl lg:text-2xl leading-tight  hover:text-[#f06c00] font-EB font-semibold">
-            Michelin pauses some French tyre factories as demand falls
-          </p>
-        </Link>
-        <Link>
-          <div className="bg-slate-500  h-40" />
-          <p className="text-sm text-[#f06c00]">Business</p>
-          <p className="text-[#393939] text-xl lg:text-2xl leading-tight hover:text-[#f06c00] font-EB font-semibold">
-            Michelin pauses some French tyre factories as demand falls
-          </p>
-        </Link>
-        <Link>
-          <div className="bg-slate-500  h-40" />
-          <p className="text-sm text-[#f06c00]">Business</p>
-          <p className="text-[#393939] text-xl lg:text-2xl leading-tight hover:text-[#f06c00] font-EB font-semibold">
-            Michelin pauses some French tyre factories as demand falls
-          </p>
-        </Link>
+      
+        <p className="mt-20 text-center">Advertisement wai</p>
+
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3 mt-20">
+        {articles.slice(10, 18)?.map((article) => (
+          <div key={article.id}>
+            <NewsCard articleData={article} />
+          </div>
+        ))}
       </div>
-      <div className=" flex gap-3 mt-8 items-center">
+      
+      {/* <div className="flex gap-3 mt-8 items-center">
         <div className="bg-[#f74548] w-4 h-4" />
-        <p className="font-EB font-bold text-lg">TRAVEL NEWS</p>
-      </div>
-      <hr className="mb-4" />
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3 mt-11">
-        <Link>
-          <div className="bg-slate-500  h-40" />
-          <p className="text-sm text-[#f06c00]">Business</p>
-          <p className="text-[#393939] text-xl lg:text-2xl leading-tight hover:text-[#f06c00] font-EB font-semibold">
-            Michelin pauses some French tyre factories as demand falls
-          </p>
-        </Link>
-        <Link>
-          <div className="bg-slate-500  h-40" />
-          <p className="text-sm text-[#f06c00]">Business</p>
-          <p className="text-[#393939] text-xl lg:text-2xl leading-tight  hover:text-[#f06c00] font-EB font-semibold">
-            Michelin pauses some French tyre factories as demand falls
-          </p>
-        </Link>
-        <Link>
-          <div className="bg-slate-500  h-40" />
-          <p className="text-sm text-[#f06c00]">Business</p>
-          <p className="text-[#393939] text-xl lg:text-2xl leading-tight hover:text-[#f06c00] font-EB font-semibold">
-            Michelin pauses some French tyre factories as demand falls
-          </p>
-        </Link>
-        <Link>
-          <div className="bg-slate-500  h-40" />
-          <p className="text-sm text-[#f06c00]">Business</p>
-          <p className="text-[#393939] text-xl lg:text-2xl leading-tight hover:text-[#f06c00] font-EB font-semibold">
-            Michelin pauses some French tyre factories as demand falls
-          </p>
-        </Link>
-      </div>
+          <p className="font-EB font-bold text-lg">TRAVEL NEWS</p>
+        </div>
+      <hr className="mb-4" /> */}
+
     </main>
   );
 };
