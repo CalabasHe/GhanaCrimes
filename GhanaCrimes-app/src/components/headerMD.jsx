@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { fetchNewsTopics } from "../api/newsReadAPI";
+
+import { AuthContext } from "../context/context";
 
 const HeaderMD = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +22,8 @@ const HeaderMD = () => {
   const [isloading, SetLoading] = useState(false);
   const [loginPassword, SetLoginPassword] = useState("");
   const [loginEmail, SetLoginEmail] = useState("");
-  const [topics, setTopics] = useState('');
+  const [topics, setTopics] = useState([]);
+  const { topicData } = useContext(AuthContext);
 
   const handleLogin = async (e) => {
     e.preventDefault(); // Prevent form submission
@@ -29,56 +32,54 @@ const HeaderMD = () => {
     console.log("Logging in with:", loginEmail, loginPassword); // Log entered email and password
 
     try {
-        SetLoading(true); // Ensure correct state function is called
+      SetLoading(true); // Ensure correct state function is called
 
-        // Make the POST request to the server with email and password
-        const response = await axios.post(
-            "https://ghanacrimes-api.onrender.com/api/auth/login/",
-            {
-                email: loginEmail,
-                password: loginPassword,
-            }
-        );
-
-        // Log the entire response object for debugging
-        console.log("Login Response: ", response);
-        toStorage(response.data.access,response.data.refresh)
-
-        // Check if the response status indicates successful login
-        if (response.status === 201) {
-            const { access, refresh } = response.data; // Destructure the tokens from the response
-
-            // Store tokens in localStorage
-            // localStorage.setItem("access_token", access);
-            // localStorage.setItem("refresh_token", refresh);
-            
-            // Log the tokens stored in localStorage
-            // console.log('Access Token stored:', localStorage.getItem('access_token'));
-            // console.log('Refresh Token stored:', localStorage.getItem('refresh_token'));
-            
-            alert("Login successful");
-        } else {
-            alert("Unexpected response from the server.");
+      // Make the POST request to the server with email and password
+      const response = await axios.post(
+        "https://ghanacrimes-api.onrender.com/api/auth/login/",
+        {
+          email: loginEmail,
+          password: loginPassword,
         }
+      );
+
+      // Log the entire response object for debugging
+      console.log("Login Response: ", response);
+      toStorage(response.data.access, response.data.refresh);
+
+      // Check if the response status indicates successful login
+      if (response.status === 201) {
+        const { access, refresh } = response.data; // Destructure the tokens from the response
+
+        // Store tokens in localStorage
+        // localStorage.setItem("access_token", access);
+        // localStorage.setItem("refresh_token", refresh);
+
+        // Log the tokens stored in localStorage
+        // console.log('Access Token stored:', localStorage.getItem('access_token'));
+        // console.log('Refresh Token stored:', localStorage.getItem('refresh_token'));
+
+        alert("Login successful");
+      } else {
+        alert("Unexpected response from the server.");
+      }
     } catch (error) {
-        // Log the error response for further debugging
-        console.log("Error Response: ", error.response);
+      // Log the error response for further debugging
+      console.log("Error Response: ", error.response);
 
-        // Check if there's an error message from the server and alert it, else show default message
-        const errorMessage = error.response?.data?.message || "Invalid password or email";
-        alert(errorMessage);
+      // Check if there's an error message from the server and alert it, else show default message
+      const errorMessage =
+        error.response?.data?.message || "Invalid password or email";
+      alert(errorMessage);
     } finally {
-        SetLoading(false); // Ensure correct state function is called
+      SetLoading(false); // Ensure correct state function is called
     }
-};
+  };
 
-
-  const toStorage=(access,refresh)=>{
-    localStorage.setItem('faccess_token',access);
-    localStorage.setItem('refresh_token', refresh);
-    
-  }
-  
+  const toStorage = (access, refresh) => {
+    localStorage.setItem("faccess_token", access);
+    localStorage.setItem("refresh_token", refresh);
+  };
 
   const handleGenderMale = (e) => {
     SetGender("m");
@@ -232,14 +233,12 @@ const HeaderMD = () => {
         {/* Nav Links */}
         <nav className="flex-1 justify-start md:text-sm hidden lg:flex">
           <div className="space-x-5 text-[#828282] font-semibold">
-            { topics.length > 0 &&
-            (topics.slice(0,5).map((topic) => (
-              <Link to={'/'} key={topic.id}>
-                {topic.name}
-              </Link>
-            )) )
-
-            }
+          {topicData.length > 0 &&
+                (topicData.slice(0,5).map((topic) => (
+                  <Link key={topic.id} to={`/${topic.name}`}>
+                    {topic.name.toUpperCase()}
+                  </Link>
+                )))}
           </div>
         </nav>
 
@@ -308,11 +307,17 @@ const HeaderMD = () => {
             </svg>
           </button>
           <p className="text-lg font-semibold">Topics</p>
-          {topics.length > 0 &&
-            (topics.slice(0,6).map((topic) => (
-              <Link key={topic.id} to='/' className=" text-lg ml-8">{topic.name}</Link>
-            )
-  ))}
+
+          <nav>
+            <div className="text-lg ml-8 flex-col flex space-y-4">
+              {topicData.length > 0 &&
+                (topicData.slice(0,5).map((topic) => (
+                  <Link className="font-semibold" key={topic.id} to={`/${topic.name}`}>
+                    {topic.name.toUpperCase()}
+                  </Link>
+                )))}
+            </div>
+          </nav>
         </div>
       </div>
 
@@ -687,7 +692,6 @@ const HeaderMD = () => {
                       ></path>
                     </svg>
                   </Link>
-                  
                 </div>
               </div>
             )}

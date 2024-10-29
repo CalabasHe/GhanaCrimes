@@ -1,7 +1,12 @@
 import { sendContactData } from "../api/contactUsAPI";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../context/context";
 
 const ContactFormField = () => {
+  const { isOpen, setIsOpen } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     full_name: "",
     email: "",
@@ -18,13 +23,33 @@ const ContactFormField = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Check if user is authenticated
+    const token = localStorage.getItem("faccess_token");
+    // if (!token) {
+    //   alert("Please log in to send a message.");
+    //   navigate("/home");
+    //   setIsOpen(true);
+    //   return;
+    // }
+
     try {
       await sendContactData(formData);
-      console.log(formData);
-      // Use the imported API function
       alert("Your message has been sent successfully!");
+      setFormData({
+        full_name: "",
+        email: "",
+        title: "",
+        description: "",
+      });
     } catch (error) {
-      alert("Failed to send message.");
+      // if (error.message === "Authentication required to send message") {
+      //   alert("Please log in to send a message.");
+      //   navigate("/home");
+      //   setIsOpen(true);
+      // } else {
+      //   alert("Failed to send message. Please try again later.");
+      // }
     }
   };
 
