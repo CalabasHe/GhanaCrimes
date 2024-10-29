@@ -34,6 +34,7 @@ const HeaderMD = () => {
     isLoginOpen,
     setIsLoginOpen,
     topicData,
+    fetch
   } = useContext(AuthContext);
 
   useEffect(() => {
@@ -259,9 +260,12 @@ const HeaderMD = () => {
         {/* Nav Links */}
         <nav className="flex-1 justify-start md:text-sm hidden lg:flex">
           <div className="space-x-5 text-[#828282] font-semibold">
+            {/* {fetch && (
+              
+            )} */}
             {topicData.length > 0 &&
               topicData.slice(0, 5).map((topic) => (
-                <Link key={topic.id} to={`/${topic.name}`}>
+                <Link key={topic.id} to={`/${topic.slug}`}>
                   {topic.name.toUpperCase()}
                 </Link>
               ))}
