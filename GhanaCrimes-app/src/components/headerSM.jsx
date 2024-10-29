@@ -298,10 +298,10 @@ const HeaderSM = () => {
           <nav>
             <div className="text-lg flex-col flex space-y-4">
               {topicData.length > 0 &&
-                topicData.map((topic, index) => (
+                topicData.slice(0, 5).map((topic) => (
                   <Link
-                    className="font-goudos text-lg text-[#828282] font-semibold ml-9"
-                    key={index}
+                    className="ml-8 text-[#828282] font-medium"
+                    key={topic.id}
                     to={`/${topic.name}`}
                   >
                     {topic.name.toUpperCase()}

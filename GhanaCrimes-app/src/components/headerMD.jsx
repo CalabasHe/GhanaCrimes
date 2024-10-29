@@ -219,12 +219,12 @@ const HeaderMD = () => {
         {/* Nav Links */}
         <nav className="flex-1 justify-start md:text-sm hidden lg:flex">
           <div className="space-x-5 text-[#828282] font-semibold">
-            {topicData.length > 0 &&
-              topicData.map((topic, index) => (
-                <Link key={index} to={`/${topic.name}`}>
-                  {topic.name.toUpperCase()}
-                </Link>
-              ))}
+          {topicData.length > 0 &&
+                (topicData.slice(0,5).map((topic) => (
+                  <Link key={topic.id} to={`/${topic.name}`}>
+                    {topic.name.toUpperCase()}
+                  </Link>
+                )))}
           </div>
         </nav>
 
@@ -297,11 +297,11 @@ const HeaderMD = () => {
           <nav>
             <div className="text-lg ml-8 flex-col flex space-y-4">
               {topicData.length > 0 &&
-                topicData.map((topic, index) => (
-                  <Link key={index} to={`/${topic.name}`}>
+                (topicData.slice(0,5).map((topic) => (
+                  <Link className="font-semibold" key={topic.id} to={`/${topic.name}`}>
                     {topic.name.toUpperCase()}
                   </Link>
-                ))}
+                )))}
             </div>
           </nav>
         </div>
