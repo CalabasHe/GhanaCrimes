@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { fetchNewsTopicsCategory } from "../api/newsReadAPI";
 
 const TopicsNewsListContent = () => {
+  const [topics, setTopics] = useState()
   const { slug } = useParams();
 
   useEffect(() => {
@@ -10,7 +11,7 @@ const TopicsNewsListContent = () => {
       try {
         const data = await fetchNewsTopicsCategory(slug);
         setTopics(data.results);
-        console.log("Fetched news data:", data); // Log the fetched data for debugging
+        console.log("Fetched news data:", data);
       } catch (err) {
         console.error("Error fetching news data:", err);
       }

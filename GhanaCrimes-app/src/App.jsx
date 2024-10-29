@@ -5,6 +5,7 @@ import NewsPage from "./pages/newsPage";
 import AboutUs from "./pages/aboutUs";
 import ContactUs from "./pages/contactUS";
 import TopicsNewsList from "./pages/topicsNewsList";
+
 function App() {
   return (
     <>
@@ -14,7 +15,7 @@ function App() {
         <Route path="/news/:slug" element={<NewsPage />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact-us" element={<ContactUs />} />
-        <Route path="/topics/:slug" element={<TopicsNewsList />} />
+        <Route path="/topics/:slug" element={<TopicsNewsList/>} />
       </Routes>
     </>
   );

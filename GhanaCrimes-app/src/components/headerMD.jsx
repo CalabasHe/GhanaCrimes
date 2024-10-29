@@ -5,6 +5,7 @@ import { useContext } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/context";
+import { fetchNewsTopics } from "../api/newsReadAPI";
 
 const HeaderMD = () => {
   const [isCreatingAccount, setIsCreatingAccount] = useState(false);
@@ -265,7 +266,7 @@ const HeaderMD = () => {
             )} */}
             {topicData.length > 0 &&
               topicData.slice(0, 5).map((topic) => (
-                <Link key={topic.id} to={`/${topic.slug}`}>
+                <Link key={topic.id} to={`/topics/${topic.slug}`}>
                   {topic.name.toUpperCase()}
                 </Link>
               ))}
