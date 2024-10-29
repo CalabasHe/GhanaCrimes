@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 
 import { getCrimes } from "../api/authAPI";
+import { AuthContext } from "../context/context";
 
 const BodyGridLG = () => {
   const [articles, setArticles] = useState([]);
@@ -11,6 +12,7 @@ const BodyGridLG = () => {
       try {
         const data = await getCrimes();
         setArticles(data.results);
+        console.log(data);
       } catch (err) {
         console.log(err);
       }
@@ -19,8 +21,10 @@ const BodyGridLG = () => {
     getCrimeData();
   }, []);
 
+  const { topicData } = useContext(AuthContext);
+
   return (
-    <main className="overflow-x-hidden px-[5%] md:block">
+    <main className="overflow-x-hidden px-[5%]">
       <div className="mt-4">
         <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-4">
           {articles.length > 0 && (
@@ -164,12 +168,38 @@ const BodyGridLG = () => {
       </div>
 
       {/* Travel News Section */}
+
       <div className="flex gap-3 mt-8 items-center">
         <div className="bg-[#f74548] w-4 h-4" />
-        <p className="font-EB font-bold text-lg">TRAVEL NEWS</p>
+        {/* Topic */}
+        {topicData.length > 2 && ( // Check if index exists
+          <p className="font-EB font-bold text-lg">
+            {topicData[1].name.toUpperCase()}
+          </p>
+        )}
       </div>
       <hr className="mb-4" />
-
+      {/* News under Travel news  */}
+      {/* <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3 mt-11">
+        {articles
+          .filter((article) => article.topic.toUpperCase() === articles[0].topic.toUpperCase())
+          .slice(0, 8)
+          .map((article, index) => (
+            <Link key={index} to={`/news/${article.slug}`}>
+              <div className=" h-40 object-cover" >
+                <img
+                  src={article.image.image}
+                  alt={article.main_title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <p className="text-sm text-[#f06c00]">{article.topic.toUpperCase()}</p>
+              <p className="text-[#393939] text-xl lg:text-2xl leading-tight hover:text-[#f06c00] font-EB font-semibold">
+                {article.main_title}
+              </p>
+            </Link>
+          ))}
+      </div> */}
       <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3 mt-11">
         <Link>
           <div className="bg-slate-500  h-40 object-cover" />
