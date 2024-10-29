@@ -279,7 +279,7 @@ const HeaderMD = () => {
         ) : (
           <button
             onClick={handleLogout}
-            className="bg-[#f06c00] text-white rounded-full px-4 py-2 font-semibold text-sm cursor-pointer self-end"
+            className="bg-[#f06c00] text-white rounded-full px-14 py-2 font-semibold text-sm cursor-pointer self-end"
           >
             {isloading ? "Signing out " : "Sign out"}
           </button>
@@ -317,7 +317,7 @@ const HeaderMD = () => {
           ) : (
             <button
               onClick={handleLogout}
-              className="bg-[#f06c00] text-white rounded-full px-4 py-2 font-semibold text-sm cursor-pointer self-end"
+              className="bg-[#f06c00] text-white rounded-full px-14 py-2 font-semibold text-sm cursor-pointer self-end"
             >
               {isloading ? "Signing out " : "Sign out"}
             </button>
@@ -385,7 +385,7 @@ const HeaderMD = () => {
               </svg>
             </button>
             {isCreatingAccount ? (
-              // Create Account Form
+              // Create Account Section
               <div>
                 <p className="font-semibold text-lg mt-6">Create Account</p>
                 <div className="text-[#f06c00] flex justify-between">
