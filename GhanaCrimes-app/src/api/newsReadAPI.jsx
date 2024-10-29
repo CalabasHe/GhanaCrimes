@@ -13,6 +13,18 @@ export const fetchNewsArticle = async (slug) => {
   }
 };
 
+export const fetchNewsTopicsCategory = async (slug) => {
+  try {
+    const response = await axios.get(
+      `https://ghanacrimes-api.onrender.com/api/topics/${slug}/`
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error("Error fetching article:", error); // Adjusted error message
+  }
+
+}
+
 export const fetchNewsTopics = async () => {
   try {
     const response = await axios.get(`${api}/topics/`);
