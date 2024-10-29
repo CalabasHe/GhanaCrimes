@@ -22,6 +22,8 @@ const HeaderSM = () => {
   const [isloading, SetLoading] = useState(false);
   const [loginPassword, SetLoginPassword] = useState("");
   const [loginEmail, SetLoginEmail] = useState("");
+  const [topics, setTopics] = useState([]);
+  const { topicData } = useContext(AuthContext);
 
   const {
     isOpen,
@@ -292,36 +294,21 @@ const HeaderSM = () => {
           )}
 
           <p className="text-[#828282] font-medium mt-11">TOPICS</p>
-          <Link
-            to="/"
-            className="font-goudos text-lg text-[#828282] font-semibold ml-9"
-          >
-            EUROPE NEWS
-          </Link>
-          <Link
-            to="/"
-            className="font-goudos text-lg text-[#828282] font-semibold ml-9"
-          >
-            EUROPE NEWS
-          </Link>
-          <Link
-            href="/"
-            className="font-goudos text-lg text-[#828282] font-semibold ml-9"
-          >
-            EUROPE NEWS
-          </Link>
-          <Link
-            to="/"
-            className="font-goudos text-lg text-[#828282] font-semibold ml-9"
-          >
-            EUROPE NEWS
-          </Link>
-          <Link
-            to="/"
-            className="font-goudos text-lg text-[#828282] font-semibold ml-9"
-          >
-            EUROPE NEWS
-          </Link>
+
+          <nav>
+            <div className="text-lg flex-col flex space-y-4">
+              {topicData.length > 0 &&
+                topicData.slice(0, 5).map((topic) => (
+                  <Link
+                    className="ml-8 text-[#828282] font-medium"
+                    key={topic.id}
+                    to={`/${topic.name}`}
+                  >
+                    {topic.name.toUpperCase()}
+                  </Link>
+                ))}
+            </div>
+          </nav>
         </div>
       </div>
       <div

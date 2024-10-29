@@ -12,8 +12,7 @@ export const AuthProvider = ({ children }) => {
   const [loginPassword, SetLoginPassword] = useState("");
   const [loginEmail, SetLoginEmail] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [comments, setComments] = useState([]);
-
+  const [topicData, setTopicData] = useState([]);
   const [loading, setLoading] = useState(false);
 
   // Function to store tokens in localStorage
@@ -80,6 +79,24 @@ export const AuthProvider = ({ children }) => {
     window.location.reload();
   };
 
+  const topicsAPI = "https://ghanacrimes-api.onrender.com/api/topics/";
+
+  useEffect(() => {
+    const getTopics = async () => {
+      try {
+        const response = await axios.get(`${topicsAPI}`);
+        console.log(response.data.results);
+        setTopicData(response.data.results);
+        //  topicData
+      } catch {
+        console.error("Error fetching news");
+        return [];
+      }
+    };
+
+    getTopics();
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{
@@ -92,7 +109,7 @@ export const AuthProvider = ({ children }) => {
         setIsLoggedIn,
         isLoginOpen,
         setIsLoginOpen,
-       
+        topicData,
       }}
     >
       {children}
