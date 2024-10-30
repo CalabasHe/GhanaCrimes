@@ -43,7 +43,7 @@ const NewsComponent = () => {
           </div>
           {/* Published and Updated */}
           <div className="md:flex md:justify-between md:items-center mt-2 text-[#666666]">
-            <div className="md:flex md:flex-1 gap-2 text-xs">
+            <div className="lg:flex lg:flex-1 gap-2 text-xs">
               <p>
                 Published on:{" "}
                 {article?.image?.created_at
@@ -103,7 +103,7 @@ const NewsComponent = () => {
           {/* Image and description */}
           <div>
             <img
-              className=" w-full max-h-[300px] md:max-h-[801px] object-cover mt-8"
+              className=" w-full max-h-[300px] md:max-h-[550px] lg:max-h-[700px]  object-cover mt-8"
               src={article?.image.image}
               alt=""
             />
@@ -120,7 +120,9 @@ const NewsComponent = () => {
           <p className="mt-5 font-EB lg:text-2xl">{article?.description}</p>
           {/* Comments Section */}
           <div id="comments" className="mt-8">
-            <p className="font-EB font-bold text-lg">Comments <span>({article?.total_comments})</span></p>
+            <p className="font-EB font-bold text-lg">
+              Comments <span>({article?.total_comments})</span>
+            </p>
             <hr className=" mb-4" />
           </div>
           <p>
