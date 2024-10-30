@@ -166,7 +166,7 @@ const NewsComponent = () => {
                 </div>
               ))
             ) : (
-              <div className="bg-[#f2f2f2] p-3 md:p-6 rounded-lg">
+              <div className="bg-[#f2f2f2] p-3 md:p-6">
                 <p className="md:text-xs text-gray-600">No comments yet</p>
               </div>
             )}
