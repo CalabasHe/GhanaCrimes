@@ -194,6 +194,11 @@ const HeaderSM = () => {
     setIsLoginOpen(true);
   };
 
+  const handleTopicClick = (slug) => {
+    setIsOpen(false)
+    navigate(`/topics/${slug}`)
+  }
+
   return (
     <main className="block md:hidden">
       <div className="flex px-10 items-center mt-6 container flex-wrap">
@@ -209,9 +214,9 @@ const HeaderSM = () => {
           >
             <path
               stroke="#666"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="M2.5 10h15M2.5 5h15M2.323 14.986h10"
             />
           </svg>
@@ -233,9 +238,9 @@ const HeaderSM = () => {
             <path
               d="M19 19L14.65 14.65M17 9C17 13.4183 13.4183 17 9 17C4.58172 17 1 13.4183 1 9C1 4.58172 4.58172 1 9 1C13.4183 1 17 4.58172 17 9Z"
               stroke="#828282"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
             />
           </svg>
         </div>
@@ -298,9 +303,9 @@ const HeaderSM = () => {
             <div className="text-lg flex-col flex space-y-4">
             {topicData.length > 0 &&
               topicData.slice(0, 5).map((topic) => (
-                <Link key={topic.id} to={`/topics/${topic.slug}`}>
-                  {topic.name.toUpperCase()}
-                </Link>
+                <button key={topic.id} onClick={() => handleTopicClick(topic.slug)}>
+                    {topic.name.toUpperCase()}
+                </button>
               ))}
             </div>
           </nav>
@@ -518,7 +523,7 @@ const HeaderSM = () => {
                         checked={gender === "m"}
                         onChange={handleGenderMale}
                       />
-                      <label for="male">Male</label>
+                      <label htmlFor="male">Male</label>
                     </div>
                     <div>
                       <input
@@ -529,7 +534,7 @@ const HeaderSM = () => {
                         checked={gender === "f"}
                         onChange={handleGenderFemale}
                       />
-                      <label for="male">Female</label>
+                      <label htmlFor="male">Female</label>
                     </div>
                   </div>
 

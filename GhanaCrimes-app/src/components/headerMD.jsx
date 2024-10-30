@@ -188,6 +188,10 @@ const HeaderMD = () => {
     setIsCreatingAccount(true);
   };
 
+  const handleTopicClick = (slug) => {
+    setIsOpen(false)
+    navigate(`/topics/${slug}`)
+  }
   const switchToLogin = () => {
     setIsCreatingAccount(false);
   };
@@ -359,9 +363,9 @@ const HeaderMD = () => {
             <div className="text-lg ml-8 flex-col flex space-y-4">
               {topicData.length > 0 &&
                 topicData.slice(0, 5).map((topic) => (
-                  <Link key={topic.id} to={`/topics/${topic.slug}`}>
+                  <button key={topic.id} onClick={() => handleTopicClick(topic.slug)}>
                     {topic.name.toUpperCase()}
-                  </Link>
+                  </button>
                 ))}
             </div>
           </nav>
