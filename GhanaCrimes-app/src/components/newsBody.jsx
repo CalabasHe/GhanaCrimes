@@ -63,7 +63,7 @@ const NewsComponent = () => {
             </div>
             <div className=" flex gap-3 mt-3 md:text-xs">
               {/* Save BTN */}
-              <Link className="flex items-center">
+              <Link className="flex gap-2 items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width={24}
@@ -78,7 +78,7 @@ const NewsComponent = () => {
                 <p>Save</p>
               </Link>
               {/* Comment BTN */}
-              <Link className="flex gap-2">
+              <a href="#comments" className="flex items-center gap-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width={24}
@@ -96,7 +96,7 @@ const NewsComponent = () => {
                     {article?.total_comments}
                   </span>
                 </p>
-              </Link>
+              </a>
             </div>
           </div>
 
@@ -119,8 +119,8 @@ const NewsComponent = () => {
           {/* Main Description */}
           <p className="mt-5 font-EB lg:text-2xl">{article?.description}</p>
           {/* Comments Section */}
-          <div className="mt-8">
-            <p className="font-EB font-bold text-lg">Comments</p>
+          <div id="comments" className="mt-8">
+            <p className="font-EB font-bold text-lg">Comments <span>({article?.total_comments})</span></p>
             <hr className=" mb-4" />
           </div>
           <p>
@@ -129,10 +129,45 @@ const NewsComponent = () => {
             a comment.
           </p>
 
-          <div className="bg-[#f2f2f2] mt-4 p-3 md:p-6">
-            <p className="md:text-xs ">{article?.comments}</p>
-            <p className="md:text-xs"></p>
-            <p className="md:text-xs"></p>
+          <div className="space-y-4 mt-4">
+            {Array.isArray(article?.comments) ? (
+              article.comments.map((comment) => (
+                <div
+                  key={comment.id}
+                  className="bg-[#f2f2f2] p-3 md:p-6 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  {/* User Info and Time */}
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <div>
+                        <p className="font-semibold text-xs text-[#666666]">
+                          {comment.user?.full_name || "Anonymous".toUpperCase()}
+                        </p>
+                        <p className="text-sm font-semibold text-[#666666]">
+                          {moment(comment.created_at).format(
+                            "MMMM Do YYYY, h:mm A"
+                          )}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Optional: Menu or actions */}
+                    <button className="text-gray-500 hover:text-gray-700">
+                      •••
+                    </button>
+                  </div>
+
+                  {/* Comment Message */}
+                  <div className="space-y-2">
+                    <p className="text-gray-800">{comment.message}</p>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="bg-[#f2f2f2] p-3 md:p-6 rounded-lg">
+                <p className="md:text-xs text-gray-600">No comments yet</p>
+              </div>
+            )}
           </div>
 
           {/* See also section */}
@@ -148,7 +183,7 @@ const NewsComponent = () => {
                 Michelin pauses some French tyre factories as demand falls
               </p>
             </Link>
-            <Link>
+            {/* <Link>
               <div className="bg-slate-500  h-40 object-cover" />
               <p className="text-sm text-[#f06c00]">Business</p>
               <p className="text-[#393939] text-xl lg:text-2xl leading-tight  hover:text-[#f06c00] font-EB font-semibold">
@@ -168,7 +203,7 @@ const NewsComponent = () => {
               <p className="text-[#393939] text-xl lg:text-2xl leading-tight hover:text-[#f06c00] font-EB font-semibold">
                 Michelin pauses some French tyre factories as demand falls
               </p>
-            </Link>
+            </Link> */}
           </div>
         </div>
         <div className="sticky top-0">
