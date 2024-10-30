@@ -5,7 +5,7 @@ import Footer from "../components/footer";
 const TopicsNewsList = () => {
   
   return (
-    <main className="overflow-x-hidden px-[5%]">
+    <main>
       <Header />
       <TopicsNewsListContent />
       <Footer />

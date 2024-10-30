@@ -25,6 +25,7 @@ export const fetchNewsTopicsCategory = async (slug) => {
 
 }
 
+
 export const fetchNewsTopics = async () => {
   try {
     const response = await axios.get(`${api}/topics/`);

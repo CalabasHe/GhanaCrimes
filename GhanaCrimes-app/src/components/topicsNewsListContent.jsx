@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { fetchNewsTopicsCategory } from "../api/newsReadAPI";
 
 const TopicsNewsListContent = () => {
-  const [topics, setTopics] = useState()
+  const [topics, setTopics] = useState();
   const { slug } = useParams();
 
   useEffect(() => {
@@ -20,17 +20,26 @@ const TopicsNewsListContent = () => {
   }, [slug]);
 
   return (
-    <main>
+    <main className="overflow-x-hidden px-[5%]">
       <div>
+        {/* {topics &&
+          topics.map((topic) => (
+            <div key={topic.id}>
+              <div className="bg-slate-500 h-40"></div>
+              <p className="text-sm text-[#f06c00]">{topic.topic}</p>
+            </div>
+          ))}  */}
         <div>
-          <p>Local News</p>
-          <p>
-            Latest Brexit news, information and practical advice from across
-            Ghana.
+          <p className="mt-2 font-EB font-bold text-xl text-[#393939]">
+            Local News
           </p>
-          <hr className="w-full" />
+          <p className="text-[#666666]">
+            Latest <span>Brexit</span> news, information and practical advice
+            from across Ghana.
+          </p>
+          <hr className="w-full mt-2" />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 pt-6 gap-4">
           {/* First column */}
           <div className="lg:col-span-2 md:col-span-1">
             {/* First row */}
@@ -71,7 +80,7 @@ const TopicsNewsListContent = () => {
           <div className="lg:col-span-3 md:col-span-1 order-first lg:order-none">
             <div>
               {/* Image */}
-              <div className="object-cover h-[251px]"></div>
+              <div className="object-cover bg-slate-600 h-[251px]"></div>
               {/* Topic */}
               <p className="text-sm text-[#f06c00] mt-2"></p>
               {/* Main title */}
@@ -170,7 +179,7 @@ const TopicsNewsListContent = () => {
           </div>
         </div>
         {/* Large Ads */}
-        <div className="h-[310px] bg-[#fafafa]"></div>
+        <div className="h-[310px] bg-[#fafafa] mt-8"></div>
       </div>
     </main>
   );

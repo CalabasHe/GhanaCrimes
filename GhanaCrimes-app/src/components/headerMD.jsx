@@ -35,7 +35,7 @@ const HeaderMD = () => {
     isLoginOpen,
     setIsLoginOpen,
     topicData,
-    fetch
+    fetch,
   } = useContext(AuthContext);
 
   useEffect(() => {
@@ -199,17 +199,17 @@ const HeaderMD = () => {
   };
 
   const getTopics = async () => {
-    try{
-      const topicData = await fetchNewsTopics()
+    try {
+      const topicData = await fetchNewsTopics();
       setTopics(topicData.results);
-    }catch(err){
-      console.error(err)
+    } catch (err) {
+      console.error(err);
     }
-  }
+  };
 
   useEffect(() => {
-    getTopics()
-  },  [])
+    getTopics();
+  }, []);
 
   return (
     <main className="hidden md:block px-[5%]">
@@ -359,11 +359,7 @@ const HeaderMD = () => {
             <div className="text-lg ml-8 flex-col flex space-y-4">
               {topicData.length > 0 &&
                 topicData.slice(0, 5).map((topic) => (
-                  <Link
-                    className="font-semibold"
-                    key={topic.id}
-                    to={`/${topic.name}`}
-                  >
+                  <Link key={topic.id} to={`/topics/${topic.slug}`}>
                     {topic.name.toUpperCase()}
                   </Link>
                 ))}
@@ -663,7 +659,6 @@ const HeaderMD = () => {
                 {error.message}
               </div>
             ) : (
-
               // Login section
               <div>
                 <div>
