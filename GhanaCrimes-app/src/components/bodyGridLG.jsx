@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 
 import { getCrimes } from "../api/authAPI";
 import NewsCard from "./newsCard";
@@ -13,6 +13,7 @@ const BodyGridLG = () => {
         const data = await getCrimes();
         console.log(data);
         setArticles(data.results);
+        console.log(data);
       } catch (err) {
         console.log(err);
       }
@@ -21,20 +22,20 @@ const BodyGridLG = () => {
     getCrimeData();
   }, []);
 
-  const SubstituteCard = () => {
-    return (
-      <Link>
-        <div className="bg-slate-500 h-40" />
-        <p className="text-sm text-[#f06c00]">Business</p>
-        <p className="text-[#393939] text-xl lg:text-2xl leading-tight hover:text-[#f06c00] font-EB font-semibold">
-          Michelin pauses some French tyre factories as demand falls
-        </p>
-      </Link>
-    );
-  };
+  // const SubstituteCard = () => {
+  //   return (
+  //     <Link>
+  //       <div className="bg-slate-500 h-40" />
+  //       <p className="text-sm text-[#f06c00]">Business</p>
+  //       <p className="text-[#393939] text-xl lg:text-2xl leading-tight hover:text-[#f06c00] font-EB font-semibold">
+  //         Michelin pauses some French tyre factories as demand falls
+  //       </p>
+  //     </Link>
+  //   );
+  // };
 
   return (
-    <main className="overflow-x-hidden px-[5%] md:block">
+    <main className="overflow-x-hidden px-[5%]">
       <div className="mt-4">
         <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-4">
           {articles.length > 0 && (
@@ -186,8 +187,10 @@ const BodyGridLG = () => {
           </div>
         ))}
       </div>
-      
-        <p className="mt-20 text-center">Advertisement wai</p>
+
+      <div className="bg-[#fafafa] h-[310px] text-center mt-8">
+        <p className="pt-4 text-[#D2D2D2] text-sm">ADVERTISEMENT</p>
+      </div>
 
       <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3 mt-20">
         {articles.slice(10, 18)?.map((article) => (
@@ -196,13 +199,12 @@ const BodyGridLG = () => {
           </div>
         ))}
       </div>
-      
+
       {/* <div className="flex gap-3 mt-8 items-center">
         <div className="bg-[#f74548] w-4 h-4" />
           <p className="font-EB font-bold text-lg">TRAVEL NEWS</p>
         </div>
       <hr className="mb-4" /> */}
-
     </main>
   );
 };

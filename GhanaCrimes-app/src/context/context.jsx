@@ -85,7 +85,7 @@ export const AuthProvider = ({ children }) => {
     const getTopics = async () => {
       try {
         const response = await axios.get(`${topicsAPI}`);
-        console.log(response.data.results);
+        // console.log(response.data.results);
         setTopicData(response.data.results);
         //  topicData
       } catch {
