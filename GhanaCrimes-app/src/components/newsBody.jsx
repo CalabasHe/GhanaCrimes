@@ -30,12 +30,12 @@ const NewsComponent = () => {
   }, [slug]);
 
   return (
-    <main className="overflow-x-hidden px-[5%]">
-      <div className="grid grid-cols-1 md:grid-cols-3 mt-8 gap-11">
+    <main className="overflow-x-hidden relative px-[5%]">
+      <div className=" grid grid-cols-1 md:grid-cols-3 mt-8 gap-11">
         <div className="md:col-span-2">
           <div>
             {/* Topic */}
-            <p className="text-[#f06c00]">{article?.topic.toUpperCase()}</p>
+            <p className="text-[#f06c00]">{article?.topic?.toUpperCase()}</p>
             {/* Main title */}
             <p className="font-EB font-bold text-[#212529] text-2xl lg:text-5xl">
               {article?.main_title.toUpperCase()}
@@ -171,8 +171,8 @@ const NewsComponent = () => {
             </Link>
           </div>
         </div>
-        <div>
-          <div className="bg-[#fafafa] h-[310px] md:col-span-1 sticky text-center">
+        <div className="sticky top-0">
+          <div className="bg-[#fafafa] h-[310px] md:col-span-1 text-center">
             <p className="pt-4 text-[#D2D2D2] text-sm">ADVERTISEMENT</p>
           </div>
         </div>

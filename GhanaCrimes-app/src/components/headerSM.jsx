@@ -264,7 +264,6 @@ const HeaderSM = () => {
               />
             </svg>
           </button>
-
           {!isLoggedIn ? (
             <div className="flex self-end items-center gap-3">
               <div
@@ -297,16 +296,12 @@ const HeaderSM = () => {
 
           <nav>
             <div className="text-lg flex-col flex space-y-4">
-              {topicData.length > 0 &&
-                topicData.slice(0, 5).map((topic) => (
-                  <Link
-                    className="ml-8 text-[#828282] font-medium"
-                    key={topic.id}
-                    to={`/${topic.name}`}
-                  >
-                    {topic.name.toUpperCase()}
-                  </Link>
-                ))}
+            {topicData.length > 0 &&
+              topicData.slice(0, 5).map((topic) => (
+                <Link key={topic.id} to={`/topics/${topic.slug}`}>
+                  {topic.name.toUpperCase()}
+                </Link>
+              ))}
             </div>
           </nav>
         </div>

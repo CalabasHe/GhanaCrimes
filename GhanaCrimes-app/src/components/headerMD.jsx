@@ -5,6 +5,7 @@ import { useContext } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/context";
+import { fetchNewsTopics } from "../api/newsReadAPI";
 
 const HeaderMD = () => {
   const [isCreatingAccount, setIsCreatingAccount] = useState(false);
@@ -34,6 +35,7 @@ const HeaderMD = () => {
     isLoginOpen,
     setIsLoginOpen,
     topicData,
+    fetch,
   } = useContext(AuthContext);
 
   useEffect(() => {
@@ -196,6 +198,19 @@ const HeaderMD = () => {
     setIsLoginOpen(true);
   };
 
+  const getTopics = async () => {
+    try {
+      const topicData = await fetchNewsTopics();
+      setTopics(topicData.results);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    getTopics();
+  }, []);
+
   return (
     <main className="hidden md:block px-[5%]">
       {/* Logo */}
@@ -220,9 +235,9 @@ const HeaderMD = () => {
             >
               <path
                 stroke="#666"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M2.5 10h15M2.5 5h15M2.323 14.986h10"
               />
             </svg>
@@ -246,9 +261,12 @@ const HeaderMD = () => {
         {/* Nav Links */}
         <nav className="flex-1 justify-start md:text-sm hidden lg:flex">
           <div className="space-x-5 text-[#828282] font-semibold">
+            {/* {fetch && (
+              
+            )} */}
             {topicData.length > 0 &&
               topicData.slice(0, 5).map((topic) => (
-                <Link key={topic.id} to={`/${topic.name}`}>
+                <Link key={topic.id} to={`/topics/${topic.slug}`}>
                   {topic.name.toUpperCase()}
                 </Link>
               ))}
@@ -279,7 +297,7 @@ const HeaderMD = () => {
         ) : (
           <button
             onClick={handleLogout}
-            className="bg-[#f06c00] text-white rounded-full px-14 py-2 font-semibold text-sm cursor-pointer self-end"
+            className="bg-[#f06c00] text-white rounded-full px-4 py-2 font-semibold text-sm cursor-pointer self-end"
           >
             {isloading ? "Signing out " : "Sign out"}
           </button>
@@ -341,11 +359,7 @@ const HeaderMD = () => {
             <div className="text-lg ml-8 flex-col flex space-y-4">
               {topicData.length > 0 &&
                 topicData.slice(0, 5).map((topic) => (
-                  <Link
-                    className="font-semibold"
-                    key={topic.id}
-                    to={`/${topic.name}`}
-                  >
+                  <Link key={topic.id} to={`/topics/${topic.slug}`}>
                     {topic.name.toUpperCase()}
                   </Link>
                 ))}
@@ -645,7 +659,6 @@ const HeaderMD = () => {
                 {error.message}
               </div>
             ) : (
-
               // Login section
               <div>
                 <div>
