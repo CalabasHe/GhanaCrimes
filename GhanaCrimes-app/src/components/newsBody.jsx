@@ -31,19 +31,19 @@ const NewsComponent = () => {
 
   return (
     <main className="overflow-x-hidden relative px-[5%]">
-      <div className=" grid grid-cols-1 md:grid-cols-3 mt-8 gap-11">
-        <div className="md:col-span-2">
+      <div className=" grid grid-cols-1 lg:grid-cols-3 mt-8 gap-11">
+        <div className="lg:col-span-2">
           <div>
             {/* Topic */}
             <p className="text-[#f06c00]">{article?.topic?.toUpperCase()}</p>
             {/* Main title */}
-            <p className="font-EB font-bold text-[#212529] text-2xl lg:text-5xl">
+            <p className="font-EB font-bold text-[#212529] text-3xl md:text-5xl">
               {article?.main_title.toUpperCase()}
             </p>
           </div>
           {/* Published and Updated */}
-          <div className="md:flex md:justify-between md:items-center text-[#666666]">
-            <div className="flex md:flex-1 gap-2 md:text-xs">
+          <div className="md:flex md:justify-between md:items-center mt-2 text-[#666666]">
+            <div className="md:flex md:flex-1 gap-2 text-xs">
               <p>
                 Published on:{" "}
                 {article?.image?.created_at
@@ -103,7 +103,7 @@ const NewsComponent = () => {
           {/* Image and description */}
           <div>
             <img
-              className=" w-full max-h-[801px] object-cover mt-8"
+              className=" w-full max-h-[300px] md:max-h-[801px] object-cover mt-8"
               src={article?.image.image}
               alt=""
             />
@@ -207,7 +207,7 @@ const NewsComponent = () => {
           </div>
         </div>
         <div className="sticky top-0">
-          <div className="bg-[#fafafa] h-[310px] md:col-span-1 text-center">
+          <div className="bg-[#fafafa] h-[310px] lg:col-span-1 text-center">
             <p className="pt-4 text-[#D2D2D2] text-sm">ADVERTISEMENT</p>
           </div>
         </div>
