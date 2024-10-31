@@ -12,39 +12,34 @@ const NewsComponent = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { slug } = useParams();
+  const [articleid, setArticleId] = useState();
   const [formData, setFormData] = useState({
     message: "",
   });
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    sendComment(formData);
-    alert("Your message has been sent successfully!");
-    setFormData({
-      message: "",
-    });
-  };
-
-  const { isLoginOpen, setIsLoginOpen, isLoggedIn, setIsLoggedIn } =
-    useContext(AuthContext);
+  const [message, setMessage] = useState();
+  const {
+    isLoginOpen,
+    setIsLoginOpen,
+    isLoggedIn,
+    setIsLoggedIn,
+    handleComment,
+  } = useContext(AuthContext);
 
   useEffect(() => {
     async function loadArticle() {
       try {
         setLoading(true);
         const data = await fetchNewsArticle(slug);
-        console.log("Fetched data:", data); // Log the fetched data for debugging
+        console.log("Fetched data:", data);
         setArticle(data);
+        setArticleId(data.id);
+
+        setFormData((prev) => ({
+          ...prev,
+          news_id: data.id, // Assuming your article data has an id field
+        }));
       } catch (err) {
-        console.error("Error fetching article:", err); // Log the error for debugging
+        console.error("Error fetching article:", err);
         setError(err.message);
       } finally {
         setLoading(false);
@@ -53,6 +48,34 @@ const NewsComponent = () => {
 
     loadArticle();
   }, [slug]);
+
+  const handleChange = (e) => {
+    setMessage(e.target.value);
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (!message.trim()) {
+        alert("Please enter a message");
+        return;
+      }
+
+      await handleComment(message, articleid);
+      alert("Your message has been sent successfully!");
+
+      setMessage("");
+
+      window.location.reload();
+    } catch (error) {
+      if (error.message === "Please login to add a comment") {
+        setIsLoginOpen(true);
+      } else {
+        console.error("Comment error:", error);
+        alert("Error posting comment. Please try again.");
+      }
+    }
+  };
 
   return (
     <main className="overflow-x-hidden relative px-3">
@@ -201,26 +224,27 @@ const NewsComponent = () => {
           {isLoggedIn ? (
             <>
               <p className="mt-4">Leave a comment down below</p>
-              <form onSubmit={handleSubmit} action="">
+              <div>
                 {/* Comment input */}
                 <div className="">
                   <textarea
                     name="message"
                     id=""
-                    value={formData.message}
+                    value={message}
                     className="border px-3 py-2 w-full outline-none h-52 mt-4"
                     required
                     onChange={handleChange}
                   />
 
                   <button
+                    onClick={handleSubmit}
                     type="submit"
                     className="bg-[#f06c00] text-white  px-4 py-2 font-semibold text-sm cursor-pointer"
                   >
                     Comment
                   </button>
                 </div>
-              </form>
+              </div>
             </>
           ) : (
             <></>
