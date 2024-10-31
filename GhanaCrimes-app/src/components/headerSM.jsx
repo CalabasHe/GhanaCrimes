@@ -304,6 +304,7 @@ const HeaderSM = () => {
 
           <nav className="w-full text-[#828282] flex flex-col px-2 gap-8">
             <p className=" text-base font-[700]">TOPICS</p>
+            <hr />
             <div className="text-xl items-start pl-[10%] font-semibold flex-col flex space-y-6">
               {topicData.length > 0 &&
                 topicData.slice(0, 5).map((topic) => (
