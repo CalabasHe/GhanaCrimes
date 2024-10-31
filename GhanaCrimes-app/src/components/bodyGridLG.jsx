@@ -22,10 +22,9 @@ const BodyGridLG = () => {
     getCrimeData();
   }, []);
 
-
   const capitalizeCharOne = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1)
-  }
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
 
   return (
     <main className="overflow-x-hidden px-3 lg:px-5">
@@ -45,7 +44,9 @@ const BodyGridLG = () => {
                       />
                     </div>
                     <p className="text-[0.65rem] font-medium text-[#f06c00] mt-2">
-                      {articles[2].topic ? articles[2].topic?.toUpperCase() :'General News'.toUpperCase()}
+                      {articles[2].topic
+                        ? articles[2].topic?.toUpperCase()
+                        : "General News".toUpperCase()}
                     </p>
                     <p className="text-[#393939] text-xl lg:text-2xl leading-tight mt-2 hover:text-[#f06c00] font-EB font-semibold">
                       {capitalizeCharOne(articles[2].main_title)}
@@ -53,7 +54,7 @@ const BodyGridLG = () => {
                   </Link>
                 )}
                 {articles[3] && (
-                  <div className="md:mt-11">
+                  <div className="mt-11">
                     <Link to={`/news/${articles[3].slug}`}>
                       <div className=" h-40 border ">
                         <img
@@ -63,7 +64,9 @@ const BodyGridLG = () => {
                         />
                       </div>
                       <p className="text-[0.65rem] font-medium text-[#f06c00] mt-2">
-                        {articles[3].topic ? articles[3].topic?.toUpperCase() :'General News'.toUpperCase()}
+                        {articles[3].topic
+                          ? articles[3].topic?.toUpperCase()
+                          : "General News".toUpperCase()}
                       </p>
                       <p className="text-[#393939] text-xl lg:text-2xl leading-tight mt-2 hover:text-[#f06c00] font-EB font-semibold">
                         {capitalizeCharOne(articles[3].main_title)}
@@ -87,12 +90,16 @@ const BodyGridLG = () => {
                         />
                       </div>
                       <p className="text-[0.65rem] font-medium text-[#f06c00] mt-2">
-                        {articles[0].topic ? articles[0].topic?.toUpperCase() : 'General News'.toUpperCase() }
+                        {articles[0].topic
+                          ? articles[0].topic?.toUpperCase()
+                          : "General News".toUpperCase()}
                       </p>
                       <p className="text-[#393939] text-xl lg:text-3xl leading-tight mt-2 hover:text-[#f06c00] font-EB font-semibold">
                         {capitalizeCharOne(articles[0].main_title)}
                       </p>
-                      <p className="text-sm mt-4 font-normal text-slate-600 border-b border-black border-dotted pb-2">{capitalizeCharOne(articles[0].sub_title)}</p>
+                      <p className="text-sm mt-4 font-normal text-slate-600 border-b border-black border-dotted pb-2">
+                        {capitalizeCharOne(articles[0].sub_title)}
+                      </p>
                     </Link>
                   )}
 
@@ -111,7 +118,9 @@ const BodyGridLG = () => {
                       </div>
                       <div className="">
                         <p className="text-[0.65rem] font-medium text-[#f06c00] mt-2">
-                          {articles[1].topic ? articles[1].topic?.toUpperCase() :'General News'.toUpperCase()}
+                          {articles[1].topic
+                            ? articles[1].topic?.toUpperCase()
+                            : "General News".toUpperCase()}
                         </p>
                         <p className="text-[#393939] text-xl lg:text-2xl leading-tight mt-2 hover:text-[#f06c00] font-EB font-semibold">
                           {capitalizeCharOne(articles[1].main_title)}
@@ -127,26 +136,30 @@ const BodyGridLG = () => {
           {/* Third Column */}
           <div className="space-y-8 lg:col-span-2 md:col-span-2">
             {articles[4] && (
-              <Link to={`/news/${articles[4].slug}`}>
-                <div className=" h-40 border ">
-                  <img
-                    src={articles[4].image.image}
-                    alt={articles[4].main_title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <p className="text-[0.65rem] font-medium text-[#f06c00] mt-2">
-                  {" "}
-                  {articles[4].topic ? articles[4].topic?.toUpperCase() :'General News'.toUpperCase()}
-                </p>
-                <p className="text-[#393939] text-xl lg:text-2xl mt-2 leading-tight hover:text-[#f06c00] font-EB font-semibold">
-                  {capitalizeCharOne(articles[4].main_title)}
-                </p>
-              </Link>
+              <div className="mt-11">
+                <Link to={`/news/${articles[4].slug}`}>
+                  <div className=" h-40 border ">
+                    <img
+                      src={articles[4].image.image}
+                      alt={articles[4].main_title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <p className="text-[0.65rem] font-medium text-[#f06c00] mt-2">
+                    {" "}
+                    {articles[4].topic
+                      ? articles[4].topic?.toUpperCase()
+                      : "General News".toUpperCase()}
+                  </p>
+                  <p className="text-[#393939] text-xl lg:text-2xl mt-2 leading-tight hover:text-[#f06c00] font-EB font-semibold">
+                    {capitalizeCharOne(articles[4].main_title)}
+                  </p>
+                </Link>
+              </div>
             )}
 
             {articles[5] && (
-              <div className="md:mt-11">
+              <div className="mt-11">
                 <Link to={`/news/${articles[5].slug}`}>
                   <div className=" h-40 border ">
                     <img
@@ -157,7 +170,9 @@ const BodyGridLG = () => {
                   </div>
                   <p className="text-[0.65rem] font-medium text-[#f06c00] mt-2">
                     {" "}
-                    {articles[5].topic ? articles[5].topic?.toUpperCase() :'General News'.toUpperCase()}
+                    {articles[5].topic
+                      ? articles[5].topic?.toUpperCase()
+                      : "General News".toUpperCase()}
                   </p>
                   <p className="text-[#393939] text-xl lg:text-2xl mt-2 leading-tight hover:text-[#f06c00] font-EB font-semibold">
                     {capitalizeCharOne(articles[5].main_title)}
