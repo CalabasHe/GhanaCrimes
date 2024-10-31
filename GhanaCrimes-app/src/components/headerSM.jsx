@@ -183,6 +183,7 @@ const HeaderSM = () => {
 
   const switchToCreateAccount = () => {
     setIsCreatingAccount(true);
+    setIsOpen(false);
   };
 
   const switchToLogin = () => {
@@ -192,12 +193,16 @@ const HeaderSM = () => {
   const handleLoginClick = (e) => {
     e.preventDefault();
     setIsLoginOpen(true);
+    setIsOpen(false);
+  };
+  const handleLinksClose = () => {
+    setIsOpen(false);
   };
 
   const handleTopicClick = (slug) => {
-    setIsOpen(false)
-    navigate(`/topics/${slug}`)
-  }
+    setIsOpen(false);
+    navigate(`/topics/${slug}`);
+  };
 
   return (
     <main className="block md:hidden">
@@ -249,24 +254,24 @@ const HeaderSM = () => {
       <div
         className={`${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } fixed top-0 left-0 lg:w-3/12 w-full h-full bg-white text-black transition-transform duration-300 ease-in-out z-50`}
+        } fixed top-0 left-0 lg:w-3/12 w-full h-full bg-white text-black transition-transform duration-300 ease-in-out overflow-y-scroll z-50`}
       >
         <div className="flex lg:mt-[5%] mt-4 flex-col items-start px-4 py-5 space-y-8">
           <div className="text-[#f06c00] w-full self-center flex items-center justify-between font-bold text-3xl font-EB">
-          <p className="flex-grow text-center">GhanaCrimes</p>        
-          <button className="translate-y-1" onClick={toggleMenu}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24px"
-              height="24px"
-              viewBox="0 0 32 32"
-            >
-              <path
-                fill="black"
-                d="M16 2C8.2 2 2 8.2 2 16s6.2 14 14 14s14-6.2 14-14S23.8 2 16 2m5.4 21L16 17.6L10.6 23L9 21.4l5.4-5.4L9 10.6L10.6 9l5.4 5.4L21.4 9l1.6 1.6l-5.4 5.4l5.4 5.4z"
-              />
-            </svg>
-          </button> 
+            <p className="flex-grow text-center">GhanaCrimes</p>
+            <button className="translate-y-1" onClick={toggleMenu}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24px"
+                height="24px"
+                viewBox="0 0 32 32"
+              >
+                <path
+                  fill="black"
+                  d="M16 2C8.2 2 2 8.2 2 16s6.2 14 14 14s14-6.2 14-14S23.8 2 16 2m5.4 21L16 17.6L10.6 23L9 21.4l5.4-5.4L9 10.6L10.6 9l5.4 5.4L21.4 9l1.6 1.6l-5.4 5.4l5.4 5.4z"
+                />
+              </svg>
+            </button>
           </div>
 
           {!isLoggedIn ? (
@@ -297,18 +302,85 @@ const HeaderSM = () => {
             </button>
           )}
 
-
           <nav className="w-full text-[#828282] flex flex-col px-2 gap-8">
             <p className=" text-base font-[700]">TOPICS</p>
             <div className="text-xl items-start pl-[10%] font-semibold flex-col flex space-y-6">
-            {topicData.length > 0 &&
-              topicData.slice(0, 5).map((topic) => (
-                <button key={topic.id} onClick={() => handleTopicClick(topic.slug)}>
-                    {topic.name.charAt(0).toUpperCase() + topic.name.slice(1)}
-                </button>
-              ))}
+              {topicData.length > 0 &&
+                topicData.slice(0, 5).map((topic) => (
+                  <button
+                    key={topic.id}
+                    onClick={() => handleTopicClick(topic.slug)}
+                  >
+                    {topic.name.charAt(0) + topic.name.slice(1)}
+                  </button>
+                ))}
             </div>
+            <hr />
           </nav>
+          <Link
+            onClick={handleLinksClose}
+            to={"/about-us"}
+            className="pl-[10%] flex space-x-2 text-lg text-[#828282] font-medium items-center"
+          >
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width={22.5}
+                height={24}
+                viewBox="0 0 15 16"
+              >
+                <path
+                  fill="#828282"
+                  d="M7.5 7a2.5 2.5 0 0 1 0-5a2.5 2.5 0 0 1 0 5m0-4C6.67 3 6 3.67 6 4.5S6.67 6 7.5 6S9 5.33 9 4.5S8.33 3 7.5 3"
+                ></path>
+                <path
+                  fill="#828282"
+                  d="M13.5 11c-.28 0-.5-.22-.5-.5s.22-.5.5-.5s.5-.22.5-.5A2.5 2.5 0 0 0 11.5 7h-1c-.28 0-.5-.22-.5-.5s.22-.5.5-.5c.83 0 1.5-.67 1.5-1.5S11.33 3 10.5 3c-.28 0-.5-.22-.5-.5s.22-.5.5-.5A2.5 2.5 0 0 1 13 4.5c0 .62-.22 1.18-.6 1.62c1.49.4 2.6 1.76 2.6 3.38c0 .83-.67 1.5-1.5 1.5m-12 0C.67 11 0 10.33 0 9.5c0-1.62 1.1-2.98 2.6-3.38c-.37-.44-.6-1-.6-1.62A2.5 2.5 0 0 1 4.5 2c.28 0 .5.22.5.5s-.22.5-.5.5C3.67 3 3 3.67 3 4.5S3.67 6 4.5 6c.28 0 .5.22.5.5s-.22.5-.5.5h-1A2.5 2.5 0 0 0 1 9.5c0 .28.22.5.5.5s.5.22.5.5s-.22.5-.5.5m9 3h-6c-.83 0-1.5-.67-1.5-1.5v-1C3 9.57 4.57 8 6.5 8h2c1.93 0 3.5 1.57 3.5 3.5v1c0 .83-.67 1.5-1.5 1.5m-4-5A2.5 2.5 0 0 0 4 11.5v1c0 .28.22.5.5.5h6c.28 0 .5-.22.5-.5v-1A2.5 2.5 0 0 0 8.5 9z"
+                ></path>
+              </svg>
+            </div>
+            <p>About us</p>
+          </Link>
+          <Link
+            onClick={handleLinksClose}
+            to={"/contact-us"}
+            className="pl-[10%] flex space-x-2 text-lg text-[#828282] font-medium items-center"
+          >
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width={24}
+                height={24}
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill="#828282"
+                  d="M15 2.5H1a1 1 0 0 0-1 1v9a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-9a1 1 0 0 0-1-1m-1.3 1.25L8.42 8.56a.62.62 0 0 1-.84 0L2.3 3.75zm-12.45 8.5V4.48l5.49 5a1.86 1.86 0 0 0 2.52 0l5.49-5v7.77z"
+                ></path>
+              </svg>
+            </div>
+            <p>Contact us</p>
+          </Link>
+
+          <Link
+            to={"/ads-request"}
+            className="flex pl-[10%] space-x-2 text-xl text-[#828282] font-semibold items-center"
+          >
+            <div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width={24}
+                height={24}
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="#828282"
+                  d="M5.5 7A1.5 1.5 0 0 1 4 5.5A1.5 1.5 0 0 1 5.5 4A1.5 1.5 0 0 1 7 5.5A1.5 1.5 0 0 1 5.5 7m15.91 4.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.11 0-2 .89-2 2v7c0 .55.22 1.05.59 1.41l8.99 9c.37.36.87.59 1.42.59s1.05-.23 1.41-.59l7-7c.37-.36.59-.86.59-1.41c0-.56-.23-1.06-.59-1.42"
+                ></path>
+              </svg>
+            </div>
+            <p>Advertise with us</p>
+          </Link>
         </div>
       </div>
       <div
