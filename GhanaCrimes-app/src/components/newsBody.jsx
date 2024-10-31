@@ -78,7 +78,7 @@ const NewsComponent = () => {
   };
 
   return (
-    <main className="overflow-x-hidden relative px-3">
+    <main className="overflow-x-hidden relative px-3 lg:px-5">
       <div className=" grid grid-cols-1 lg:grid-cols-3 mt-8 gap-11">
         <div className="lg:col-span-2">
           <div>

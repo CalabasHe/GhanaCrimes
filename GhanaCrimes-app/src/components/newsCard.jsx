@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 
 const NewsCard = ({ articleData }) => {
@@ -5,7 +6,7 @@ const NewsCard = ({ articleData }) => {
 
   return (
     <Link to={`/news/${articleData.slug}`}>
-      <div className="h-[250px] lg:h-40 shadow-md">
+      <div className="h-[250px] lg:h-48 shadow-md">
         <img
           src={articleData.image?.image}
           alt={articleData.main_title}
