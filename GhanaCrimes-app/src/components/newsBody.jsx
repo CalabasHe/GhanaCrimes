@@ -193,7 +193,7 @@ const NewsComponent = () => {
                     <div className="flex items-center gap-2">
                       <div>
                         <p className="font-semibold text-xs text-[#666666]">
-                          {comment.user?.full_name || "Anonymous".toUpperCase()}
+                          {comment?.full_name || "Anonymous"}
                         </p>
                         <p className="text-sm font-semibold text-[#666666]">
                           {moment(comment.created_at).format(
