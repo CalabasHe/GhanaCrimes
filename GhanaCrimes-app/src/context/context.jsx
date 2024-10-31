@@ -35,9 +35,9 @@ export const AuthProvider = ({ children }) => {
     checkAuth();
   }, []);
 
-  const handleComment = async (formData, Slug) => {  // Add newsSlug parameter
-    const commentAPI = `https://ghanacrimes-api.onrender.com/api/comments/${Slug}/`;  // Add slug to URL
-    
+  const handleComment = async (message, newsSlug) => {
+    const commentAPI = `https://ghanacrimes-api.onrender.com/api/comments/`;
+  
     if (!isAuthenticated()) {
       console.error("User not authenticated");
       throw new Error("Please login to add a comment");
@@ -45,9 +45,10 @@ export const AuthProvider = ({ children }) => {
   
     try {
       const token = localStorage.getItem('faccess_token');
-      
       console.log("Sending comment data:", {
-        message: formData.message,
+       
+        news_article: newsSlug,
+        message,
         url: commentAPI,
       });
   
@@ -55,28 +56,33 @@ export const AuthProvider = ({ children }) => {
         method: 'post',
         url: commentAPI,
         data: {
-          message: formData.message
+          news_article: newsSlug,
+          message: message,
         },
         headers: {
           'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        }
+          'Content-Type': 'application/json',
+        },
       });
-      
+  
       return response.data;
     } catch (error) {
-      console.error("Error details:", error.response?.data);
+      console.error("Error details:", error.response?.data); // Log the detailed error response
       if (error.response?.status === 401) {
         localStorage.removeItem('faccess_token');
         localStorage.removeItem('refresh_token');
         setIsLoggedIn(false);
         throw new Error("Authentication expired. Please login again");
+      } else if (error.response) {
+        // Log the server's error message
+        throw new Error(error.response.data.message || "An error occurred while posting the comment. Please try again.");
+      } else {
+        // Handle other types of errors
+        throw new Error("An error occurred while posting the comment. Please try again.");
       }
-      // Log the full error for debugging
-      console.error("Full error object:", error);
-      throw error;
     }
   };
+  
 
   // Login function (used by components)
   const handleLogin = async (e) => {

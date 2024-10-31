@@ -12,10 +12,11 @@ const NewsComponent = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { slug } = useParams();
+  const [articleid, setArticleId] = useState();
   const [formData, setFormData] = useState({
     message: "",
   });
-
+  const [message, setMessage] = useState();
   const {
     isLoginOpen,
     setIsLoginOpen,
@@ -31,7 +32,8 @@ const NewsComponent = () => {
         const data = await fetchNewsArticle(slug);
         console.log("Fetched data:", data);
         setArticle(data);
-        // Set the news_id in formData when article is loaded
+        setArticleId(data.id);
+
         setFormData((prev) => ({
           ...prev,
           news_id: data.id, // Assuming your article data has an id field
@@ -48,27 +50,23 @@ const NewsComponent = () => {
   }, [slug]);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setMessage(e.target.value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (!formData.message.trim()) {
+      if (!message.trim()) {
         alert("Please enter a message");
         return;
       }
 
-      await handleComment(formData, slug);
+      await handleComment(message, articleid);
       alert("Your message has been sent successfully!");
-      setFormData({
-        message: "",
-      });
 
-      loadArticle();
+      setMessage("");
+
+      window.location.reload();
     } catch (error) {
       if (error.message === "Please login to add a comment") {
         setIsLoginOpen(true);
@@ -226,26 +224,27 @@ const NewsComponent = () => {
           {isLoggedIn ? (
             <>
               <p className="mt-4">Leave a comment down below</p>
-              <form onSubmit={handleSubmit} action="">
+              <div>
                 {/* Comment input */}
                 <div className="">
                   <textarea
                     name="message"
                     id=""
-                    value={formData.message}
+                    value={message}
                     className="border px-3 py-2 w-full outline-none h-52 mt-4"
                     required
                     onChange={handleChange}
                   />
 
                   <button
+                    onClick={handleSubmit}
                     type="submit"
                     className="bg-[#f06c00] text-white  px-4 py-2 font-semibold text-sm cursor-pointer"
                   >
                     Comment
                   </button>
                 </div>
-              </form>
+              </div>
             </>
           ) : (
             <></>
