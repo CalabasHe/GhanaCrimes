@@ -11,10 +11,9 @@ const Footer = () => {
 
           <section className="grid md:grid-cols-3 md:gap-11 lg:text-sm ">
             <article>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos
-              iure, expedita ullam ipsum adipisci sit nobis illum, quos quam
-              perferendis in. Autem magni dolores et corrupti aperiam saepe!
-              Reiciendis, in?
+              GhanaCrimes is one of the world’s leading news organizations,
+              internationally recognized for its journalistic authority,
+              commitment to integrity, and dedication to accuracy in reporting.
             </article>
             <div className="flex md:flex-col gap-4 font-bold">
               <Link to={"/about-us"} className="hover:text-[#f06c00]">
