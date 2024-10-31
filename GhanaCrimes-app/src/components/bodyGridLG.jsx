@@ -26,22 +26,11 @@ const BodyGridLG = () => {
   const capitalizeCharOne = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1)
   }
-  // const SubstituteCard = () => {
-  //   return (
-  //     <Link>
-  //       <div className="bg-slate-500 h-40" />
-  //       <p className="text-sm text-[#f06c00]">Business</p>
-  //       <p className="text-[#393939] text-xl lg:text-2xl leading-tight hover:text-[#f06c00] font-EB font-semibold">
-  //         Michelin pauses some French tyre factories as demand falls
-  //       </p>
-  //     </Link>
-  //   );
-  // };
 
   return (
     <main className="overflow-x-hidden px-3 lg:px-5">
       <div className="mt-4">
-        <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-4">
+        <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-6">
           {articles.length > 0 && (
             <>
               {/*First Column*/}
