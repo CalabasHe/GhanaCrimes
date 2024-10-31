@@ -22,7 +22,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   
-
   // Login function (used by components)
   const handleLogin = async (e) => {
     e.preventDefault(); // Prevent form submission
@@ -87,7 +86,7 @@ export const AuthProvider = ({ children }) => {
         const response = await axios.get(`${topicsAPI}`);
         // console.log(response.data.results);
         setTopicData(response.data.results);
-        //  topicData
+        
       } catch {
         console.error("Error fetching news");
         return [];

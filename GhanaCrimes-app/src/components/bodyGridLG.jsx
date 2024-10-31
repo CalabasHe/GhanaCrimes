@@ -156,7 +156,7 @@ const BodyGridLG = () => {
 
             {articles[5] && (
               <div className="md:mt-11">
-                <Link to={`/news/${articles[4].slug}`}>
+                <Link to={`/news/${articles[5].slug}`}>
                   <div className=" h-40 ">
                     <img
                       src={articles[5].image.image}
