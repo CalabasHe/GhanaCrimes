@@ -3,7 +3,6 @@ import axios from "axios";
 const commentAPI = "https://ghanacrimes-api.onrender.com/api/comments/";
 
 export const sendComment = async (formData) => {
-  console.log("Login Response: ", response);
   toStorage(response.data.access, response.data.refresh);
 
   if (response.status === 201) {

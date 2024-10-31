@@ -16,6 +16,37 @@ const NewsComponent = () => {
     message: "",
   });
 
+  const {
+    isLoginOpen,
+    setIsLoginOpen,
+    isLoggedIn,
+    setIsLoggedIn,
+    handleComment,
+  } = useContext(AuthContext);
+
+  useEffect(() => {
+    async function loadArticle() {
+      try {
+        setLoading(true);
+        const data = await fetchNewsArticle(slug);
+        console.log("Fetched data:", data);
+        setArticle(data);
+        // Set the news_id in formData when article is loaded
+        setFormData((prev) => ({
+          ...prev,
+          news_id: data.id, // Assuming your article data has an id field
+        }));
+      } catch (err) {
+        console.error("Error fetching article:", err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    loadArticle();
+  }, [slug]);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -25,34 +56,28 @@ const NewsComponent = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      if (!formData.message.trim()) {
+        alert("Please enter a message");
+        return;
+      }
 
-    sendComment(formData);
-    alert("Your message has been sent successfully!");
-    setFormData({
-      message: "",
-    });
-  };
+      await handleComment(formData, slug);
+      alert("Your message has been sent successfully!");
+      setFormData({
+        message: "",
+      });
 
-  const { isLoginOpen, setIsLoginOpen, isLoggedIn, setIsLoggedIn } =
-    useContext(AuthContext);
-
-  useEffect(() => {
-    async function loadArticle() {
-      try {
-        setLoading(true);
-        const data = await fetchNewsArticle(slug);
-        console.log("Fetched data:", data); // Log the fetched data for debugging
-        setArticle(data);
-      } catch (err) {
-        console.error("Error fetching article:", err); // Log the error for debugging
-        setError(err.message);
-      } finally {
-        setLoading(false);
+      loadArticle();
+    } catch (error) {
+      if (error.message === "Please login to add a comment") {
+        setIsLoginOpen(true);
+      } else {
+        console.error("Comment error:", error);
+        alert("Error posting comment. Please try again.");
       }
     }
-
-    loadArticle();
-  }, [slug]);
+  };
 
   return (
     <main className="overflow-x-hidden relative px-[5%]">
