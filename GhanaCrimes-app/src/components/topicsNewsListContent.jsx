@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const TopicsNewsListContent = () => {
   const [topics, setTopics] = useState([]);
@@ -43,7 +44,8 @@ const TopicsNewsListContent = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 pt-6 gap-4">
           {topics && topics.length > 0 ? (
             topics.map((topic, index) => (
-              <div
+              <Link
+              to={`/news/${topic.slug}`}
                 key={topic.id || index}
                 className={`col-span-1 ${
                   index === 0 ? "lg:col-span-2" : "lg:col-span-1"
@@ -71,10 +73,10 @@ const TopicsNewsListContent = () => {
                 {/* Optional Subtitle */}
 
                 <p className="text-[#666666] mt-1">{topic.sub_title}</p>
-              </div>
+              </Link>
             ))
           ) : (
-            <p>No topics available for this category.</p>
+            <p>No news available for this topic.</p>
           )}
         </div>
 

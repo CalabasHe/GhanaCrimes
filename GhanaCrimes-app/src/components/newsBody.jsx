@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { fetchNewsArticle } from "../api/newsReadAPI";
+import { AuthContext } from "../context/context";
+import { sendComment } from "../api/commentAPI";
 
 import axios from "axios";
 import moment from "moment";
@@ -10,6 +12,29 @@ const NewsComponent = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { slug } = useParams();
+  const [formData, setFormData] = useState({
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    sendComment(formData);
+    alert("Your message has been sent successfully!");
+    setFormData({
+      message: "",
+    });
+  };
+
+  const { isLoginOpen, setIsLoginOpen, isLoggedIn, setIsLoggedIn } =
+    useContext(AuthContext);
 
   useEffect(() => {
     async function loadArticle() {
@@ -125,11 +150,13 @@ const NewsComponent = () => {
             </p>
             <hr className=" mb-4" />
           </div>
-          <p>
-            Please log in{" "}
-            <span className="text-[#f06c00] cursor-pointer">here</span> to leave
-            a comment.
-          </p>
+          {!isLoggedIn ? (
+            <p className="cursor-pointer" onClick={() => setIsLoginOpen(true)}>
+              Log in to leave a comment
+            </p>
+          ) : (
+            <></>
+          )}
 
           <div className="space-y-4 mt-4">
             {Array.isArray(article?.comments) ? (
@@ -166,11 +193,38 @@ const NewsComponent = () => {
                 </div>
               ))
             ) : (
-              <div className="bg-[#f2f2f2] p-3 md:p-6 rounded-lg">
+              <div className="bg-[#f2f2f2] p-3 md:p-6">
                 <p className="md:text-xs text-gray-600">No comments yet</p>
               </div>
             )}
           </div>
+          {isLoggedIn ? (
+            <>
+              <p className="mt-4">Leave a comment down below</p>
+              <form onSubmit={handleSubmit} action="">
+                {/* Comment input */}
+                <div className="">
+                  <textarea
+                    name="message"
+                    id=""
+                    value={formData.message}
+                    className="border px-3 py-2 w-full outline-none h-52 mt-4"
+                    required
+                    onChange={handleChange}
+                  />
+
+                  <button
+                    type="submit"
+                    className="bg-[#f06c00] text-white  px-4 py-2 font-semibold text-sm cursor-pointer"
+                  >
+                    Comment
+                  </button>
+                </div>
+              </form>
+            </>
+          ) : (
+            <></>
+          )}
 
           {/* See also section */}
           <div className="mt-8">
