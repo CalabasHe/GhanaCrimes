@@ -201,7 +201,7 @@ const HeaderSM = () => {
 
   return (
     <main className="block md:hidden">
-      <div className="flex px-10 items-center mt-6 container flex-wrap">
+      <div className="flex px-3 items-center mt-6 container flex-wrap">
         {/*Menu Hamburger*/}
         <div className=" flex-auto">
           <svg
@@ -251,12 +251,10 @@ const HeaderSM = () => {
           isOpen ? "translate-x-0" : "-translate-x-full"
         } fixed top-0 left-0 lg:w-3/12 w-full h-full bg-white text-black transition-transform duration-300 ease-in-out z-50`}
       >
-        <div className="flex lg:mt-[120px] mt-[70px] mr-3 flex-col items-start p-5 space-y-4">
-          <div className="text-[#f06c00] self-center font-bold text-3xl font-EB">
-            GhanaCrimes
-          </div>
-
-          <button className="self-end mt-5" onClick={toggleMenu}>
+        <div className="flex lg:mt-[5%] mt-4 flex-col items-start px-4 py-5 space-y-8">
+          <div className="text-[#f06c00] w-full self-center flex items-center justify-between font-bold text-3xl font-EB">
+          <p className="flex-grow text-center">GhanaCrimes</p>        
+          <button className="translate-y-1" onClick={toggleMenu}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24px"
@@ -268,17 +266,19 @@ const HeaderSM = () => {
                 d="M16 2C8.2 2 2 8.2 2 16s6.2 14 14 14s14-6.2 14-14S23.8 2 16 2m5.4 21L16 17.6L10.6 23L9 21.4l5.4-5.4L9 10.6L10.6 9l5.4 5.4L21.4 9l1.6 1.6l-5.4 5.4l5.4 5.4z"
               />
             </svg>
-          </button>
+          </button> 
+          </div>
+
           {!isLoggedIn ? (
             <div className="flex self-end items-center gap-3">
               <div
-                className="text-[#828282] text-base font-semibold cursor-pointer"
+                className="text-[#828282] text-xs font-bold cursor-pointer"
                 onClick={handleLoginClick}
               >
                 Log in
               </div>
               <div
-                className="bg-[#f06c00] text-white rounded-full px-4 py-2 font-semibold text-sm cursor-pointer"
+                className="bg-[#f06c00] text-white rounded-full px-3 py-2 font-bold text-xs cursor-pointer"
                 onClick={(e) => {
                   e.preventDefault();
                   setIsLoginOpen(true);
@@ -297,14 +297,14 @@ const HeaderSM = () => {
             </button>
           )}
 
-          <p className="text-[#828282] font-medium mt-11">TOPICS</p>
 
-          <nav>
-            <div className="text-lg flex-col flex space-y-4">
+          <nav className="w-full text-[#828282] flex flex-col px-2 gap-8">
+            <p className=" text-base font-[700]">TOPICS</p>
+            <div className="text-xl items-start pl-[10%] font-semibold flex-col flex space-y-6">
             {topicData.length > 0 &&
               topicData.slice(0, 5).map((topic) => (
                 <button key={topic.id} onClick={() => handleTopicClick(topic.slug)}>
-                    {topic.name.toUpperCase()}
+                    {topic.name.charAt(0).toUpperCase() + topic.name.slice(1)}
                 </button>
               ))}
             </div>

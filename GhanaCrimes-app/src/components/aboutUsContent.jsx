@@ -2,7 +2,7 @@ import BannerIMG from "../assets/images/About-Us-Banner-Image.jpeg";
 
 const AboutUsContent = () => {
   return (
-    <main className="overflow-x-hidden hidden md:block px-[5%]">
+    <main className="overflow-x-hidden hidden md:block px-3">
       <div className="mt-10 relative">
         {/* Text Overlay */}
         <div className="relative w-full h-40 lg:h-[500px]">

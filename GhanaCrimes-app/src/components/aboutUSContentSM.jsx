@@ -3,7 +3,7 @@ import BannerIMG from "../assets/images/About-Us-Banner-Image.jpeg";
 const AboutUSContentSM = () => {
   return (
     <>
-      <main className="overflow-x-hidden px-[5%] block md:hidden">
+      <main className="overflow-x-hidden px-3 block md:hidden">
         <div className="mt-10">
           {/* Banner Image */}
           <img src={BannerIMG} alt="" />

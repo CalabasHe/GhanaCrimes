@@ -216,7 +216,7 @@ const HeaderMD = () => {
   }, []);
 
   return (
-    <main className="hidden md:block px-[5%]">
+    <main className="hidden md:block px-3">
       {/* Logo */}
       <Link className="flex justify-center mt-6" to="/home">
         <p className="font-EB font-bold lg:text-4xl text-[#f06c00]">
@@ -263,14 +263,14 @@ const HeaderMD = () => {
         </div>
 
         {/* Nav Links */}
-        <nav className="flex-1 justify-start md:text-sm hidden lg:flex">
+        <nav className="flex-1 justify-start text-xs md:text-sm hidden xl:flex">
           <div className="space-x-5 text-[#828282] font-semibold">
             {/* {fetch && (
               
             )} */}
             {topicData.length > 0 &&
               topicData.slice(0, 5).map((topic) => (
-                <Link key={topic.id} to={`/topics/${topic.slug}`}>
+                <Link className="text-nowrap" key={topic.id} to={`/topics/${topic.slug}`}>
                   {topic.name.toUpperCase()}
                 </Link>
               ))}
@@ -357,10 +357,11 @@ const HeaderMD = () => {
               />
             </svg>
           </button>
-          <p className="text-lg font-semibold">Topics</p>
 
-          <nav>
-            <div className="text-lg ml-8 flex-col flex space-y-4">
+          <nav className="w-full flex flex-col gap-4">
+          <p className="text-[#828282] text-xl font-semibold leading-none">Topics</p>
+          <hr/>
+            <div className="text-lg items-start text-nowrap font-medium flex-col flex space-y-4">
               {topicData.length > 0 &&
                 topicData.slice(0, 5).map((topic) => (
                   <button key={topic.id} onClick={() => handleTopicClick(topic.slug)}>

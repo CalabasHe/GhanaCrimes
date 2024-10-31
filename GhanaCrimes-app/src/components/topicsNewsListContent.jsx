@@ -26,7 +26,7 @@ const TopicsNewsListContent = () => {
   }, [slug]);
 
   return (
-    <main className="overflow-x-hidden px-[5%]">
+    <main className="overflow-x-hidden px-3">
       {topics &&
         topics.map((topics, index) => (
           <div key={topics.id || index}>

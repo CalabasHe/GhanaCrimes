@@ -2,7 +2,7 @@ import ContactIMG from "../assets/images/Contact-Us-Banner-Image.jpeg";
 import ContactFormField from "./contactFormFields";
 const ContactUsFormMD = () => {
   return (
-    <main className="overflow-x-hidden hidden md:block px-[5%]">
+    <main className="overflow-x-hidden hidden md:block px-3">
       <div className="mt-10 relative">
         {/* Text Overlay */}
         <div className="relative w-full h-40 lg:h-[500px]">
