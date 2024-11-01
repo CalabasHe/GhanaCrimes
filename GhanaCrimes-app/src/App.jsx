@@ -9,6 +9,7 @@ import TopicsNewsList from "./pages/topicsNewsList";
 import AdsRequest from "./pages/adsRequest";
 import { LoadingProvider, useLoading } from "./context/LoadingContext";
 import LoadingScreen from "../src/components/loadingScreen";
+import MyAccount from "./pages/myAccount";
 
 // Wrap each page component to handle loading state
 const PageWrapper = ({ children }) => {
@@ -43,6 +44,7 @@ function AppRoutes() {
         <Route path="/contact-us" element={<PageWrapper><ContactUs /></PageWrapper>} />
         <Route path="/topics/:slug" element={<PageWrapper><TopicsNewsList /></PageWrapper>} />
         <Route path="/advertisement-request" element={<PageWrapper><AdsRequest /></PageWrapper>} />
+        <Route path="/my-account" element={<PageWrapper><MyAccount /></PageWrapper>} />
       </Routes>
     </>
   );
