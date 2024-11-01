@@ -73,7 +73,7 @@ const AdvertisementSection = () => {
   const currentAd = ads[currentAdIndex];
 
   return (
-    <div className="bg-[#fafafa] h-[410px] lg:col-span-1 ">
+    <div className="bg-[#fafafa] lg:col-span-1 ">
       <h2 className="pt-4 text-[#D2D2D2] text-sm text-center">Advertisement</h2>
 
       <div className="space-y-6">
@@ -98,13 +98,13 @@ const AdvertisementSection = () => {
                   />
                 </a>
               )}
-              <h3 className="text-xl font-bold mb-2 text-[#212529]">
+              <h3 className="text-center text-xl font-bold mb-2 text-[#212529]">
                 {ad.title}
               </h3>
-              <p className="text-[#666666] mb-4 text-sm">
+              {/* <p className="text-[#666666] mb-4 text-sm">
                 {currentAd.description}
-              </p>
-              {ad.link && (
+              </p> */}
+              {/* {ad.link && (
                 <a
                   href={ad.link}
                   target="_blank"
@@ -113,7 +113,7 @@ const AdvertisementSection = () => {
                 >
                   Learn More
                 </a>
-              )}
+              )} */}
             </div>
           </div>
         ))}

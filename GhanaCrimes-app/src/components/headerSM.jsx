@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useContext } from "react";
+import AdvertisementSection from "../components/adsComponents";
 
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/context";
@@ -206,6 +207,7 @@ const HeaderSM = () => {
 
   return (
     <main className="block md:hidden">
+      <AdvertisementSection />
       <div className="flex px-3 items-center mt-6 container flex-wrap">
         {/*Menu Hamburger*/}
         <div className=" flex-auto">

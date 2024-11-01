@@ -287,7 +287,9 @@ const NewsComponent = () => {
           </div>
         </div>
         {/* ADVERTISEMENT */}
-        <AdvertisementSection />
+        <div className="h-[410px]">
+          <AdvertisementSection />
+        </div>
       </div>
     </main>
   );
