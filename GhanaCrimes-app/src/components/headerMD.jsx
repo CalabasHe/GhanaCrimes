@@ -223,7 +223,7 @@ const HeaderMD = () => {
   return (
     <main className="hidden md:block px-3 lg:px-5 ">
       {/* Logo */}
-      <Link className="flex justify-center mt-6" to="/home">
+      <Link className="flex justify-center mt-6" to="/">
         <p className="font-EB font-bold lg:text-4xl text-[#f06c00]">
           GhanaCrimes
         </p>

@@ -37,7 +37,7 @@ function AppRoutes() {
       {isLoading && <LoadingScreen />}
       <Routes>
         <Route index element={<PageWrapper><HomePage /></PageWrapper>} />
-        <Route path="/home" element={<PageWrapper><HomePage /></PageWrapper>} />
+        <Route path="/" element={<PageWrapper><HomePage /></PageWrapper>} />
         <Route path="/news/:slug" element={<PageWrapper><NewsPage /></PageWrapper>} />
         <Route path="/about-us" element={<PageWrapper><AboutUs /></PageWrapper>} />
         <Route path="/contact-us" element={<PageWrapper><ContactUs /></PageWrapper>} />
