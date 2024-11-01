@@ -1,11 +1,13 @@
 import Header from "../components/header";
 import Footer from "../components/footer";
-import AdsRequestContent from "../components/adsRequestContent";
+import AdsRequestContentLG from "../components/adsRequestContentLG";
+import AdsRequestContentSM from "../components/adsRequestContentSM";
 const AdsRequest = () => {
   return (
     <main>
       <Header />
-      <AdsRequestContent />
+      <AdsRequestContentLG />
+      <AdsRequestContentSM />
       <Footer />
     </main>
   );
