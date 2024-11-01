@@ -135,7 +135,7 @@ const BodyGridLG = () => {
           {/* Third Column */}
           <div className="space-y-8 lg:col-span-2 md:col-span-2">
             {articles[4] && (
-              <div className="mt-11">
+              <div className="mt-11 md:mt-0">
                 <Link to={`/news/${articles[4].slug}`}>
                   <div className=" h-40 border ">
                     <img
@@ -158,7 +158,7 @@ const BodyGridLG = () => {
             )}
 
             {articles[5] && (
-              <div className="mt-11">
+              <div className="mt-11 md:mt-0">
                 <Link to={`/news/${articles[5].slug}`}>
                   <div className=" h-40 border ">
                     <img
