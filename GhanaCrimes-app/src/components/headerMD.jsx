@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/context";
 import { fetchNewsTopics } from "../api/newsReadAPI";
+import TopicList from "../components/sideMenuTopicList";
 
 const HeaderMD = () => {
   const [isCreatingAccount, setIsCreatingAccount] = useState(false);
@@ -322,10 +323,10 @@ const HeaderMD = () => {
       <div
         className={`${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } fixed top-0 left-0 lg:w-3/12 w-3/6 h-full bg-white text-black transition-transform duration-300 ease-in-out z-50`}
+        } fixed top-0 left-0 lg:w-3/12 w-3/6 h-full bg-white overflow-y-scroll text-black transition-transform duration-300 ease-in-out z-50`}
       >
         <div className="flex lg:mt-[120px] mt-[70px] mr-3 flex-col items-start p-5 space-y-4">
-          {!isLoggedIn ? (
+          {/* {!isLoggedIn ? (
             <div className="flex self-end items-center gap-3">
               <div
                 className="text-[#828282] text-base font-semibold cursor-pointer"
@@ -351,7 +352,7 @@ const HeaderMD = () => {
             >
               {isloading ? "Signing out " : "Sign out"}
             </button>
-          )}
+          )} */}
           <button onClick={toggleMenu} className="self-end">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -371,17 +372,7 @@ const HeaderMD = () => {
               Topics
             </p>
             <hr />
-            <div className="text-lg text-[#828282] items-start text-nowrap font-medium flex-col flex space-y-4">
-              {topicData.length > 0 &&
-                topicData.slice(0, 5).map((topic) => (
-                  <button
-                    key={topic.id}
-                    onClick={() => handleTopicClick(topic.slug)}
-                  >
-                    {topic.name}
-                  </button>
-                ))}
-            </div>
+            <TopicList topicData={topicData} />
             <hr />
           </nav>
 
