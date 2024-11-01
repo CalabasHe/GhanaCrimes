@@ -47,7 +47,7 @@ const HeaderSM = () => {
     e.preventDefault(); // Prevent form submission
     setIsLoginOpen(true); // Show login UI/modal
 
-    console.log("Logging in with:", loginEmail, loginPassword); // Log entered email and password
+    // console.log("Logging in with:", loginEmail, loginPassword);
 
     try {
       SetLoading(true); // Ensure correct state function is called
@@ -115,12 +115,12 @@ const HeaderSM = () => {
 
   const handleGenderMale = (e) => {
     SetGender("m");
-    console.log(gender);
+    // console.log(gender);
   };
 
   const handleGenderFemale = (e) => {
     SetGender("f");
-    console.log(gender);
+    // console.log(gender);
   };
 
   const handleFirstnameChange = (e) => {
@@ -169,7 +169,7 @@ const HeaderSM = () => {
       SetLoading(false);
     } catch (error) {
       SetErrors(error.response.data);
-      console.log(error.response.data);
+      // console.log(error.response.data);
       SetLoading(false);
     }
     SetLoading(false);
@@ -428,7 +428,7 @@ const HeaderSM = () => {
 
                   <Link>Log in help</Link>
                 </div>
-                <form onSubmit={handleLogin}>
+                <form onSubmit={handleSubmit}>
                   <div className="flex border border-black mt-11 p-3 rounded-full space-x-4">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -449,16 +449,9 @@ const HeaderSM = () => {
                       name="first_name"
                       placeholder="First Name"
                       onChange={handleFirstnameChange}
+                      required
                     />
                   </div>
-                  {!first_name ? (
-                    <p className="text-red-500 mt-2">
-                      {" "}
-                      *This fill is required{" "}
-                    </p>
-                  ) : (
-                    <></>
-                  )}
                   <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -479,16 +472,10 @@ const HeaderSM = () => {
                       name="last_name"
                       placeholder="Last Name"
                       onChange={handleLastnameChange}
+                      required
                     />
                   </div>
-                  {!last_name ? (
-                    <p className="text-red-500 mt-2">
-                      {" "}
-                      *This fill is required{" "}
-                    </p>
-                  ) : (
-                    <></>
-                  )}
+
                   <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -510,23 +497,6 @@ const HeaderSM = () => {
                       required
                       id="email"
                     />
-                  </div>
-                  <div>
-                    {!email ? (
-                      <p className="text-red-500 mt-2">
-                        {" "}
-                        *Email fill is required{" "}
-                      </p>
-                    ) : (
-                      <></>
-                    )}
-                    {error.email ? (
-                      <p className="text-red-500 mt-2">
-                        *This email is already in use
-                      </p>
-                    ) : (
-                      <></>
-                    )}{" "}
                   </div>
                   <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
                     <svg
@@ -551,22 +521,8 @@ const HeaderSM = () => {
                       name="password"
                       onChange={handlePasswordChange}
                       id="password"
+                      required
                     />
-                  </div>
-                  <div>
-                    {!password ? (
-                      <p className="text-red-500 mt-2">
-                        {" "}
-                        *Password fill is required{" "}
-                      </p>
-                    ) : (
-                      <></>
-                    )}
-                    {error.password && (
-                      <p className="text-red-500 mt-2">
-                        *Ensure this field has at least 8 characters
-                      </p>
-                    )}
                   </div>
                   <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
                     <svg
@@ -583,8 +539,9 @@ const HeaderSM = () => {
                       ></path>
                     </svg>
 
-                    <div>
+                    <div className="flex items-center gap-1" >
                       <input
+                        className="translate-y-0.5 cursor-pointer "
                         type="radio"
                         name="gender"
                         id="m"
@@ -594,8 +551,9 @@ const HeaderSM = () => {
                       />
                       <label htmlFor="male">Male</label>
                     </div>
-                    <div>
+                    <div className="flex items-center gap-1">
                       <input
+                        className="translate-y-0.5 cursor-pointer "
                         type="radio"
                         name="gender"
                         id="f"
@@ -629,6 +587,7 @@ const HeaderSM = () => {
                       placeholder="DOB"
                       name="dob"
                       onChange={handleDateChange}
+                      required
                     />
                   </div>
                   <p className="text-center mt-11 text-[#828282]">
@@ -663,7 +622,7 @@ const HeaderSM = () => {
                   </div>
                   <button
                     className="rounded-full w-full bg-[#f06c00] mt-6 p-3 text-center text-white"
-                    onClick={handleSubmit}
+                    type="submit"
                   >
                     {isloading ? "Signing Up " : "Sign Up"}
                   </button>

@@ -486,252 +486,178 @@ const HeaderMD = () => {
 
                   <Link>Log in help</Link>
                 </div>
-                <form onSubmit={handleLogin}>
-                  <div className="flex border border-black mt-11 p-3 rounded-full space-x-4">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={24}
-                      height={24}
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        fill="black"
-                        fillRule="evenodd"
-                        d="M12 4a8 8 0 0 0-6.96 11.947A4.99 4.99 0 0 1 9 14h6a4.99 4.99 0 0 1 3.96 1.947A8 8 0 0 0 12 4m7.943 14.076q.188-.245.36-.502A9.96 9.96 0 0 0 22 12c0-5.523-4.477-10-10-10S2 6.477 2 12a9.96 9.96 0 0 0 2.057 6.076l-.005.018l.355.413A9.98 9.98 0 0 0 12 22q.324 0 .644-.02a9.95 9.95 0 0 0 5.031-1.745a10 10 0 0 0 1.918-1.728l.355-.413zM12 6a3 3 0 1 0 0 6a3 3 0 0 0 0-6"
-                        clipRule="evenodd"
-                      ></path>
-                    </svg>
-                    <input
-                      className="border-none outline-none"
-                      type="text"
-                      name="first_name"
-                      placeholder="First Name"
-                      onChange={handleFirstnameChange}
-                      required
-                    />
-                  </div>
-                  {/* {!first_name ? (
-                    <p className="text-red-500 mt-2">
-                      {" "}
-                      *This fill is required{" "}
-                    </p>
-                  ) : (
-                    <></>
-                  )} */}
-                  <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={24}
-                      height={24}
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        fill="black"
-                        fillRule="evenodd"
-                        d="M12 4a8 8 0 0 0-6.96 11.947A4.99 4.99 0 0 1 9 14h6a4.99 4.99 0 0 1 3.96 1.947A8 8 0 0 0 12 4m7.943 14.076q.188-.245.36-.502A9.96 9.96 0 0 0 22 12c0-5.523-4.477-10-10-10S2 6.477 2 12a9.96 9.96 0 0 0 2.057 6.076l-.005.018l.355.413A9.98 9.98 0 0 0 12 22q.324 0 .644-.02a9.95 9.95 0 0 0 5.031-1.745a10 10 0 0 0 1.918-1.728l.355-.413zM12 6a3 3 0 1 0 0 6a3 3 0 0 0 0-6"
-                        clipRule="evenodd"
-                      ></path>
-                    </svg>
-                    <input
-                      className="border-none outline-none"
-                      type="text"
-                      name="last_name"
-                      placeholder="Last Name"
-                      onChange={handleLastnameChange}
-                      required
-                    />
-                  </div>
-                  {/* {!last_name ? (
-                    <p className="text-red-500 mt-2">
-                      {" "}
-                      *This fill is required{" "}
-                    </p>
-                  ) : (
-                    <></>
-                  )} */}
-                  <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24px"
-                      height="24px"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        fill="black"
-                        d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0l-8 5l-8-5zm0 12H4V8l8 5l8-5z"
-                      />
-                    </svg>
-                    <input
-                      className="border-none outline-none"
-                      type="email"
-                      name="email"
-                      placeholder="Email"
-                      onChange={handleEmailChange}
-                      required
-                      id="email"
-                    />
-                  </div>
-                  <div>
-                    {!email ? (
-                      <p className="text-red-500 mt-2">
-                        {" "}
-                        *Email fill is required{" "}
-                      </p>
-                    ) : (
-                      <></>
-                    )}
-                    {error.email ? (
-                      <p className="text-red-500 mt-2">
-                        *This email is already in use
-                      </p>
-                    ) : (
-                      <></>
-                    )}{" "}
-                  </div>
-                  <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={24}
-                      height={24}
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        fill="none"
-                        stroke="black"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M5 13a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2zm3-2V7a4 4 0 1 1 8 0v4m-1 5h.01m-3 0h.01m-3 0h.01"
-                      ></path>
-                    </svg>
-                    <input
-                      className="border-none outline-none"
-                      type="password"
-                      placeholder="Password"
-                      name="password"
-                      onChange={handlePasswordChange}
-                      id="password"
-                      required
-                    />
-                  </div>
-                  <div>
-                    {!password ? (
-                      <p className="text-red-500 mt-2">
-                        {" "}
-                        *Password fill is required{" "}
-                      </p>
-                    ) : (
-                      <></>
-                    )}
-                    {error.password && (
-                      <p className="text-red-500 mt-2">
-                        *Ensure this field has at least 8 characters
-                      </p>
-                    )}
-                  </div>
-                  <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={24}
-                      height={24}
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        fill="black"
-                        fillRule="evenodd"
-                        d="M8 7a4 4 0 1 1 8 0a4 4 0 0 1-8 0m0 6a5 5 0 0 0-5 5a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3a5 5 0 0 0-5-5z"
-                        clipRule="evenodd"
-                      ></path>
-                    </svg>
+                <form onSubmit={handleSubmit}>
+  <div className="flex border border-black mt-11 p-3 rounded-full space-x-4">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="black"
+        fillRule="evenodd"
+        d="M12 4a8 8 0 0 0-6.96 11.947A4.99 4.99 0 0 1 9 14h6a4.99 4.99 0 0 1 3.96 1.947A8 8 0 0 0 12 4m7.943 14.076q.188-.245.36-.502A9.96 9.96 0 0 0 22 12c0-5.523-4.477-10-10-10S2 6.477 2 12a9.96 9.96 0 0 0 2.057 6.076l-.005.018l.355.413A9.98 9.98 0 0 0 12 22q.324 0 .644-.02a9.95 9.95 0 0 0 5.031-1.745a10 10 0 0 0 1.918-1.728l.355-.413zM12 6a3 3 0 1 0 0 6a3 3 0 0 0 0-6"
+        clipRule="evenodd"
+      ></path>
+    </svg>
+    <input
+      className="border-none outline-none"
+      type="text"
+      name="first_name"
+      placeholder="First Name"
+      onChange={handleFirstnameChange}
+      required
+    />
+  </div>
 
-                    <div>
-                      <input
-                        type="radio"
-                        name="gender"
-                        id="m"
-                        value="m"
-                        checked={gender === "m"}
-                        onChange={handleGenderMale}
-                        required
-                      />
-                      <label for="male">Male</label>
-                    </div>
-                    <div>
-                      <input
-                        type="radio"
-                        name="gender"
-                        id="f"
-                        value="f"
-                        checked={gender === "f"}
-                        onChange={handleGenderFemale}
-                        required
-                      />
-                      <label for="male">Female</label>
-                    </div>
-                  </div>
+  <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="black"
+        fillRule="evenodd"
+        d="M12 4a8 8 0 0 0-6.96 11.947A4.99 4.99 0 0 1 9 14h6a4.99 4.99 0 0 1 3.96 1.947A8 8 0 0 0 12 4m7.943 14.076q.188-.245.36-.502A9.96 9.96 0 0 0 22 12c0-5.523-4.477-10-10-10S2 6.477 2 12a9.96 9.96 0 0 0 2.057 6.076l-.005.018l.355.413A9.98 9.98 0 0 0 12 22q.324 0 .644-.02a9.95 9.95 0 0 0 5.031-1.745a10 10 0 0 0 1.918-1.728l.355-.413zM12 6a3 3 0 1 0 0 6a3 3 0 0 0 0-6"
+        clipRule="evenodd"
+      ></path>
+    </svg>
+    <input
+      className="border-none outline-none"
+      type="text"
+      name="last_name"
+      placeholder="Last Name"
+      onChange={handleLastnameChange}
+      required
+    />
+  </div>
 
-                  <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width={24}
-                      height={24}
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        fill="black"
-                        d="M22 2.25h-3.25V.75a.75.75 0 0 0-1.5-.001V2.25h-4.5V.75a.75.75 0 0 0-1.5-.001V2.25h-4.5V.75a.75.75 0 0 0-1.5-.001V2.25H2a2 2 0 0 0-2 1.999v17.75a2 2 0 0 0 2 2h20a2 2 0 0 0 2-2V4.249a2 2 0 0 0-2-1.999M22.5 22a.5.5 0 0 1-.499.5H2a.5.5 0 0 1-.5-.5V4.25a.5.5 0 0 1 .5-.499h3.25v1.5a.75.75 0 0 0 1.5.001V3.751h4.5v1.5a.75.75 0 0 0 1.5.001V3.751h4.5v1.5a.75.75 0 0 0 1.5.001V3.751H22a.5.5 0 0 1 .499.499z"
-                      ></path>
-                      <path
-                        fill="black"
-                        d="M5.25 9h3v2.25h-3zm0 3.75h3V15h-3zm0 3.75h3v2.25h-3zm5.25 0h3v2.25h-3zm0-3.75h3V15h-3zm0-3.75h3v2.25h-3zm5.25 7.5h3v2.25h-3zm0-3.75h3V15h-3zm0-3.75h3v2.25h-3z"
-                      ></path>
-                    </svg>
-                    <input
-                      className="border-none outline-none"
-                      type="date"
-                      placeholder="DOB"
-                      name="dob"
-                      onChange={handleDateChange}
-                      required
-                    />
-                  </div>
-                  <p className="text-center mt-11 text-[#828282]">
-                    Or continue with
-                  </p>
-                  <div className="flex justify-center mt-2">
-                    <div className="border rounded-full p-2">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24px"
-                        height="24px"
-                        viewBox="0 0 48 48"
-                      >
-                        <path
-                          fill="#ffc107"
-                          d="M43.611 20.083H42V20H24v8h11.303c-1.649 4.657-6.08 8-11.303 8c-6.627 0-12-5.373-12-12s5.373-12 12-12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C12.955 4 4 12.955 4 24s8.955 20 20 20s20-8.955 20-20c0-1.341-.138-2.65-.389-3.917"
-                        ></path>
-                        <path
-                          fill="#ff3d00"
-                          d="m6.306 14.691l6.571 4.819C14.655 15.108 18.961 12 24 12c3.059 0 5.842 1.154 7.961 3.039l5.657-5.657C34.046 6.053 29.268 4 24 4C16.318 4 9.656 8.337 6.306 14.691"
-                        ></path>
-                        <path
-                          fill="#4caf50"
-                          d="M24 44c5.166 0 9.86-1.977 13.409-5.192l-6.19-5.238A11.9 11.9 0 0 1 24 36c-5.202 0-9.619-3.317-11.283-7.946l-6.522 5.025C9.505 39.556 16.227 44 24 44"
-                        ></path>
-                        <path
-                          fill="#1976d2"
-                          d="M43.611 20.083H42V20H24v8h11.303a12.04 12.04 0 0 1-4.087 5.571l.003-.002l6.19 5.238C36.971 39.205 44 34 44 24c0-1.341-.138-2.65-.389-3.917"
-                        ></path>
-                      </svg>
-                    </div>
-                  </div>
-                  <button
-                    className="rounded-full w-full bg-[#f06c00] mt-6 p-3 text-center text-white"
-                    onClick={handleSubmit}
-                  >
-                    {isloading ? "Signing Up " : "Sign Up"}
-                  </button>
-                </form>
+  <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24px"
+      height="24px"
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="black"
+        d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2zm-2 0l-8 5l-8-5zm0 12H4V8l8 5l8-5z"
+      />
+    </svg>
+    <input
+      className="border-none outline-none"
+      type="email"
+      name="email"
+      placeholder="Email"
+      onChange={handleEmailChange}
+      required
+      id="email"
+    />
+  </div>
+
+  <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="none"
+        stroke="black"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M5 13a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2zm3-2V7a4 4 0 1 1 8 0v4m-1 5h.01m-3 0h.01m-3 0h.01"
+      ></path>
+    </svg>
+    <input
+      className="border-none outline-none"
+      type="password"
+      placeholder="Password"
+      name="password"
+      onChange={handlePasswordChange}
+      id="password"
+      required
+    />
+  </div>
+
+  <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="black"
+        fillRule="evenodd"
+        d="M8 7a4 4 0 1 1 8 0a4 4 0 0 1-8 0m0 6a5 5 0 0 0-5 5a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3a5 5 0 0 0-5-5z"
+        clipRule="evenodd"
+      ></path>
+    </svg>
+
+    <div className="flex items-center gap-1">
+      <input
+        className="translate-y-0.5 cursor-pointer"
+        type="radio"
+        name="gender"
+        id="m"
+        value="m"
+        checked={gender === "m"}
+        onChange={handleGenderMale}
+        required
+      />
+      <label htmlFor="m">Male</label>
+    </div>
+    <div className="flex items-center gap-1">
+      <input
+        className="translate-y-0.5 cursor-pointer "
+        type="radio"
+        name="gender"
+        id="f"
+        value="f"
+        checked={gender === "f"}
+        onChange={handleGenderFemale}
+        required
+      />
+      <label htmlFor="f">Female</label>
+    </div>
+  </div>
+
+  <div className="flex border border-black mt-6 p-3 rounded-full space-x-4">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={24}
+      height={24}
+      viewBox="0 0 24 24"
+    >
+      <path
+        fill="black"
+        d="M22 2.25h-3.25V.75a.75.75 0 0 0-1.5-.001V2.25h-4.5V.75a.75.75 0 0 0-1.5-.001V2.25h-4.5V.75a.75.75 0 0 0-1.5-.001V2.25H2a2 2 0 0 0-2 1.999v17.75a2 2 0 0 0 2 2h20a2 2 0 0 0 2-1.999V4.25a2 2 0 0 0-2-2zM2 4.25h3.25V5.75a.75.75 0 1 0 1.5-.001V4.25h4.5V5.75a.75.75 0 1 0 1.5-.001V4.25h4.5V5.75a.75.75 0 1 0 1.5-.001V4.25H22c.278 0 .5.222.5.499V7.5H1.5V4.75A.75.75 0 0 1 2 4.25zm20 19H2a.5.5 0 0 1-.5-.5V9h21v13.75a.5.5 0 0 1-.5.5z"
+      />
+    </svg>
+    <input
+      className="border-none outline-none"
+      type="date"
+      name="dob"
+      placeholder="Date of Birth"
+      onChange={handleDateChange}
+      id="dob"
+      required
+    />
+  </div>
+
+  <button
+    className="bg-[#f06c00] hover:bg-gray-700 w-full text-white p-3 mt-7 rounded-full"
+    type="submit"
+  >
+    Submit
+  </button>
+</form>
 
                 {error.message}
               </div>
