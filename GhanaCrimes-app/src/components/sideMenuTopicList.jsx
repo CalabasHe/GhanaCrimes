@@ -12,7 +12,7 @@ const TopicList = ({ topicData }) => {
 
   return (
     <div className="space-y-4">
-      <div className="text-lg text-[#828282] items-start text-nowrap font-medium flex-col flex space-y-4">
+      <div className="text-xl md:text-lg text-[#828282] items-start text-nowrap font-medium flex-col flex space-y-4">
         {displayedTopics.map((topic) => (
           <button
             key={topic.id}
@@ -27,7 +27,7 @@ const TopicList = ({ topicData }) => {
       {hasMoreTopics && (
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="flex items-center gap-1 font-semibold text-[#f06c00] hover:text-[#cb7e3f] transition-colors duration-200"
+          className="text-xl flex items-center gap-1 text-[#f06c00] hover:text-[#cb7e3f] transition-colors duration-200"
         >
           <span>{isExpanded ? "See Less" : "See More"}</span>
           <span className="text-sm">{isExpanded ? "▲" : "▼"}</span>

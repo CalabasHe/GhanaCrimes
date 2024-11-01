@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useContext } from "react";
+import TopicList from "../components/sideMenuTopicList";
 
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/context";
@@ -306,15 +307,7 @@ const HeaderSM = () => {
             <p className=" text-base font-[700]">TOPICS</p>
             <hr />
             <div className="text-xl items-start pl-[10%] font-semibold flex-col flex space-y-6">
-              {topicData.length > 0 &&
-                topicData.slice(0, 5).map((topic) => (
-                  <button
-                    key={topic.id}
-                    onClick={() => handleTopicClick(topic.slug)}
-                  >
-                    {topic.name.charAt(0) + topic.name.slice(1)}
-                  </button>
-                ))}
+            <TopicList topicData={topicData} />
             </div>
             <hr />
           </nav>
