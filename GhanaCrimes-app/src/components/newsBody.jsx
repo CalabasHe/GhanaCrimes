@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { fetchNewsArticle } from "../api/newsReadAPI";
 import { AuthContext } from "../context/context";
-import { sendComment } from "../api/commentAPI";
+import AdvertisementSection from "../components/adsComponents";
 
 import axios from "axios";
 import moment from "moment";
@@ -286,11 +286,8 @@ const NewsComponent = () => {
             </Link> */}
           </div>
         </div>
-        <div className="sticky top-0">
-          <div className="bg-[#fafafa] h-[310px] lg:col-span-1 text-center">
-            <p className="pt-4 text-[#D2D2D2] text-sm">ADVERTISEMENT</p>
-          </div>
-        </div>
+        {/* ADVERTISEMENT */}
+        <AdvertisementSection />
       </div>
     </main>
   );

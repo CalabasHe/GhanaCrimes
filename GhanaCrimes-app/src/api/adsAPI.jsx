@@ -1,4 +1,7 @@
-// adsAPI.js
+// Api to post
+
+import axios from 'axios';
+
 const BASE_URL = 'https://ghanacrimes-api.onrender.com/api';
 
 export const advertisementAPI = {
@@ -30,6 +33,42 @@ export const advertisementAPI = {
       console.error('Error creating advertisement request:', error);
       throw error;
     }
+  }
+};
+//Api to List
+export const fetchAdvertisements = async (params = {}) => {
+  try {
+    const response = await axios.get(`${BASE_URL}/advertisement/`, {
+      params: {
+        page: params.page || 1,
+        page_size: params.page_size || 10,
+        search: params.search,
+        ordering: params.ordering
+      }
+    });
+    
+    console.log('Advertisement API Response:', response.data);
+    
+    // Return the processed data
+    return {
+      ads: response.data.results.map(ad => ({
+        id: ad.id,
+        title: ad.title,
+        description: ad.description,
+        imageUrl: ad.image,
+        link: ad.link,
+        createdAt: ad.created_at,
+        updatedAt: ad.updated_at
+      })),
+      pagination: {
+        count: response.data.count,
+        next: response.data.next,
+        previous: response.data.previous
+      }
+    };
+  } catch (error) {
+    console.error('Error fetching advertisements:', error);
+    throw new Error('Failed to fetch advertisements');
   }
 };
 
