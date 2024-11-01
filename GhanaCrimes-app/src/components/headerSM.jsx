@@ -364,7 +364,7 @@ const HeaderSM = () => {
           </Link>
 
           <Link
-            to={"/ads-request"}
+            to={"/advertisement-request"}
             className="flex pl-[10%] space-x-2 text-xl text-[#828282] font-semibold items-center"
           >
             <div>

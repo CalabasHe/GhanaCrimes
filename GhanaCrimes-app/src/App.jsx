@@ -17,7 +17,7 @@ function App() {
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/topics/:slug" element={<TopicsNewsList />} />
-        <Route path="/ads-request" element={<AdsRequest />} />
+        <Route path="/advertisement-request" element={<AdsRequest />} />
       </Routes>
     </>
   );
