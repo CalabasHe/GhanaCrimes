@@ -321,7 +321,7 @@ const HeaderSM = () => {
           <Link
             onClick={handleLinksClose}
             to={"/about-us"}
-            className="pl-[10%] flex space-x-2 text-lg text-[#828282] font-medium items-center"
+            className="pl-[10%] flex space-x-2 text-xl text-[#828282] font-semibold items-center"
           >
             <div>
               <svg
@@ -345,7 +345,7 @@ const HeaderSM = () => {
           <Link
             onClick={handleLinksClose}
             to={"/contact-us"}
-            className="pl-[10%] flex space-x-2 text-lg text-[#828282] font-medium items-center"
+            className="pl-[10%] flex space-x-2 text-xl text-[#828282] font-semibold items-center"
           >
             <div>
               <svg
@@ -364,6 +364,7 @@ const HeaderSM = () => {
           </Link>
 
           <Link
+          onClick={handleLinksClose}
             to={"/advertisement-request"}
             className="flex pl-[10%] space-x-2 text-xl text-[#828282] font-semibold items-center"
           >
