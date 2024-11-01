@@ -1,10 +1,23 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { AuthContext } from "../context/context";
+import { useContext } from "react";
 
-const TopicList = ({ topicData }) => {
+const TopicList = ({ topicData = [] }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
+  const { isOpen, setIsOpen } = useContext(AuthContext);
+
+  // Early return if topicData is not an array or is empty
+  if (!Array.isArray(topicData) || topicData.length === 0) {
+    return <div className="text-gray-500">No topics available</div>;
+  }
+
   const handleTopicClick = (slug) => {
-    console.log(`Clicked topic: ${slug}`);
+    // console.log(`Clicked topic: ${slug}`);
+    setIsOpen(false);
+    // You can add additional navigation or state management logic here
   };
 
   const displayedTopics = isExpanded ? topicData : topicData.slice(0, 5);
@@ -14,13 +27,14 @@ const TopicList = ({ topicData }) => {
     <div className="space-y-4">
       <div className="text-xl md:text-lg text-[#828282] items-start text-nowrap font-medium flex-col flex space-y-4">
         {displayedTopics.map((topic) => (
-          <button
+          <Link
             key={topic.id}
+            to={`/topics/${topic.slug}`}
             onClick={() => handleTopicClick(topic.slug)}
             className="hover:text-gray-600 transition-colors duration-200 text-left"
           >
-            {topic.name}
-          </button>
+            {topic.name.toUpperCase()}
+          </Link>
         ))}
       </div>
 
@@ -35,6 +49,17 @@ const TopicList = ({ topicData }) => {
       )}
     </div>
   );
+};
+
+// Add prop type validation
+TopicList.propTypes = {
+  topicData: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      name: PropTypes.string.isRequired,
+      slug: PropTypes.string.isRequired,
+    })
+  ),
 };
 
 export default TopicList;
