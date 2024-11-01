@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
+// Create the context
 export const AuthContext = createContext();
 
 // Create the provider component
@@ -136,8 +136,6 @@ export const AuthProvider = ({ children }) => {
     localStorage.removeItem("faccess_token");
     localStorage.removeItem("refresh_token");
     setIsOpen(false);
-
-    useNavigate("/");
 
     alert("Logged out successfully");
 
