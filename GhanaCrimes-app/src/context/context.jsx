@@ -14,11 +14,35 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [topicData, setTopicData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [savedArticles, setSavedArticles] = useState([]);
 
   // Function to store tokens in localStorage
   const toStorage = (access, refresh) => {
     localStorage.setItem("faccess_token", access);
     localStorage.setItem("refresh_token", refresh);
+  };
+
+  const fetchSavedArticles = async () => {
+    if (!isLoggedIn) return;
+
+    const token = localStorage.getItem("faccess_token");
+    if (!token) return;
+
+    try {
+      const response = await axios({
+        method: "get",
+        url: "https://ghanacrimes-api.onrender.com/api/save-news/",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      setSavedArticles(response.data);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching saved articles:", error);
+      return [];
+    }
   };
 
   const isAuthenticated = () => {
@@ -174,6 +198,8 @@ export const AuthProvider = ({ children }) => {
         setIsLoginOpen,
         topicData,
         handleComment,
+        savedArticles,
+        fetchSavedArticles,
       }}
     >
       {children}

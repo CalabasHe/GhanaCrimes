@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { fetchNewsArticle } from "../api/newsReadAPI";
 import { AuthContext } from "../context/context";
 import AdvertisementSection from "../components/adsComponents";
+import SaveNewsButton from "../components/saveNewsBTN";
 
 import axios from "axios";
 import moment from "moment";
@@ -16,6 +17,10 @@ const NewsComponent = () => {
   const { slug } = useParams();
   const [articleid, setArticleId] = useState();
   const [message, setMessage] = useState();
+  const [formData, setFormData] = useState({
+    news_id: null,
+  });
+
   const {
     isLoginOpen,
     setIsLoginOpen,
@@ -32,6 +37,10 @@ const NewsComponent = () => {
         const data = await fetchNewsArticle(slug);
         setArticle(data);
         setArticleId(data.id);
+        setFormData((prev) => ({
+          ...prev,
+          news_id: data.id,
+        }));
 
         // Fetch articles from the same topic
         if (data.topic) {
@@ -39,7 +48,7 @@ const NewsComponent = () => {
             const topicData = await fetchNewsTopicsCategory(data.topic);
             // Filter out the current article and take up to 4 articles
             const filtered = topicData.news
-              .filter(newsItem => newsItem.id !== data.id)
+              .filter((newsItem) => newsItem.id !== data.id)
               .slice(0, 4);
             setRelatedArticles(filtered);
           } catch (err) {
@@ -86,16 +95,16 @@ const NewsComponent = () => {
     }
 
     return relatedArticles.map((relatedArticle) => (
-      <Link 
-        key={relatedArticle.id} 
+      <Link
+        key={relatedArticle.id}
         to={`/news/${relatedArticle.slug}`}
         className="group"
       >
-        <div 
+        <div
           className="h-40 object-cover bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
           style={{
-            backgroundImage: `url(${relatedArticle.image?.image || ''})`,
-            backgroundColor: '#f2f2f2' // Fallback color if image fails to load
+            backgroundImage: `url(${relatedArticle.image?.image || ""})`,
+            backgroundColor: "#f2f2f2", // Fallback color if image fails to load
           }}
         />
         <p className="text-sm text-[#f06c00] mt-2">
@@ -170,20 +179,7 @@ const NewsComponent = () => {
             </div>
             <div className=" flex gap-3 mt-3 md:text-xs">
               {/* Save BTN */}
-              <Link className="flex gap-2 items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width={24}
-                  height={24}
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    fill="#666666"
-                    d="M17 5v12.554l-5-2.857l-5 2.857V5zm0-2H7a2 2 0 0 0-2 2v16l7-4l7 4V5a2 2 0 0 0-2-2"
-                  ></path>
-                </svg>
-                <p>Save</p>
-              </Link>
+              <SaveNewsButton articleId={article?.id} />
               {/* Comment BTN */}
               <a href="#comments" className="flex items-center gap-2">
                 <svg
@@ -315,7 +311,7 @@ const NewsComponent = () => {
             <hr className=" mb-4" />
           </div>
           <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3 mt-11">
-          {renderRelatedArticles()}
+            {renderRelatedArticles()}
             {/* <Link>
               <div className="bg-slate-500  h-40 object-cover" />
               <p className="text-sm text-[#f06c00]">Business</p>
