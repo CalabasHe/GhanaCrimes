@@ -36,7 +36,7 @@ const NewsComponent = () => {
 
         setFormData((prev) => ({
           ...prev,
-          news_id: data.id, // Assuming your article data has an id field
+          news_id: data.id,
         }));
       } catch (err) {
         console.error("Error fetching article:", err);
