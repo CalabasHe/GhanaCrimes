@@ -38,7 +38,7 @@ const TopicsNewsListContent = () => {
             {topics.map((article, index) => (
               <div
                 key={article.id || index}
-                className={`col-span-1 ${index === 0 ? "lg:col-span-2" : "lg:col-span-1"}`}
+                // className={`col-span-1 ${index === 0 ? "lg:col-span-2" : "lg:col-span-1"}`}
               >
                 <NewsCard articleData={article} />
               </div>
