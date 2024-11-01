@@ -11,9 +11,8 @@ const BodyGridLG = () => {
     const getCrimeData = async () => {
       try {
         const data = await getCrimes();
-        console.log(data);
+        // console.log(data);
         setArticles(data.results);
-        console.log(data);
       } catch (err) {
         console.log(err);
       }

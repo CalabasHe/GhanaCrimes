@@ -47,7 +47,7 @@ export const fetchAdvertisements = async (params = {}) => {
       }
     });
     
-    console.log('Advertisement API Response:', response.data);
+    // console.log('Advertisement API Response:', response.data);
     
     // Return the processed data
     return {

@@ -30,7 +30,7 @@ const NewsComponent = () => {
       try {
         setLoading(true);
         const data = await fetchNewsArticle(slug);
-        console.log("Fetched data:", data);
+        // console.log("Fetched data:", data);
         setArticle(data);
         setArticleId(data.id);
 

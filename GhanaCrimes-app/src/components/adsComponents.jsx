@@ -1,4 +1,3 @@
-// src/components/adsComponents.jsx
 import React, { useState, useEffect } from "react";
 import { fetchAdvertisements } from "../api/adsAPI";
 
