@@ -431,7 +431,7 @@ const HeaderMD = () => {
           </Link>
           <Link
             onClick={handleLinksClose}
-            to={"/ads-request"}
+            to={"/advertisement-request"}
             className="flex space-x-2 text-lg text-[#828282] font-medium items-center"
           >
             <div>
