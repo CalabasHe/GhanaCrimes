@@ -9,13 +9,12 @@ import axios from "axios";
 import moment from "moment";
 const NewsComponent = () => {
   const [article, setArticle] = useState(null);
+  const [relatedArticles, setRelatedArticles] = useState([]);
+  const [loadingRelated, setLoadingRelated] = useState(true);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { slug } = useParams();
   const [articleid, setArticleId] = useState();
-  const [formData, setFormData] = useState({
-    message: "",
-  });
   const [message, setMessage] = useState();
   const {
     isLoginOpen,
@@ -29,25 +28,81 @@ const NewsComponent = () => {
     async function loadArticle() {
       try {
         setLoading(true);
+        setLoadingRelated(true);
         const data = await fetchNewsArticle(slug);
-        // console.log("Fetched data:", data);
         setArticle(data);
         setArticleId(data.id);
 
-        setFormData((prev) => ({
-          ...prev,
-          news_id: data.id, // Assuming your article data has an id field
-        }));
+        // Fetch articles from the same topic
+        if (data.topic) {
+          try {
+            const topicData = await fetchNewsTopicsCategory(data.topic);
+            // Filter out the current article and take up to 4 articles
+            const filtered = topicData.news
+              .filter(newsItem => newsItem.id !== data.id)
+              .slice(0, 4);
+            setRelatedArticles(filtered);
+          } catch (err) {
+            console.error("Error fetching related articles:", err);
+            setRelatedArticles([]);
+          }
+        }
       } catch (err) {
         console.error("Error fetching article:", err);
         setError(err.message);
       } finally {
         setLoading(false);
+        setLoadingRelated(false);
       }
     }
 
     loadArticle();
   }, [slug]);
+
+  const renderRelatedArticles = () => {
+    if (loadingRelated) {
+      return (
+        <div className="col-span-full text-center py-8">
+          <div className="animate-pulse flex flex-col items-center">
+            <div className="h-4 bg-gray-200 rounded w-1/4 mb-4"></div>
+            <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+          </div>
+        </div>
+      );
+    }
+
+    if (relatedArticles.length === 0) {
+      return (
+        <div className="col-span-full bg-[#f2f2f2] p-6 text-center">
+          <p className="text-gray-600">
+            No other articles available in this topic at the moment.
+          </p>
+        </div>
+      );
+    }
+
+    return relatedArticles.map((relatedArticle) => (
+      <Link 
+        key={relatedArticle.id} 
+        to={`/news/${relatedArticle.slug}`}
+        className="group"
+      >
+        <div 
+          className="h-40 object-cover bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
+          style={{
+            backgroundImage: `url(${relatedArticle.image?.image || ''})`,
+            backgroundColor: '#f2f2f2' // Fallback color if image fails to load
+          }}
+        />
+        <p className="text-sm text-[#f06c00] mt-2">
+          {relatedArticle.topic?.toUpperCase()}
+        </p>
+        <p className="text-[#393939] text-xl lg:text-2xl leading-tight group-hover:text-[#f06c00] font-EB font-semibold transition-colors duration-300">
+          {relatedArticle.main_title}
+        </p>
+      </Link>
+    ));
+  };
 
   const handleChange = (e) => {
     setMessage(e.target.value);
@@ -256,13 +311,7 @@ const NewsComponent = () => {
             <hr className=" mb-4" />
           </div>
           <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3 mt-11">
-            <Link>
-              <div className="bg-slate-500  h-40 object-cover" />
-              <p className="text-sm text-[#f06c00]">Business</p>
-              <p className="text-[#393939] text-xl lg:text-2xl leading-tight hover:text-[#f06c00] font-EB font-semibold">
-                Michelin pauses some French tyre factories as demand falls
-              </p>
-            </Link>
+          {renderRelatedArticles()}
             {/* <Link>
               <div className="bg-slate-500  h-40 object-cover" />
               <p className="text-sm text-[#f06c00]">Business</p>

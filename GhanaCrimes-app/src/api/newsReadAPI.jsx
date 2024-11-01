@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = `https://ghanacrimes-api.onrender.com/api`
-
+// API included in newsRead
 export const fetchNewsArticle = async (slug) => {
   try {
     const response = await axios.get(
