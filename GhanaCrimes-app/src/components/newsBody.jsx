@@ -47,6 +47,10 @@ const NewsComponent = () => {
             setRelatedArticles([]);
           }
         }
+        setFormData((prev) => ({
+          ...prev,
+          news_id: data.id,
+        }));
       } catch (err) {
         console.error("Error fetching article:", err);
         setError(err.message);
@@ -336,7 +340,9 @@ const NewsComponent = () => {
           </div>
         </div>
         {/* ADVERTISEMENT */}
-        <AdvertisementSection />
+        <div className="h-[410px]">
+          <AdvertisementSection />
+        </div>
       </div>
     </main>
   );

@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useContext } from "react";
+import AdvertisementSection from "../components/adsComponents";
 
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/context";
@@ -221,7 +222,8 @@ const HeaderMD = () => {
   }, []);
 
   return (
-    <main className="hidden md:block px-3 lg:px-5 ">
+    <main className="hidden md:block px-3">
+      <AdvertisementSection />
       {/* Logo */}
       <Link className="flex justify-center mt-6" to="/">
         <p className="font-EB font-bold lg:text-4xl text-[#f06c00]">
