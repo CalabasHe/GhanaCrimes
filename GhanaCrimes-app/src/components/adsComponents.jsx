@@ -34,7 +34,6 @@ const AdvertisementSection = () => {
         setCurrentAdIndex((prevIndex) => (prevIndex + 1) % ads.length);
       }, 10000);
 
-      // Clear interval on component unmount
       return () => clearInterval(interval);
     }
   }, [ads]);
@@ -74,12 +73,12 @@ const AdvertisementSection = () => {
   const currentAd = ads[currentAdIndex];
 
   return (
-    <div className="bg-[#fafafa] h-[410px] hover:shadow-lg transition-shadow lg:col-span-1 ">
+    <div className="bg-[#fafafa] h-[410px] lg:col-span-1 ">
       <h2 className="pt-4 text-[#D2D2D2] text-sm text-center">Advertisement</h2>
 
       <div className="space-y-6">
         {ads.map((ad) => (
-          <div key={currentAd.id} className=" overflow-hidden">
+          <div key={currentAd.id} className="overflow-hidden">
             <div className="p-4">
               {currentAd.imageUrl && (
                 <a

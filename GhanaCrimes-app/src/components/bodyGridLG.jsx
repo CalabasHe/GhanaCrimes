@@ -3,6 +3,7 @@ import { useEffect, useState, useContext } from "react";
 
 import { getCrimes } from "../api/authAPI";
 import NewsCard from "./newsCard";
+import AdvertisementSection from "./adsComponents";
 
 const BodyGridLG = () => {
   const [articles, setArticles] = useState([]);
@@ -188,11 +189,11 @@ const BodyGridLG = () => {
         ))}
       </div>
 
-      <div className="bg-[#fafafa] h-[310px] text-center mt-8">
-        <p className="pt-4 text-[#D2D2D2] text-sm">ADVERTISEMENT</p>
+      <div className="my-11">
+      <AdvertisementSection />
       </div>
 
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3 mt-20">
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3">
         {articles.slice(10, 18)?.map((article) => (
           <div key={article.id}>
             <NewsCard articleData={article} />
