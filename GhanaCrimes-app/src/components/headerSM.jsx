@@ -76,7 +76,7 @@ const HeaderSM = () => {
 
         console.log();
 
-        navigate("/home"); // Redirect to the home page
+        navigate("/"); // Redirect to the home page
         window.location.reload();
         alert("Login successful");
       } else {
