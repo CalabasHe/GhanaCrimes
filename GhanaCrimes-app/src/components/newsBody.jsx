@@ -222,7 +222,8 @@ const NewsComponent = () => {
             {article?.sub_title}
           </p>
           {/* Main Description */}
-          <p className="mt-5 font-EB lg:text-2xl">{article?.description}</p>
+          
+          <p className="mt-5 font-EB lg:text-2xl" dangerouslySetInnerHTML={{__html: article?.description}}></p>
           {/* Comments Section */}
           <div id="comments" className="mt-8">
             <p className="font-EB font-bold text-lg">
