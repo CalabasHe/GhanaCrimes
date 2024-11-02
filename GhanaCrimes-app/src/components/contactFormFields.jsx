@@ -98,7 +98,7 @@ const ContactFormField = () => {
         </div>
         <div className="border p-8 ">
           <p className="text-lg md:text-2xl font-EB text-[#f06c00] font-bold">
-            Digital subscriptions
+            Reach us
           </p>
           <div className="my-4 space-y-4">
             <div className="flex items-center gap-3">
