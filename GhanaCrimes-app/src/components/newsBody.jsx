@@ -19,58 +19,60 @@ const NewsComponent = () => {
   const { isLoginOpen, setIsLoginOpen, isLoggedIn, handleComment } =
     useContext(AuthContext);
 
-    useEffect(() => {
-      async function loadArticle() {
-        try {
-          setLoading(true);
-          setLoadingRelated(true);
-          setError(null);
-          
-          // Fetch main article
-          const data = await fetchNewsArticle(slug);
-          // console.log('Article Data:', data); // Debug log
-          setArticle(data);
-          setArticleId(data.id);
-    
-          // Fetch related articles
-          if (data.topic) {
-            try {
-              // console.log('Fetching related articles for topic:', data.topic); 
-              const topicData = await fetchNewsTopicsCategory(data.topic);
-              
-              if (topicData && Array.isArray(topicData.news)) {
-                const filtered = topicData.news
-                  .filter((newsItem) => newsItem.id !== data.id)
-                  .slice(0, 4);
-                // console.log('Filtered related articles:', filtered);
-                setRelatedArticles(filtered);
-              } else {
-                console.warn('No related articles found');
-                setRelatedArticles([]);
-              }
-            } catch (err) {
-              console.error('Related articles error:', err);
+  useEffect(() => {
+    async function loadArticle() {
+      try {
+        setLoading(true);
+        setLoadingRelated(true);
+        setError(null);
+
+        // Fetch main article
+        const data = await fetchNewsArticle(slug);
+        // console.log('Article Data:', data); // Debug log
+        setArticle(data);
+        setArticleId(data.id);
+
+        // Fetch related articles
+        if (data.topic) {
+          try {
+            // console.log('Fetching related articles for topic:', data.topic);
+            const topicData = await fetchNewsTopicsCategory(data.topic);
+
+            if (topicData && Array.isArray(topicData.news)) {
+              const filtered = topicData.news
+                .filter((newsItem) => newsItem.id !== data.id)
+                .slice(0, 4);
+              // console.log('Filtered related articles:', filtered);
+              setRelatedArticles(filtered);
+            } else {
+              console.warn("No related articles found");
               setRelatedArticles([]);
             }
-          } else {
-            console.log('No topic found for article');
+          } catch (err) {
+            console.error("Related articles error:", err);
             setRelatedArticles([]);
           }
-        } catch (err) {
-          console.error('Main article error:', err);
-          setError(err.message || 'Failed to load article. Please try again later.');
-          setArticle(null);
-        } finally {
-          setLoading(false);
-          setLoadingRelated(false);
+        } else {
+          console.log("No topic found for article");
+          setRelatedArticles([]);
         }
+      } catch (err) {
+        console.error("Main article error:", err);
+        setError(
+          err.message || "Failed to load article. Please try again later."
+        );
+        setArticle(null);
+      } finally {
+        setLoading(false);
+        setLoadingRelated(false);
       }
-    
-      if (slug) {
-        loadArticle();
-      }
-    }, [slug]);
-    
+    }
+
+    if (slug) {
+      loadArticle();
+    }
+  }, [slug]);
+
   const renderRelatedArticles = () => {
     if (loadingRelated) {
       return (
@@ -213,22 +215,24 @@ const NewsComponent = () => {
                 </svg>
                 <p>Save</p>
               </Link>
-              <a href="#comments" className="flex items-center gap-2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width={24}
-                  height={24}
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    fill="#666666"
-                    d="M8 1C3.6 1 0 3.5 0 6.5c0 2 2 3.8 4 4.8c0 2.1-2 2.8-2 2.8c2.8 0 4.4-1.3 5.1-2.1H8c4.4 0 8-2.5 8-5.5S12.4 1 8 1"
-                  />
-                </svg>
+              <a
+                href="#comments"
+                className="flex items-center self-center gap-2 text-[#666666] hover:text-[#f06c00] transition-colors duration-300"
+              >
+                <div className="w-6 h-6">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-full h-full fill-current"
+                    viewBox="0 0 16 16"
+                  >
+                    <path d="M8 1C3.6 1 0 3.5 0 6.5c0 2 2 3.8 4 4.8c0 2.1-2 2.8-2 2.8c2.8 0 4.4-1.3 5.1-2.1H8c4.4 0 8-2.5 8-5.5S12.4 1 8 1" />
+                  </svg>
+                </div>
+
                 <p>
                   Comments{" "}
-                  <span className="text-[#393939]">
-                    {article?.total_comments}
+                  <span className="font-medium">
+                    ({article?.total_comments})
                   </span>
                 </p>
               </a>
