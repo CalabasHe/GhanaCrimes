@@ -39,7 +39,7 @@ const NewsComponent = () => {
             const topicData = await fetchNewsTopicsCategory(data.topic);
             // Filter out the current article and take up to 4 articles
             const filtered = topicData.news
-              .filter(newsItem => newsItem.id !== data.id)
+              .filter((newsItem) => newsItem.id !== data.id)
               .slice(0, 4);
             setRelatedArticles(filtered);
           } catch (err) {
@@ -86,16 +86,16 @@ const NewsComponent = () => {
     }
 
     return relatedArticles.map((relatedArticle) => (
-      <Link 
-        key={relatedArticle.id} 
+      <Link
+        key={relatedArticle.id}
         to={`/news/${relatedArticle.slug}`}
         className="group"
       >
-        <div 
+        <div
           className="h-40 object-cover bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
           style={{
-            backgroundImage: `url(${relatedArticle.image?.image || ''})`,
-            backgroundColor: '#f2f2f2' // Fallback color if image fails to load
+            backgroundImage: `url(${relatedArticle.image?.image || ""})`,
+            backgroundColor: "#f2f2f2", // Fallback color if image fails to load
           }}
         />
         <p className="text-sm text-[#f06c00] mt-2">
@@ -150,13 +150,11 @@ const NewsComponent = () => {
           </div>
           {/* Published and Updated */}
           <div className="md:flex md:justify-between md:items-center mt-2 text-[#666666]">
-          <div className="lg:flex lg:flex-1 gap-2 text-xs">
+            <div className="lg:flex lg:flex-1 gap-2 text-xs">
               <p>
                 Published on:{" "}
                 {article?.created_at
-                  ? moment(article.created_at).format(
-                      "MMMM Do YYYY, h:mm:ss a"
-                    )
+                  ? moment(article.created_at).format("MMMM Do YYYY, h:mm:ss a")
                   : "N/A"}
               </p>
               <p>
@@ -233,8 +231,15 @@ const NewsComponent = () => {
             <hr className=" mb-4" />
           </div>
           {!isLoggedIn ? (
-            <p className="cursor-pointer" onClick={() => setIsLoginOpen(true)}>
-              Log in to leave a comment
+            <p>
+              Log in{" "}
+              <span
+                className="cursor-pointer text-[#f06c00]"
+                onClick={() => setIsLoginOpen(true)}
+              >
+                here
+              </span>{" "}
+              to leave a comment
             </p>
           ) : (
             <></>
@@ -315,7 +320,7 @@ const NewsComponent = () => {
             <hr className=" mb-4" />
           </div>
           <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3 mt-11">
-          {renderRelatedArticles()}
+            {renderRelatedArticles()}
             {/* <Link>
               <div className="bg-slate-500  h-40 object-cover" />
               <p className="text-sm text-[#f06c00]">Business</p>

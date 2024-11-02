@@ -324,11 +324,7 @@ const BodyGridLG = () => {
         ))}
       </div>
 
-      {/* <div className="flex gap-3 mt-8 items-center">
-        <div className="bg-[#f74548] w-4 h-4" />
-          <p className="font-EB font-bold text-lg">TRAVEL NEWS</p>
-        </div>
-      <hr className="mb-4" /> */}
+     
     </main>
   );
 };
