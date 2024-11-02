@@ -4,65 +4,73 @@ import { useParams } from "react-router-dom";
 import { fetchNewsArticle, fetchNewsTopicsCategory } from "../api/newsReadAPI";
 import { AuthContext } from "../context/context";
 import AdvertisementSection from "../components/adsComponents";
-
-import axios from "axios";
 import moment from "moment";
+
 const NewsComponent = () => {
   const [article, setArticle] = useState(null);
   const [relatedArticles, setRelatedArticles] = useState([]);
   const [loadingRelated, setLoadingRelated] = useState(true);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [message, setMessage] = useState("");
   const { slug } = useParams();
-  const [articleid, setArticleId] = useState();
-  const [message, setMessage] = useState();
-  const {
-    isLoginOpen,
-    setIsLoginOpen,
-    isLoggedIn,
-    setIsLoggedIn,
-    handleComment,
-  } = useContext(AuthContext);
+  const [articleId, setArticleId] = useState();
 
-  useEffect(() => {
-    async function loadArticle() {
-      try {
-        setLoading(true);
-        setLoadingRelated(true);
-        const data = await fetchNewsArticle(slug);
-        setArticle(data);
-        setArticleId(data.id);
+  const { isLoginOpen, setIsLoginOpen, isLoggedIn, handleComment } =
+    useContext(AuthContext);
 
-        // Fetch articles from the same topic
-        if (data.topic) {
-          try {
-            const topicData = await fetchNewsTopicsCategory(data.topic);
-            // Filter out the current article and take up to 4 articles
-            const filtered = topicData.news
-              .filter((newsItem) => newsItem.id !== data.id)
-              .slice(0, 4);
-            setRelatedArticles(filtered);
-          } catch (err) {
-            console.error("Error fetching related articles:", err);
+    useEffect(() => {
+      async function loadArticle() {
+        try {
+          setLoading(true);
+          setLoadingRelated(true);
+          setError(null);
+          
+          // Fetch main article
+          const data = await fetchNewsArticle(slug);
+          // console.log('Article Data:', data); // Debug log
+          setArticle(data);
+          setArticleId(data.id);
+    
+          // Fetch related articles
+          if (data.topic) {
+            try {
+              // console.log('Fetching related articles for topic:', data.topic); 
+              const topicData = await fetchNewsTopicsCategory(data.topic);
+              
+              if (topicData && Array.isArray(topicData.news)) {
+                const filtered = topicData.news
+                  .filter((newsItem) => newsItem.id !== data.id)
+                  .slice(0, 4);
+                // console.log('Filtered related articles:', filtered);
+                setRelatedArticles(filtered);
+              } else {
+                console.warn('No related articles found');
+                setRelatedArticles([]);
+              }
+            } catch (err) {
+              console.error('Related articles error:', err);
+              setRelatedArticles([]);
+            }
+          } else {
+            console.log('No topic found for article');
             setRelatedArticles([]);
           }
+        } catch (err) {
+          console.error('Main article error:', err);
+          setError(err.message || 'Failed to load article. Please try again later.');
+          setArticle(null);
+        } finally {
+          setLoading(false);
+          setLoadingRelated(false);
         }
-        setFormData((prev) => ({
-          ...prev,
-          news_id: data.id,
-        }));
-      } catch (err) {
-        console.error("Error fetching article:", err);
-        setError(err.message);
-      } finally {
-        setLoading(false);
-        setLoadingRelated(false);
       }
-    }
-
-    loadArticle();
-  }, [slug]);
-
+    
+      if (slug) {
+        loadArticle();
+      }
+    }, [slug]);
+    
   const renderRelatedArticles = () => {
     if (loadingRelated) {
       return (
@@ -95,7 +103,7 @@ const NewsComponent = () => {
           className="h-40 object-cover bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
           style={{
             backgroundImage: `url(${relatedArticle.image?.image || ""})`,
-            backgroundColor: "#f2f2f2", // Fallback color if image fails to load
+            backgroundColor: "#f2f2f2",
           }}
         />
         <p className="text-sm text-[#f06c00] mt-2">
@@ -108,10 +116,6 @@ const NewsComponent = () => {
     ));
   };
 
-  const handleChange = (e) => {
-    setMessage(e.target.value);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -120,11 +124,9 @@ const NewsComponent = () => {
         return;
       }
 
-      await handleComment(message, articleid);
+      await handleComment(message, articleId);
       alert("Your message has been sent successfully!");
-
       setMessage("");
-
       window.location.reload();
     } catch (error) {
       if (error.message === "Please login to add a comment") {
@@ -136,19 +138,49 @@ const NewsComponent = () => {
     }
   };
 
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-[#f06c00]"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="text-center">
+          <p className="text-red-600 text-xl">{error}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="mt-4 bg-[#f06c00] text-white px-4 py-2 rounded hover:bg-[#d65c00]"
+          >
+            Try Again
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (!article) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <p className="text-xl">Article not found</p>
+      </div>
+    );
+  }
+
   return (
     <main className="relative px-3 lg:px-5">
-      <div className=" grid grid-cols-1 lg:grid-cols-3 mt-8 gap-11">
+      <div className="grid grid-cols-1 lg:grid-cols-3 mt-8 gap-11">
         <div className="lg:col-span-2">
           <div>
-            {/* Topic */}
             <p className="text-[#f06c00]">{article?.topic?.toUpperCase()}</p>
-            {/* Main title */}
             <p className="font-EB font-bold text-[#212529] text-3xl md:text-5xl">
               {article?.main_title.toUpperCase()}
             </p>
           </div>
-          {/* Published and Updated */}
+
           <div className="md:flex md:justify-between md:items-center mt-2 text-[#666666]">
             <div className="lg:flex lg:flex-1 gap-2 text-xs">
               <p>
@@ -166,8 +198,7 @@ const NewsComponent = () => {
                   : "N/A"}
               </p>
             </div>
-            <div className=" flex gap-3 mt-3 md:text-xs">
-              {/* Save BTN */}
+            <div className="flex gap-3 mt-3 md:text-xs">
               <Link className="flex gap-2 items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -178,11 +209,10 @@ const NewsComponent = () => {
                   <path
                     fill="#666666"
                     d="M17 5v12.554l-5-2.857l-5 2.857V5zm0-2H7a2 2 0 0 0-2 2v16l7-4l7 4V5a2 2 0 0 0-2-2"
-                  ></path>
+                  />
                 </svg>
                 <p>Save</p>
               </Link>
-              {/* Comment BTN */}
               <a href="#comments" className="flex items-center gap-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -193,7 +223,7 @@ const NewsComponent = () => {
                   <path
                     fill="#666666"
                     d="M8 1C3.6 1 0 3.5 0 6.5c0 2 2 3.8 4 4.8c0 2.1-2 2.8-2 2.8c2.8 0 4.4-1.3 5.1-2.1H8c4.4 0 8-2.5 8-5.5S12.4 1 8 1"
-                  ></path>
+                  />
                 </svg>
                 <p>
                   Comments{" "}
@@ -205,35 +235,33 @@ const NewsComponent = () => {
             </div>
           </div>
 
-          {/* Image and description */}
           <div>
             <img
-              className=" w-full max-h-[300px] md:max-h-[550px] lg:max-h-[700px]  object-cover mt-8"
+              className="w-full max-h-[300px] md:max-h-[550px] lg:max-h-[700px] object-cover mt-8"
               src={article?.image?.image}
-              alt=""
+              alt={article?.main_title}
             />
-
             <p className="text-[#afafaf] mt-2">
               {article?.image?.image_description}
             </p>
           </div>
-          {/* Sub title */}
+
           <p className="font-EB font-bold lg:text-2xl mt-5">
             {article?.sub_title}
           </p>
-          {/* Main Description */}
 
-          <p
+          <div
             className="mt-5 font-EB lg:text-2xl"
             dangerouslySetInnerHTML={{ __html: article?.description }}
-          ></p>
-          {/* Comments Section */}
+          />
+
           <div id="comments" className="mt-8">
             <p className="font-EB font-bold text-lg">
               Comments <span>({article?.total_comments})</span>
             </p>
-            <hr className=" mb-4" />
+            <hr className="mb-4" />
           </div>
+
           {!isLoggedIn ? (
             <p>
               Log in{" "}
@@ -246,17 +274,34 @@ const NewsComponent = () => {
               to leave a comment
             </p>
           ) : (
-            <></>
+            <div className="mt-4">
+              <p>Leave a comment down below</p>
+              <div>
+                <textarea
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  className="border px-3 py-2 w-full outline-none h-52 mt-4"
+                  required
+                  placeholder="Write your comment here..."
+                />
+                <button
+                  onClick={handleSubmit}
+                  type="submit"
+                  className="bg-[#f06c00] text-white px-4 py-2 font-semibold text-sm cursor-pointer hover:bg-[#d65c00]"
+                >
+                  Comment
+                </button>
+              </div>
+            </div>
           )}
 
           <div className="space-y-4 mt-4">
-            {Array.isArray(article?.comments) ? (
+            {Array.isArray(article?.comments) && article.comments.length > 0 ? (
               article.comments.map((comment) => (
                 <div
                   key={comment.id}
                   className="bg-[#f2f2f2] p-3 md:p-6 shadow-sm hover:shadow-md transition-shadow"
                 >
-                  {/* User Info and Time */}
                   <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center gap-2">
                       <div>
@@ -270,14 +315,10 @@ const NewsComponent = () => {
                         </p>
                       </div>
                     </div>
-
-                    {/* Optional: Menu or actions */}
                     <button className="text-gray-500 hover:text-gray-700">
                       •••
                     </button>
                   </div>
-
-                  {/* Comment Message */}
                   <div className="space-y-2">
                     <p className="text-gray-800">{comment.message}</p>
                   </div>
@@ -289,52 +330,23 @@ const NewsComponent = () => {
               </div>
             )}
           </div>
-          {isLoggedIn ? (
-            <>
-              <p className="mt-4">Leave a comment down below</p>
-              <div>
-                {/* Comment input */}
-                <div className="">
-                  <textarea
-                    name="message"
-                    id=""
-                    value={message}
-                    className="border px-3 py-2 w-full outline-none h-52 mt-4"
-                    required
-                    onChange={handleChange}
-                  />
 
-                  <button
-                    onClick={handleSubmit}
-                    type="submit"
-                    className="bg-[#f06c00] text-white  px-4 py-2 font-semibold text-sm cursor-pointer"
-                  >
-                    Comment
-                  </button>
-                </div>
-              </div>
-            </>
-          ) : (
-            <></>
-          )}
-
-          {/* See also section */}
           <div className="mt-8">
             <p className="font-EB font-bold text-lg">See also</p>
-            <hr className=" mb-4" />
+            <hr className="mb-4" />
           </div>
           <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3 mt-11">
             {renderRelatedArticles()}
           </div>
         </div>
-        {/* ADVERTISEMENT */}
+
         <div className="relative">
-            <div className="sticky top-[30%]">
-              <div className="h-[410px]">
-                <AdvertisementSection />
-              </div>
+          <div className="sticky top-[30%]">
+            <div className="h-[410px]">
+              <AdvertisementSection />
             </div>
           </div>
+        </div>
       </div>
     </main>
   );
