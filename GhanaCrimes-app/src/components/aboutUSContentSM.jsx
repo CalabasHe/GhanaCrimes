@@ -45,9 +45,11 @@ const AboutUSContentSM = () => {
           engagement and dialogue.
         </p>
         {/* Socials */}
-        <p className="font-EB mt-5 text-2xl font-black">Our socials</p>
-        <div className="flex items-center gap-2 text-[#666666] hover:text-[#f06c00] transition-colors duration-300">
-          <a href="#" className="text-sm font-semibold">
+        {/* Socials */}
+        <p className="font-EB my-5 text-2xl font-black">Our socials</p>
+        <hr />
+        <div className="mt-4 flex items-center gap-2 text-[#666666] transition-colors duration-300">
+          <a href="#" className="text-sm font-semibold hover:text-[#f06c00]">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width={24}
@@ -59,7 +61,10 @@ const AboutUSContentSM = () => {
             </svg>
           </a>
 
-          <a href="#" className="ml-2 text-sm font-semibold">
+          <a
+            href="https://x.com/GhanaCrimes?t=xLbwf9MCnRgux047Ns7jRw&s=09"
+            className="ml-2 text-sm font-semibold hover:text-[#f06c00]"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width={26}
@@ -71,7 +76,10 @@ const AboutUSContentSM = () => {
             </svg>
           </a>
 
-          <a href="#" className="ml-2 text-sm font-semibold">
+          <a
+            href="https://www.instagram.com/ghanacrimes/profilecard/?igsh=OHhydXM3NGw0eG1j"
+            className="ml-2 text-sm font-semibold hover:text-[#f06c00]"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width={28}
