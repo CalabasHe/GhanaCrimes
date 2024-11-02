@@ -52,9 +52,7 @@ const MyAccountContent = () => {
           </>
         ) : (
           <>
-            <Link to={"/saved-news"} className="text-[#42b3bc]">
-              Saved News
-            </Link>
+            <Link className="text-[#42b3bc]">Saved News</Link>
             <button onClick={logouthandle} className="text-[#f06c00]">
               Log out
             </button>
