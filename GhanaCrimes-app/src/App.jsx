@@ -11,6 +11,7 @@ import { LoadingProvider, useLoading } from "./context/LoadingContext";
 import LoadingScreen from "../src/components/loadingScreen";
 import SearchResults from "./pages/results";
 import MyAccount from "./pages/myAccount";
+import SavedNews from "./pages/savedNews";
 
 // Wrap each page component to handle loading state
 const PageWrapper = ({ children }) => {
@@ -47,7 +48,7 @@ function AppRoutes() {
         <Route path="/topics/:slug" element={<PageWrapper><TopicsNewsList /></PageWrapper>} />
         <Route path="/advertisement-request" element={<PageWrapper><AdsRequest /></PageWrapper>} />
         <Route path="/my-account" element={<PageWrapper><MyAccount/></PageWrapper>} />
-        <Route path="/saved-news" element={<PageWrapper><savedNews/></PageWrapper>} />
+        <Route path="/saved-news" element={<PageWrapper><SavedNews/></PageWrapper>} />
       </Routes>
     </>
   );

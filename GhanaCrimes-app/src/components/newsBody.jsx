@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { fetchNewsArticle } from "../api/newsReadAPI";
+import { fetchNewsArticle, fetchNewsTopicsCategory } from "../api/newsReadAPI";
 import { AuthContext } from "../context/context";
 import AdvertisementSection from "../components/adsComponents";
 

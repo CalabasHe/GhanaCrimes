@@ -325,6 +325,7 @@ const HeaderMD = () => {
             )} */}
             {topicData.length > 0 &&
               topicData.slice(0, 5).map((topic) => (
+                topic.news_count > 0 &&
                 <Link
                   className="text-nowrap"
                   key={topic.id}
