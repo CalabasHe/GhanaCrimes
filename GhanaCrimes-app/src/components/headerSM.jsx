@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useContext } from "react";
 import TopicList from "../components/sideMenuTopicList";
@@ -7,6 +7,7 @@ import AdvertisementSection from "../components/adsComponents";
 
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/context";
+import SearchBar from "./searchbar";
 const HeaderSM = () => {
   const navigate = useNavigate(); // Initialize the navigate function
 
@@ -26,6 +27,27 @@ const HeaderSM = () => {
   const [loginEmail, SetLoginEmail] = useState("");
   const [topics, setTopics] = useState([]);
   const { topicData } = useContext(AuthContext);
+  const [showSearch, setShowSearch] = useState(false);
+
+  const searchBarRef = useRef(null);
+
+  const handleClickOutside = (event) => {
+    if (searchBarRef.current && !searchBarRef.current.contains(event.target)) {
+      setShowSearch(false);
+    }
+  };
+
+  useEffect(() => {
+    if (showSearch) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showSearch]);
+
 
   const {
     isOpen,
@@ -208,6 +230,13 @@ const HeaderSM = () => {
 
   return (
     <main className="block md:hidden">
+      <div className={`${!showSearch && 'hidden'} fixed inset-0 min-h-full bg-black/80`}>
+        <div className="flex h-2/3 items-center justify-center pt-20">
+          <div ref={searchBarRef}>
+            <SearchBar id='searchBar' showing={showSearch}/>
+          </div>
+        </div>
+      </div>
       <AdvertisementSection />
       <div className="flex px-3 items-center mt-6 container flex-wrap">
         {/*Menu Hamburger*/}
@@ -235,7 +264,13 @@ const HeaderSM = () => {
         >
           GhanaCrimes
         </Link>
-        <div>
+        <button onClick={() => {
+            if(!showSearch){
+              setShowSearch(true) 
+            }else{
+              setShowSearch(false)
+            }
+          }}>
           <svg
             width="24"
             height="24"
@@ -251,7 +286,7 @@ const HeaderSM = () => {
               strokeLinejoin="round"
             />
           </svg>
-        </div>
+        </button>
       </div>
       <hr className="w-full mt-4" />
       <div
