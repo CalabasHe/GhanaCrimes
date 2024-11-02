@@ -297,7 +297,7 @@ const HeaderSM = () => {
       <div
         className={`${
           isOpen ? "translate-x-0" : "-translate-x-full"
-        } fixed top-0 left-0 lg:w-3/12 w-full h-full bg-white text-black transition-transform duration-300 ease-in-out overflow-y-scroll z-50`}
+        } fixed top-0 left-0 lg:w-3/12 w-[85%] h-full bg-white text-black transition-transform duration-300 ease-in-out overflow-y-scroll z-50`}
       >
         <div className="flex lg:mt-[5%] mt-4 flex-col items-start px-4 py-5 space-y-8">
           <div className="text-[#f06c00] w-full self-center flex items-center justify-between font-bold text-3xl font-EB">
@@ -349,7 +349,7 @@ const HeaderSM = () => {
           <nav className="w-full text-[#828282] flex flex-col px-2 gap-8">
             <p className=" text-base font-[700]">TOPICS</p>
             <hr />
-            <div className="text-xl items-start pl-[10%] font-semibold flex-col flex space-y-6">
+            <div className="text-lg items-start pl-[10%] font-semibold flex-col flex space-y-6">
               <TopicList topicData={topicData} />
             </div>
             <hr />
@@ -357,7 +357,7 @@ const HeaderSM = () => {
           <Link
             onClick={handleLinksClose}
             to={"/about-us"}
-            className="pl-[10%] flex space-x-2 text-xl text-[#828282] font-semibold items-center"
+            className="pl-[10%] flex space-x-2 text-base text-[#828282] font-semibold items-center"
           >
             <div>
               <svg
@@ -381,7 +381,7 @@ const HeaderSM = () => {
           <Link
             onClick={handleLinksClose}
             to={"/contact-us"}
-            className="pl-[10%] flex space-x-2 text-xl text-[#828282] font-semibold items-center"
+            className="pl-[10%] flex space-x-2 text-base text-[#828282] font-semibold items-center"
           >
             <div>
               <svg
@@ -402,7 +402,7 @@ const HeaderSM = () => {
           <Link
             onClick={handleLinksClose}
             to={"/advertisement-request"}
-            className="flex pl-[10%] space-x-2 text-xl text-[#828282] font-semibold items-center"
+            className="flex pl-[10%] space-x-2 text-base text-[#828282] font-semibold items-center"
           >
             <div>
               <svg
