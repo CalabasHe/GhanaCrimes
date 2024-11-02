@@ -1,7 +1,7 @@
 // App.jsx
 import { Route, Routes } from "react-router-dom";
 import { useEffect } from "react";
-import ScrollToTop from "./components/scrolltoTop";
+import ScrollToTop from "./components/scrollToTop";
 import HomePage from "./pages/homePage";
 import NewsPage from "./pages/newsPage";
 import AboutUs from "./pages/aboutUs";
