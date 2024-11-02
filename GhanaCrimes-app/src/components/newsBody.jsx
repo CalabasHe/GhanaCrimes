@@ -255,7 +255,7 @@ const NewsComponent = () => {
           </p>
 
           <div
-            className="mt-5 font-EB lg:text-2xl"
+            className="mt-5 font-EB lg:text-2xl leading-loose"
             dangerouslySetInnerHTML={{ __html: article?.description }}
           />
 
