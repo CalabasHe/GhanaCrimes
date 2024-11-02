@@ -211,12 +211,12 @@ const NewsComponent = () => {
           <div>
             <img
               className=" w-full max-h-[300px] md:max-h-[550px] lg:max-h-[700px]  object-cover mt-8"
-              src={article?.image.image}
+              src={article?.image?.image}
               alt=""
             />
 
             <p className="text-[#afafaf] mt-2">
-              {article?.image.image_description}
+              {article?.image?.image_description}
             </p>
           </div>
           {/* Sub title */}

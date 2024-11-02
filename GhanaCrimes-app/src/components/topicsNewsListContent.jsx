@@ -19,7 +19,7 @@ const TopicsNewsListContent = () => {
         // Parse JSON response
         const data = await response.json();
         setTopics(data.results.news_articles);
-        console.log("Fetched news data:", data);
+        // console.log("Fetched news data:", data);
       } catch (err) {
         console.error("Error fetching news data:", err);
       }

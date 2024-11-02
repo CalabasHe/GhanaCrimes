@@ -38,7 +38,7 @@ const BodyGridLG = () => {
                   <Link to={`/news/${articles[2].slug}`}>
                     <div className="h-40 border ">
                       <img
-                        src={articles[2].image.image}
+                        src={articles[2].image?.image}
                         alt={articles[2].main_title}
                         className="w-full h-full object-cover"
                       />
@@ -78,7 +78,7 @@ const BodyGridLG = () => {
                     <Link to={`/news/${articles[3].slug}`}>
                       <div className=" h-40 border ">
                         <img
-                          src={articles[3].image.image}
+                          src={articles[3].image?.image}
                           alt={articles[3].main_title}
                           className="w-full h-full object-cover"
                         />
@@ -124,7 +124,7 @@ const BodyGridLG = () => {
                     <Link to={`/news/${articles[0].slug}`}>
                       <div className="h-[300px]">
                         <img
-                          src={articles[0].image.image}
+                          src={articles[0].image?.image}
                           alt={articles[0].main_title}
                           className="w-full h-full object-cover"
                         />
@@ -171,7 +171,7 @@ const BodyGridLG = () => {
                     >
                       <div className=" w-[185px] h-[123px] lg:justify-end flex-shrink-0">
                         <img
-                          src={articles[1].image.image}
+                          src={articles[1].image?.image}
                           alt={articles[1].main_title}
                           className="w-full h-full object-cover"
                         />
@@ -220,7 +220,7 @@ const BodyGridLG = () => {
                 <Link to={`/news/${articles[4].slug}`}>
                   <div className=" h-40 border ">
                     <img
-                      src={articles[4].image.image}
+                      src={articles[4].image?.image}
                       alt={articles[4].main_title}
                       className="w-full h-full object-cover"
                     />
@@ -262,7 +262,7 @@ const BodyGridLG = () => {
                 <Link to={`/news/${articles[5].slug}`}>
                   <div className=" h-40 border ">
                     <img
-                      src={articles[5].image.image}
+                      src={articles[5].image?.image}
                       alt={articles[5].main_title}
                       className="w-full h-full object-cover"
                     />
