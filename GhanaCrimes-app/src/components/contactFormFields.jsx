@@ -91,7 +91,7 @@ const ContactFormField = () => {
         </div>
         <div className="border p-8 ">
           <p className="text-lg md:text-2xl font-EB text-[#f06c00] font-bold">
-            Reach us
+            Contact us through our dedicated helpline for assistance
           </p>
           <div className="my-4 space-y-4">
             <div className="flex items-center gap-3">
@@ -123,6 +123,10 @@ const ContactFormField = () => {
               <p>GhanaCrimes@gmail.com</p>
             </div>
           </div>
+          <p>
+            For inquiries, updates, or collaboration opportunities, feel free to
+            reach out!
+          </p>
         </div>
       </div>
     </main>
