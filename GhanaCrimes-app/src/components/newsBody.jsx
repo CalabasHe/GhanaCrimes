@@ -178,7 +178,7 @@ const NewsComponent = () => {
         <div className="lg:col-span-2">
           <div>
             <p className="text-[#f06c00]">{article?.topic?.toUpperCase()}</p>
-            <p className="font-EB font-bold text-[#212529] text-3xl md:text-5xl">
+            <p className="font-EB font-bold text-[#393939] text-2xl md:text-5xl">
               {article?.main_title.toUpperCase()}
             </p>
           </div>
@@ -250,12 +250,12 @@ const NewsComponent = () => {
             </p>
           </div>
 
-          <p className="font-EB font-bold lg:text-2xl mt-5">
+          <p className="font-EB text-[#393939] font-bold lg:text-2xl mt-5">
             {article?.sub_title}
           </p>
 
           <div
-            className="mt-5 font-EB lg:text-2xl leading-loose"
+            className="mt-5 text-[#393939] font-EB lg:text-2xl leading-loose"
             dangerouslySetInnerHTML={{ __html: article?.description }}
           />
 

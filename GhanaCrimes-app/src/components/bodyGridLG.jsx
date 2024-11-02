@@ -157,7 +157,7 @@ const BodyGridLG = () => {
                       <p className="text-[#393939] text-xl lg:text-3xl leading-tight mt-2 hover:text-[#f06c00] font-EB font-semibold">
                         {capitalizeCharOne(articles[0].main_title)}
                       </p>
-                      <p className="text-sm mt-4 font-normal text-slate-600 border-b border-black border-dotted pb-2">
+                      <p className="text-sm pt-2 font-normal text-slate-600 border-b border-black border-dotted pb-8">
                         {capitalizeCharOne(articles[0].sub_title)}
                       </p>
                     </Link>
