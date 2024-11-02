@@ -8,7 +8,7 @@ const SearchResultsList = () => {
   const [query, setQuery] = useState([]);
 
   useEffect(() => {
-    console.log(location.state?.message);
+    // console.log(location.state?.message);
     setResults(location.state?.message);
     setQuery(location.state?.query?.toUpperCase());
   }, [location]);
