@@ -150,19 +150,19 @@ const NewsComponent = () => {
           </div>
           {/* Published and Updated */}
           <div className="md:flex md:justify-between md:items-center mt-2 text-[#666666]">
-            <div className="lg:flex lg:flex-1 gap-2 text-xs">
+          <div className="lg:flex lg:flex-1 gap-2 text-xs">
               <p>
                 Published on:{" "}
-                {article?.image?.created_at
-                  ? moment(article.image.created_at).format(
+                {article?.created_at
+                  ? moment(article.created_at).format(
                       "MMMM Do YYYY, h:mm:ss a"
                     )
                   : "N/A"}
               </p>
               <p>
                 Updated on:{" "}
-                {article?.image?.updated_at
-                  ? moment(article.image.updated_at).format(
+                {article?.updated_at
+                  ? moment(article?.updated_at).format(
                       "MMMM Do YYYY, h:mm:ss a"
                     )
                   : "N/A"}
