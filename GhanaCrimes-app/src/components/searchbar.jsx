@@ -49,7 +49,7 @@ const SearchBar = ({ showing = false }) => {
       <div
         className={`${
           !showing && "hidden"
-        } flex h-3/4 items-center justify-center pt-20`}
+        } flex h-1/3 items-center justify-center pt-20`}
       >
         <div className="flex items-center bg-white px-2 rounded-sm">
           <svg
@@ -67,7 +67,7 @@ const SearchBar = ({ showing = false }) => {
           </svg>
           <input
             className="bg-white p-2 py-3 placeholder:text-base text-lg md:px-4 md:py-3 w-[280px] focus:outline-none md:w-[400px]"
-            type="text"
+            type="search"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleKeyDown}
