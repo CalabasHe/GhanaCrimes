@@ -466,8 +466,6 @@ const HeaderSM = () => {
                   <Link onClick={switchToLogin}>
                     or log in an existing account
                   </Link>
-
-                  <Link>Log in help</Link>
                 </div>
                 <form onSubmit={handleSubmit}>
                   <div className="flex border border-black mt-11 p-3 rounded-full space-x-4">
@@ -679,8 +677,6 @@ const HeaderSM = () => {
                     <Link onClick={switchToCreateAccount}>
                       or create account
                     </Link>
-
-                    <Link>Log in help</Link>
                   </div>
                 </div>
                 <form onSubmit={handleLogin}>
