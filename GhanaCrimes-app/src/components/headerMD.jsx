@@ -249,7 +249,7 @@ const HeaderMD = () => {
   }, []);
 
   return (
-    <main className="hidden md:block px-3">
+    <main className="hidden md:block  sticky bg-white z-30 -top-[310px] px-3">
       <div
         onKeyDown={handleKeyDown}
         className={`${

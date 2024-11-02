@@ -228,7 +228,7 @@ const HeaderSM = () => {
   };
 
   return (
-    <main className="block md:hidden">
+    <main className="block md:hidden sticky -top-[310px] z-30 bg-white">
       <div
         className={`${
           !showSearch && "hidden"
