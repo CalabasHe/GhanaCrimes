@@ -332,12 +332,13 @@ const HeaderSM = () => {
               </div>
             </div>
           ) : (
-            <button
-              onClick={handleLogout}
-              className="bg-[#f06c00] text-white rounded-full px-4 py-2 font-semibold text-sm cursor-pointer self-end"
-            >
-              Sign out
-            </button>
+            <Link
+            onClick={handleLinksClose}
+            to="/my-account"
+            className="text-[#828282] font-semibold text-sm cursor-pointer self-end"
+          >
+            My account
+          </Link>
           )}
 
           <nav className="w-full text-[#828282] flex flex-col px-2 gap-8">

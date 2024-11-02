@@ -43,11 +43,31 @@ const BodyGridLG = () => {
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <p className="text-[0.65rem] font-medium text-[#f06c00] mt-2">
-                      {articles[2].topic
-                        ? articles[2].topic?.toUpperCase()
-                        : "General News".toUpperCase()}
-                    </p>
+                    <div className="flex items-center text-[0.65rem] mt-2 justify-between">
+                      <p className="text-[0.65rem] font-medium text-[#f06c00] ">
+                        {articles[2].topic
+                          ? articles[2].topic?.toUpperCase()
+                          : "General News".toUpperCase()}
+                      </p>
+                      {articles[2].total_comments ? (
+                        <div className="flex items-center gap-x-2 text-[#f06c00]">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width={16}
+                            height={16}
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              fill="#f06c00"
+                              d="M8 1C3.6 1 0 3.5 0 6.5c0 2 2 3.8 4 4.8c0 2.1-2 2.8-2 2.8c2.8 0 4.4-1.3 5.1-2.1H8c4.4 0 8-2.5 8-5.5S12.4 1 8 1"
+                            ></path>
+                          </svg>
+                          <p>{articles[2]?.total_comments}</p>
+                        </div>
+                      ) : (
+                        <></>
+                      )}
+                    </div>
                     <p className="text-[#393939] text-xl lg:text-2xl leading-tight mt-2 hover:text-[#f06c00] font-EB font-semibold">
                       {capitalizeCharOne(articles[2].main_title)}
                     </p>
@@ -63,11 +83,31 @@ const BodyGridLG = () => {
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <p className="text-[0.65rem] font-medium text-[#f06c00] mt-2">
+                      <div className="flex items-center text-[0.65rem] mt-2 justify-between">
+                      <p className="text-[0.65rem] font-medium text-[#f06c00] ">
                         {articles[3].topic
                           ? articles[3].topic?.toUpperCase()
                           : "General News".toUpperCase()}
                       </p>
+                      {articles[2].total_comments ? (
+                        <div className="flex items-center gap-x-2 text-[#f06c00]">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width={16}
+                            height={16}
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              fill="#f06c00"
+                              d="M8 1C3.6 1 0 3.5 0 6.5c0 2 2 3.8 4 4.8c0 2.1-2 2.8-2 2.8c2.8 0 4.4-1.3 5.1-2.1H8c4.4 0 8-2.5 8-5.5S12.4 1 8 1"
+                            ></path>
+                          </svg>
+                          <p>{articles[3]?.total_comments}</p>
+                        </div>
+                      ) : (
+                        <></>
+                      )}
+                    </div>
                       <p className="text-[#393939] text-xl lg:text-2xl leading-tight mt-2 hover:text-[#f06c00] font-EB font-semibold">
                         {capitalizeCharOne(articles[3].main_title)}
                       </p>
@@ -89,11 +129,31 @@ const BodyGridLG = () => {
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <p className="text-[0.65rem] font-medium text-[#f06c00] mt-2">
+                      <div className="flex items-center mt-2 justify-between">
+                      <p className="text-[0.65rem] font-medium text-[#f06c00] ">
                         {articles[0].topic
-                          ? articles[0].topic?.toUpperCase()
+                          ? articles[2].topic?.toUpperCase()
                           : "General News".toUpperCase()}
                       </p>
+                      {articles[0].total_comments ? (
+                        <div className="flex items-center text-[0.65rem] gap-x-2 text-[#f06c00]">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width={16}
+                            height={16}
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              fill="#f06c00"
+                              d="M8 1C3.6 1 0 3.5 0 6.5c0 2 2 3.8 4 4.8c0 2.1-2 2.8-2 2.8c2.8 0 4.4-1.3 5.1-2.1H8c4.4 0 8-2.5 8-5.5S12.4 1 8 1"
+                            ></path>
+                          </svg>
+                          <p>{articles[0]?.total_comments}</p>
+                        </div>
+                      ) : (
+                        <></>
+                      )}
+                    </div>
                       <p className="text-[#393939] text-xl lg:text-3xl leading-tight mt-2 hover:text-[#f06c00] font-EB font-semibold">
                         {capitalizeCharOne(articles[0].main_title)}
                       </p>
@@ -117,11 +177,31 @@ const BodyGridLG = () => {
                         />
                       </div>
                       <div className="">
-                        <p className="text-[0.65rem] font-medium text-[#f06c00] mt-2">
-                          {articles[1].topic
-                            ? articles[1].topic?.toUpperCase()
-                            : "General News".toUpperCase()}
-                        </p>
+                      <div className="flex items-center text-[0.65rem] mt-2 justify-between">
+                      <p className="text-[0.65rem] font-medium text-[#f06c00] ">
+                        {articles[1].topic
+                          ? articles[1].topic?.toUpperCase()
+                          : "General News".toUpperCase()}
+                      </p>
+                      {articles[2].total_comments ? (
+                        <div className="flex items-center gap-x-2 text-[#f06c00]">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width={16}
+                            height={16}
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              fill="#f06c00"
+                              d="M8 1C3.6 1 0 3.5 0 6.5c0 2 2 3.8 4 4.8c0 2.1-2 2.8-2 2.8c2.8 0 4.4-1.3 5.1-2.1H8c4.4 0 8-2.5 8-5.5S12.4 1 8 1"
+                            ></path>
+                          </svg>
+                          <p>{articles[1]?.total_comments}</p>
+                        </div>
+                      ) : (
+                        <></>
+                      )}
+                    </div>
                         <p className="text-[#393939] text-xl lg:text-2xl leading-tight mt-2 hover:text-[#f06c00] font-EB font-semibold">
                           {capitalizeCharOne(articles[1].main_title)}
                         </p>
@@ -145,12 +225,31 @@ const BodyGridLG = () => {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <p className="text-[0.65rem] font-medium text-[#f06c00] mt-2">
-                    {" "}
-                    {articles[4].topic
-                      ? articles[4].topic?.toUpperCase()
-                      : "General News".toUpperCase()}
-                  </p>
+                  <div className="flex items-center text-[0.65rem] mt-2 justify-between">
+                      <p className="text-[0.65rem] font-medium text-[#f06c00] ">
+                        {articles[4].topic
+                          ? articles[4].topic?.toUpperCase()
+                          : "General News".toUpperCase()}
+                      </p>
+                      {articles[4].total_comments ? (
+                        <div className="flex items-center gap-x-2 text-[#f06c00]">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width={16}
+                            height={16}
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              fill="#f06c00"
+                              d="M8 1C3.6 1 0 3.5 0 6.5c0 2 2 3.8 4 4.8c0 2.1-2 2.8-2 2.8c2.8 0 4.4-1.3 5.1-2.1H8c4.4 0 8-2.5 8-5.5S12.4 1 8 1"
+                            ></path>
+                          </svg>
+                          <p>{articles[4]?.total_comments}</p>
+                        </div>
+                      ) : (
+                        <></>
+                      )}
+                    </div>
                   <p className="text-[#393939] text-xl lg:text-2xl mt-2 leading-tight hover:text-[#f06c00] font-EB font-semibold">
                     {capitalizeCharOne(articles[4].main_title)}
                   </p>
@@ -168,12 +267,31 @@ const BodyGridLG = () => {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <p className="text-[0.65rem] font-medium text-[#f06c00] mt-2">
-                    {" "}
-                    {articles[5].topic
-                      ? articles[5].topic?.toUpperCase()
-                      : "General News".toUpperCase()}
-                  </p>
+                  <div className="flex items-center text-[0.65rem] mt-2 justify-between">
+                      <p className="text-[0.65rem] font-medium text-[#f06c00] ">
+                        {articles[5].topic
+                          ? articles[5].topic?.toUpperCase()
+                          : "General News".toUpperCase()}
+                      </p>
+                      {articles[5].total_comments ? (
+                        <div className="flex items-center gap-x-2 text-[#f06c00]">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width={16}
+                            height={16}
+                            viewBox="0 0 16 16"
+                          >
+                            <path
+                              fill="#f06c00"
+                              d="M8 1C3.6 1 0 3.5 0 6.5c0 2 2 3.8 4 4.8c0 2.1-2 2.8-2 2.8c2.8 0 4.4-1.3 5.1-2.1H8c4.4 0 8-2.5 8-5.5S12.4 1 8 1"
+                            ></path>
+                          </svg>
+                          <p>{articles[5]?.total_comments}</p>
+                        </div>
+                      ) : (
+                        <></>
+                      )}
+                    </div>
                   <p className="text-[#393939] text-xl lg:text-2xl mt-2 leading-tight hover:text-[#f06c00] font-EB font-semibold">
                     {capitalizeCharOne(articles[5].main_title)}
                   </p>
@@ -195,7 +313,7 @@ const BodyGridLG = () => {
       </div>
 
       <div className="my-11">
-      <AdvertisementSection />
+        <AdvertisementSection />
       </div>
 
       <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3">

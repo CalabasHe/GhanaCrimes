@@ -351,12 +351,12 @@ const HeaderMD = () => {
             </div>
           </div>
         ) : (
-          <button
-            onClick={handleLogout}
-            className="bg-[#f06c00] text-white rounded-full px-4 py-2 font-semibold text-sm cursor-pointer self-end"
+          <Link
+            to="/my-account"
+            className="text-[#828282] font-semibold text-sm cursor-pointer self-end"
           >
-            {isloading ? "Signing out " : "Sign out"}
-          </button>
+            My account
+          </Link>
         )}
       </div>
 

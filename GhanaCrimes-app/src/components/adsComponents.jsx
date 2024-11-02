@@ -39,7 +39,7 @@ const AdvertisementSection = () => {
 
   if (loading) {
     return (
-      <div className="h-full w-full flex items-center justify-center p-4">
+      <div className="bg-[#fafafa] h-full w-full flex items-center justify-center p-4">
         <p className="text-gray-500">Loading advertisements</p>
       </div>
     );
@@ -63,7 +63,7 @@ const AdvertisementSection = () => {
 
   if (!ads || ads.length === 0) {
     return (
-      <div className="h-full w-full flex items-center justify-center p-4">
+      <div className="bg-[#fafafa] h-full w-full flex items-center justify-center p-4">
         <p className="text-gray-500">No advertisements available</p>
       </div>
     );

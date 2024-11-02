@@ -22,67 +22,70 @@ export const AuthProvider = ({ children }) => {
   };
 
   const isAuthenticated = () => {
-    const token = localStorage.getItem('faccess_token');
-    return !!token; 
+    const token = localStorage.getItem("faccess_token");
+    return !!token;
   };
 
   useEffect(() => {
     const checkAuth = () => {
-      const token = localStorage.getItem('faccess_token');
+      const token = localStorage.getItem("faccess_token");
       setIsLoggedIn(!!token);
     };
-    
+
     checkAuth();
   }, []);
 
   const handleComment = async (message, newsSlug) => {
     const commentAPI = `https://ghanacrimes-api.onrender.com/api/comments/`;
-  
+
     if (!isAuthenticated()) {
       console.error("User not authenticated");
       throw new Error("Please login to add a comment");
     }
-  
+
     try {
-      const token = localStorage.getItem('faccess_token');
+      const token = localStorage.getItem("faccess_token");
       console.log("Sending comment data:", {
-       
         news_article: newsSlug,
         message,
         url: commentAPI,
       });
-  
+
       const response = await axios({
-        method: 'post',
+        method: "post",
         url: commentAPI,
         data: {
           news_article: newsSlug,
           message: message,
         },
         headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
         },
       });
-  
+
       return response.data;
     } catch (error) {
       console.error("Error details:", error.response?.data); // Log the detailed error response
       if (error.response?.status === 401) {
-        localStorage.removeItem('faccess_token');
-        localStorage.removeItem('refresh_token');
+        localStorage.removeItem("faccess_token");
+        localStorage.removeItem("refresh_token");
         setIsLoggedIn(false);
         throw new Error("Authentication expired. Please login again");
       } else if (error.response) {
         // Log the server's error message
-        throw new Error(error.response.data.message || "An error occurred while posting the comment. Please try again.");
+        throw new Error(
+          error.response.data.message ||
+            "An error occurred while posting the comment. Please try again."
+        );
       } else {
         // Handle other types of errors
-        throw new Error("An error occurred while posting the comment. Please try again.");
+        throw new Error(
+          "An error occurred while posting the comment. Please try again."
+        );
       }
     }
   };
-  
 
   // Login function (used by components)
   const handleLogin = async (e) => {
@@ -170,7 +173,7 @@ export const AuthProvider = ({ children }) => {
         isLoginOpen,
         setIsLoginOpen,
         topicData,
-        handleComment
+        handleComment,
       }}
     >
       {children}

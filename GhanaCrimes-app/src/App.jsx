@@ -42,9 +42,11 @@ function AppRoutes() {
         <Route path="/news/:slug" element={<PageWrapper><NewsPage /></PageWrapper>} />
         <Route path="/about-us" element={<PageWrapper><AboutUs /></PageWrapper>} />
         <Route path="/contact-us" element={<PageWrapper><ContactUs /></PageWrapper>} />
-        <Route path="/results" element={<PageWrapper><SearchResults/></PageWrapper>} />n 
+        <Route path="/results" element={<PageWrapper><SearchResults/></PageWrapper>} />
         <Route path="/topics/:slug" element={<PageWrapper><TopicsNewsList /></PageWrapper>} />
         <Route path="/advertisement-request" element={<PageWrapper><AdsRequest /></PageWrapper>} />
+        <Route path="/my-account" element={<PageWrapper><MyAccount /></PageWrapper>} />
+        <Route path="/saved-news" element={<PageWrapper><SavedNews /></PageWrapper>} />
       </Routes>
     </>
   );
