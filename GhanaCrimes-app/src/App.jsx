@@ -1,6 +1,7 @@
 // App.jsx
 import { Route, Routes } from "react-router-dom";
 import { useEffect } from "react";
+import ScrollToTop from "./components/scrolltoTop";
 import HomePage from "./pages/homePage";
 import NewsPage from "./pages/newsPage";
 import AboutUs from "./pages/aboutUs";
@@ -18,10 +19,7 @@ const PageWrapper = ({ children }) => {
   const { setIsLoading } = useLoading();
 
   useEffect(() => {
-    // Show loading screen when component mounts
     setIsLoading(true);
-
-    // Hide loading screen after content is presumably loaded
     const timer = setTimeout(() => {
       setIsLoading(false);
     }, 6000); // Adjust timing as needed
@@ -39,16 +37,86 @@ function AppRoutes() {
     <>
       {isLoading && <LoadingScreen />}
       <Routes>
-        <Route index element={<PageWrapper><HomePage /></PageWrapper>} />
-        <Route path="/" element={<PageWrapper><HomePage /></PageWrapper>} />
-        <Route path="/news/:slug" element={<PageWrapper><NewsPage /></PageWrapper>} />
-        <Route path="/about-us" element={<PageWrapper><AboutUs /></PageWrapper>} />
-        <Route path="/contact-us" element={<PageWrapper><ContactUs /></PageWrapper>} />
-        <Route path="/results" element={<PageWrapper><SearchResults/></PageWrapper>} />
-        <Route path="/topics/:slug" element={<PageWrapper><TopicsNewsList /></PageWrapper>} />
-        <Route path="/advertisement-request" element={<PageWrapper><AdsRequest /></PageWrapper>} />
-        <Route path="/my-account" element={<PageWrapper><MyAccount/></PageWrapper>} />
-        <Route path="/saved-news" element={<PageWrapper><SavedNews/></PageWrapper>} />
+        <Route
+          index
+          element={
+            <PageWrapper>
+              <HomePage />
+            </PageWrapper>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <PageWrapper>
+              <HomePage />
+            </PageWrapper>
+          }
+        />
+        <Route
+          path="/news/:slug"
+          element={
+            <PageWrapper>
+              <NewsPage />
+            </PageWrapper>
+          }
+        />
+        <Route
+          path="/about-us"
+          element={
+            <PageWrapper>
+              <AboutUs />
+            </PageWrapper>
+          }
+        />
+        <Route
+          path="/contact-us"
+          element={
+            <PageWrapper>
+              <ContactUs />
+            </PageWrapper>
+          }
+        />
+        <Route
+          path="/results"
+          element={
+            <PageWrapper>
+              <SearchResults />
+            </PageWrapper>
+          }
+        />
+        <Route
+          path="/topics/:slug"
+          element={
+            <PageWrapper>
+              <TopicsNewsList />
+            </PageWrapper>
+          }
+        />
+        <Route
+          path="/advertisement-request"
+          element={
+            <PageWrapper>
+              <AdsRequest />
+            </PageWrapper>
+          }
+        />
+        <Route
+          path="/my-account"
+          element={
+            <PageWrapper>
+              <MyAccount />
+            </PageWrapper>
+          }
+        />
+        <Route
+          path="/saved-news"
+          element={
+            <PageWrapper>
+              <SavedNews />
+            </PageWrapper>
+          }
+        />
       </Routes>
     </>
   );
@@ -57,6 +125,7 @@ function AppRoutes() {
 function App() {
   return (
     <LoadingProvider>
+      <ScrollToTop /> {/* Add ScrollToTop component here */}
       <AppRoutes />
     </LoadingProvider>
   );
