@@ -260,8 +260,8 @@ const HeaderMD = () => {
       <AdvertisementSection />
       {/* Logo */}
       <Link className="flex justify-center mt-6" to="/">
-        <p className="font-EB font-bold lg:text-4xl text-[#f06c00]">
-          GhanaCrimes
+        <p className="font-EB font-black lg:text-5xl text-[#f06c00]">
+          GHANACRIMES
         </p>
       </Link>
 

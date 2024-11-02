@@ -39,15 +39,14 @@ const HeaderSM = () => {
 
   useEffect(() => {
     if (showSearch) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
     } else {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     }
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [showSearch]);
-
 
   const {
     isOpen,
@@ -230,10 +229,14 @@ const HeaderSM = () => {
 
   return (
     <main className="block md:hidden">
-      <div className={`${!showSearch && 'hidden'} fixed inset-0 min-h-full bg-black/80`}>
+      <div
+        className={`${
+          !showSearch && "hidden"
+        } fixed inset-0 min-h-full bg-black/80`}
+      >
         <div className="flex h-2/3 items-center justify-center pt-20">
           <div ref={searchBarRef}>
-            <SearchBar id='searchBar' showing={showSearch}/>
+            <SearchBar id="searchBar" showing={showSearch} />
           </div>
         </div>
       </div>
@@ -262,15 +265,17 @@ const HeaderSM = () => {
           to="/"
           className="text-3xl flex-auto font-EB font-bold text-[#f06c00]"
         >
-          GhanaCrimes
+          GHANACRIMES
         </Link>
-        <button onClick={() => {
-            if(!showSearch){
-              setShowSearch(true) 
-            }else{
-              setShowSearch(false)
+        <button
+          onClick={() => {
+            if (!showSearch) {
+              setShowSearch(true);
+            } else {
+              setShowSearch(false);
             }
-          }}>
+          }}
+        >
           <svg
             width="24"
             height="24"
@@ -296,7 +301,7 @@ const HeaderSM = () => {
       >
         <div className="flex lg:mt-[5%] mt-4 flex-col items-start px-4 py-5 space-y-8">
           <div className="text-[#f06c00] w-full self-center flex items-center justify-between font-bold text-3xl font-EB">
-            <p className="flex-grow text-center">GhanaCrimes</p>
+            <p className="flex-grow text-center">GHANACRIMES</p>
             <button className="translate-y-1" onClick={toggleMenu}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -333,19 +338,19 @@ const HeaderSM = () => {
             </div>
           ) : (
             <Link
-            onClick={handleLinksClose}
-            to="/my-account"
-            className="text-[#828282] font-semibold text-sm cursor-pointer self-end"
-          >
-            My account
-          </Link>
+              onClick={handleLinksClose}
+              to="/my-account"
+              className="text-[#828282] font-semibold text-sm cursor-pointer self-end"
+            >
+              My account
+            </Link>
           )}
 
           <nav className="w-full text-[#828282] flex flex-col px-2 gap-8">
             <p className=" text-base font-[700]">TOPICS</p>
             <hr />
             <div className="text-xl items-start pl-[10%] font-semibold flex-col flex space-y-6">
-            <TopicList topicData={topicData} />
+              <TopicList topicData={topicData} />
             </div>
             <hr />
           </nav>
@@ -395,7 +400,7 @@ const HeaderSM = () => {
           </Link>
 
           <Link
-          onClick={handleLinksClose}
+            onClick={handleLinksClose}
             to={"/advertisement-request"}
             className="flex pl-[10%] space-x-2 text-xl text-[#828282] font-semibold items-center"
           >
@@ -575,7 +580,7 @@ const HeaderSM = () => {
                       ></path>
                     </svg>
 
-                    <div className="flex items-center gap-1" >
+                    <div className="flex items-center gap-1">
                       <input
                         className="translate-y-0.5 cursor-pointer "
                         type="radio"
