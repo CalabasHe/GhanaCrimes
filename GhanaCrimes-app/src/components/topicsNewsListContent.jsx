@@ -35,14 +35,14 @@ const TopicsNewsListContent = () => {
       {/* Topic Heading */}
       {articles.length > 0 && <TopicHeading topic={articles[0].topic} />}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 pt-6 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-8 pt-6 gap-4">
         {articles.map((article, index) => (
           <div
             key={article.id}
             className={`
         col-span-1 
         ${index === 0 ? "lg:col-span-2" : ""} 
-        ${index === 1 ? "lg:col-span-3" : ""} 
+        ${index === 1 ? "lg:col-span-4" : ""} 
         ${index === 2 ? "lg:col-span-2" : ""}
       `}
           >
