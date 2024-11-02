@@ -370,7 +370,7 @@ const HeaderMD = () => {
         )}
       </div>
 
-      <hr className="w-full mt-6" />
+      <hr className="border-b border-black border-dotted mt-6" />
 
       {/* Side Menu */}
       <div
