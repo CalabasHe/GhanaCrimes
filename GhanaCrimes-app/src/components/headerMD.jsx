@@ -250,7 +250,7 @@ const HeaderMD = () => {
 
   return (
     <main className="hidden md:block  sticky bg-white z-30 -top-[310px]">
-      <AdvertisementSection />
+      {/* <AdvertisementSection /> */}
       <div>
         <div className=" px-[9%]">
           {" "}
