@@ -179,11 +179,11 @@ const NewsComponent = () => {
           <div>
             <p className="text-[#f06c00]">{article?.topic}</p>
             <p className="font-EB font-bold text-[#393939] text-2xl md:text-5xl">
-              {article?.main_title.toUpperCase()}
+              {article?.main_title}
             </p>
           </div>
 
-          <div className="md:flex md:justify-between md:items-center mt-2 text-[#666666]">
+          <div className="md:flex md:justify-between md:items-center md:self-center mt-2 text-[#666666]">
             <div className="lg:flex lg:flex-1 gap-2 text-xs">
               <p>
                 Published on:{" "}
@@ -200,7 +200,7 @@ const NewsComponent = () => {
                   : "N/A"}
               </p>
             </div>
-            <div className="flex gap-3 mt-3 md:text-xs">
+            <div className="flex gap-3 md:text-xs">
               <Link className="flex gap-2 items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
