@@ -26,7 +26,7 @@ const MyAccountContent = () => {
   };
 
   return (
-    <main className="overflow-x-hidden  px-3">
+    <main className="overflow-x-hidden  px-[9%]">
       <div className="mt-2">
         {!isLoggedIn ? (
           <p className=" font-EB font-bold text-xl md:text-4xl text-[#212529]">
@@ -38,7 +38,7 @@ const MyAccountContent = () => {
           </p>
         )}
 
-        <hr className="mt-2" />
+        <div className="border-b border-[#AEAEAE] border-[1px] border-dotted mt-4" />
       </div>
       <div className="flex mt-4 text-semibold gap-4">
         {!isLoggedIn ? (
