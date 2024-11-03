@@ -188,7 +188,7 @@ const NewsComponent = () => {
                 Published:{" "}
                 {article?.created_at
                   ? moment(article.created_at)
-                      .utcOffset(0) // Set to GMT
+                      .utcOffset(0) 
                       .format("D MMM, YYYY [GMT]")
                   : "N/A"}
               </p>
@@ -196,7 +196,7 @@ const NewsComponent = () => {
                 Updated:{" "}
                 {article?.updated_at
                   ? moment(article.updated_at)
-                      .utcOffset(0) // Set to GMT
+                      .utcOffset(0)
                       .format("ddd D MMM YYYY HH:mm [GMT]")
                   : "N/A"}
               </p>
