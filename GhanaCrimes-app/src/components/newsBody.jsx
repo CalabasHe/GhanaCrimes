@@ -171,12 +171,20 @@ const NewsComponent = () => {
   //   );
   // }
 
+  function capitalizeWords(str) {
+    return str
+      .toLowerCase()
+      .split(" ")
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  }
+
   return (
     <main className="relative px-3 md:px-[9%]">
       <div className="grid grid-cols-1 lg:grid-cols-3 mt-11 gap-11">
         <div className="lg:col-span-2">
           <div>
-            <p className="text-[#f06c00]">{article?.topic}</p>
+            <p className="text-[#f06c00]"> {article?.topic ? capitalizeWords(article.topic) : ""}</p>
             <p className="font-EB font-bold text-[#393939] text-2xl md:text-5xl">
               {article?.main_title}
             </p>

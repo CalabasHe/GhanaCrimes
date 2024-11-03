@@ -132,7 +132,7 @@ const BodyGridLG = () => {
                       <div className="flex items-center mt-2 justify-between">
                         <p className="text-xs font-medium text-[#f06c00] transition-colors duration-300 ease-in-out hover:text-[#666666]">
                           {articles[0].topic
-                            ? articles[2].topic?.toUpperCase()
+                            ? articles[0].topic?.toUpperCase()
                             : "General News".toUpperCase()}
                         </p>
                         {articles[0].total_comments ? (
