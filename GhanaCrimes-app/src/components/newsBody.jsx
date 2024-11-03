@@ -26,9 +26,8 @@ const NewsComponent = () => {
         setLoadingRelated(true);
         setError(null);
 
-        // Fetch main article
         const data = await fetchNewsArticle(slug);
-        // console.log('Article Data:', data); // Debug log
+        // console.log('Article Data:', data);
         setArticle(data);
         setArticleId(data.id);
 
@@ -140,13 +139,13 @@ const NewsComponent = () => {
     }
   };
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-[#f06c00]"></div>
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="flex justify-center items-center min-h-screen">
+  //       <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-[#f06c00]"></div>
+  //     </div>
+  //   );
+  // }
 
   if (error) {
     return (
@@ -334,7 +333,7 @@ const NewsComponent = () => {
               </div>
             )}
           </div>
-
+          {/* See also / suggested articles */}
           <div className="mt-8">
             <p className="font-EB font-bold text-lg">See also</p>
             <hr className="mb-4" />
