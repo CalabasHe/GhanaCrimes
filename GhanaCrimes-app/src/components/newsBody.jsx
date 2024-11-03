@@ -177,7 +177,7 @@ const NewsComponent = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 mt-11 gap-11">
         <div className="lg:col-span-2">
           <div>
-            <p className="text-[#f06c00]">{article?.topic?.toUpperCase()}</p>
+            <p className="text-[#f06c00]">{article?.topic}</p>
             <p className="font-EB font-bold text-[#393939] text-2xl md:text-5xl">
               {article?.main_title.toUpperCase()}
             </p>

@@ -44,7 +44,7 @@ const BodyGridLG = () => {
                       />
                     </div>
                     <div className="flex items-center text-[0.65rem] mt-2 justify-between">
-                      <p className="text-xs font-medium text-[#f06c00] ">
+                      <p className="text-xs font-medium text-[#f06c00] transition-colors duration-700 ease-in-out hover:text-[#393939] ">
                         {articles[2].topic
                           ? articles[2].topic?.toUpperCase()
                           : "General News".toUpperCase()}
@@ -84,7 +84,7 @@ const BodyGridLG = () => {
                         />
                       </div>
                       <div className="flex items-center text-[0.65rem] mt-2 justify-between">
-                        <p className="text-xs font-medium text-[#f06c00] ">
+                        <p className="text-xs font-medium text-[#f06c00] transition-colors duration-700 ease-in-out hover:text-[#393939]">
                           {articles[3].topic
                             ? articles[3].topic?.toUpperCase()
                             : "General News".toUpperCase()}
@@ -130,7 +130,7 @@ const BodyGridLG = () => {
                         />
                       </div>
                       <div className="flex items-center mt-2 justify-between">
-                        <p className="text-xs font-medium text-[#f06c00] ">
+                        <p className="text-xs font-medium text-[#f06c00] transition-colors duration-700 ease-in-out hover:text-[#393939]">
                           {articles[0].topic
                             ? articles[2].topic?.toUpperCase()
                             : "General News".toUpperCase()}
@@ -178,7 +178,7 @@ const BodyGridLG = () => {
                       </div>
                       <div className="">
                         <div className="flex items-center text-[0.65rem] mt-2 justify-between">
-                          <p className="text-xs font-medium text-[#f06c00] ">
+                          <p className="text-xs font-medium text-[#f06c00] transition-colors duration-700 ease-in-out hover:text-[#393939]">
                             {articles[1].topic
                               ? articles[1].topic?.toUpperCase()
                               : "General News".toUpperCase()}
@@ -226,7 +226,7 @@ const BodyGridLG = () => {
                     />
                   </div>
                   <div className="flex items-center text-[0.65rem] mt-2 justify-between">
-                    <p className="text-xs font-medium text-[#f06c00] ">
+                    <p className="text-xs font-medium text-[#f06c00] transition-colors duration-700 ease-in-out hover:text-[#393939]">
                       {articles[4].topic
                         ? articles[4].topic?.toUpperCase()
                         : "General News".toUpperCase()}
@@ -268,7 +268,7 @@ const BodyGridLG = () => {
                     />
                   </div>
                   <div className="flex items-center text-[0.65rem] mt-2 justify-between">
-                    <p className="text-xs font-medium text-[#f06c00] ">
+                    <p className="text-xs font-medium text-[#f06c00] transition-colors duration-700 ease-in-out hover:text-[#393939]">
                       {articles[5].topic
                         ? articles[5].topic?.toUpperCase()
                         : "General News".toUpperCase()}

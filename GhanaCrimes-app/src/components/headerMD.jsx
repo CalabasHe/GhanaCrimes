@@ -323,7 +323,7 @@ const HeaderMD = () => {
             <nav className="flex-1 justify-start text-xs md:text-sm hidden xl:flex">
               <div className="space-x-5 text-[#828282] font-semibold ">
                 {topicData.length > 0 &&
-                  topicData.slice(0, 7).map(
+                  topicData.slice(0, 6).map(
                     (topic) =>
                       topic.news_count > 0 && (
                         <Link

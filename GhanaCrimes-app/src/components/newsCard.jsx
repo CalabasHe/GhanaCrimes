@@ -14,7 +14,7 @@ const NewsCard = ({ articleData }) => {
         />
       </div>
       <div className="flex text-[0.65rem] items-center mt-2 justify-between">
-        <p className="text-xs font-medium text-[#f06c00] ">
+        <p className="text-xs font-medium text-[#f06c00] transition-colors duration-700 ease-in-out hover:text-[#393939]">
           {articleData.topic
             ? articleData.topic?.toUpperCase()
             : "General News".toUpperCase()}
