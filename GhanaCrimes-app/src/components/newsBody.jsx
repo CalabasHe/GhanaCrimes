@@ -139,13 +139,13 @@ const NewsComponent = () => {
     }
   };
 
-  // if (loading) {
-  //   return (
-  //     <div className="flex justify-center items-center min-h-screen">
-  //       <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-[#f06c00]"></div>
-  //     </div>
-  //   );
-  // }
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-[#f06c00]"></div>
+      </div>
+    );
+  }
 
   if (error) {
     return (
@@ -163,13 +163,13 @@ const NewsComponent = () => {
     );
   }
 
-  if (!article) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <p className="text-xl">Article not found</p>
-      </div>
-    );
-  }
+  // if (!article) {
+  //   return (
+  //     <div className="flex justify-center items-center min-h-screen">
+  //       <p className="text-xl">Article not found</p>
+  //     </div>
+  //   );
+  // }
 
   return (
     <main className="relative px-3 md:px-[9%]">
