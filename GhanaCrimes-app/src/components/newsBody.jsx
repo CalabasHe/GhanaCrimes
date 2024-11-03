@@ -185,20 +185,23 @@ const NewsComponent = () => {
           <div className="md:flex md:justify-between md:items-center md:self-center mt-2 text-[#666666]">
             <div className="lg:flex lg:flex-1 gap-2 text-xs">
               <p>
-                Published on:{" "}
+                Published:{" "}
                 {article?.created_at
-                  ? moment(article.created_at).format("MMMM Do YYYY, h:mm:ss a")
+                  ? moment(article.created_at)
+                      .utcOffset(0) // Set to GMT
+                      .format("D MMM, YYYY [GMT]")
                   : "N/A"}
               </p>
               <p>
-                Updated on:{" "}
+                Updated:{" "}
                 {article?.updated_at
-                  ? moment(article?.updated_at).format(
-                      "MMMM Do YYYY, h:mm:ss a"
-                    )
+                  ? moment(article.updated_at)
+                      .utcOffset(0) // Set to GMT
+                      .format("ddd D MMM YYYY HH:mm [GMT]")
                   : "N/A"}
               </p>
             </div>
+
             <div className="flex gap-3 md:text-xs">
               <Link className="flex gap-2 items-center">
                 <svg
