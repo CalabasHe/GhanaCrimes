@@ -28,7 +28,7 @@ const BodyGridLG = () => {
 
   return (
     <main className="overflow-x-hidden px-3 lg:px-[9%]">
-      <div className="mt-4">
+      <div className="mt-9">
         <div className="grid leading-6 mt-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-6">
           {articles.length > 0 && (
             <>
