@@ -229,6 +229,7 @@ const HeaderSM = () => {
 
   return (
     <main className="block md:hidden sticky -top-[310px] z-30 bg-white">
+      <AdvertisementSection />
       <div
         className={`${
           !showSearch && "hidden"
@@ -240,7 +241,7 @@ const HeaderSM = () => {
           </div>
         </div>
       </div>
-      <AdvertisementSection />
+      
       <div className="flex px-3 items-center mt-6 container flex-wrap">
         {/*Menu Hamburger*/}
         <div className=" flex-auto">
@@ -265,7 +266,7 @@ const HeaderSM = () => {
           to="/"
           className="text-3xl flex-auto font-EB font-bold text-[#f06c00]"
         >
-          GHANACRIMES
+          GhanaCrimes
         </Link>
         <button
           onClick={() => {
@@ -301,7 +302,7 @@ const HeaderSM = () => {
       >
         <div className="flex lg:mt-[5%] mt-4 flex-col items-start px-4 py-5 space-y-8">
           <div className="text-[#f06c00] w-full self-center flex items-center justify-between font-bold text-3xl font-EB">
-            <p className="flex-grow text-center">GHANACRIMES</p>
+            <p className="flex-grow text-center">GhanaCrimes</p>
             <button className="translate-y-1" onClick={toggleMenu}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"

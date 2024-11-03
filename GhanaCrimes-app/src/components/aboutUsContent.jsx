@@ -2,7 +2,7 @@ import BannerIMG from "../assets/images/About-Us-Banner-Image.jpeg";
 
 const AboutUsContent = () => {
   return (
-    <main className="overflow-x-hidden hidden md:block px-3 lg:px-5">
+    <main className="overflow-x-hidden hidden md:block px-[9%]">
       <div className="mt-10 relative">
         {/* Text Overlay */}
         <div className="relative w-full h-40 lg:h-[500px]">
@@ -65,7 +65,7 @@ const AboutUsContent = () => {
       </p>
       {/* Socials */}
       <p className="font-EB my-5 text-2xl font-black">Our socials</p>
-      <hr />
+      <div className="border-dotted border border-black" />
       <div className="mt-4 flex items-center gap-2 text-[#666666] transition-colors duration-300">
         <a href="#" className="text-sm font-semibold hover:text-[#f06c00]">
           <svg

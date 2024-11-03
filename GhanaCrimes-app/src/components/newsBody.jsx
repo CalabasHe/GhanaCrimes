@@ -173,8 +173,8 @@ const NewsComponent = () => {
   }
 
   return (
-    <main className="relative px-3 lg:px-5">
-      <div className="grid grid-cols-1 lg:grid-cols-3 mt-8 gap-11">
+    <main className="relative px-3 md:px-[9%]">
+      <div className="grid grid-cols-1 lg:grid-cols-3 mt-11 gap-11">
         <div className="lg:col-span-2">
           <div>
             <p className="text-[#f06c00]">{article?.topic?.toUpperCase()}</p>
@@ -241,11 +241,11 @@ const NewsComponent = () => {
 
           <div>
             <img
-              className="w-full max-h-[300px] md:max-h-[550px] lg:max-h-[700px] object-cover mt-8"
+              className="w-full max-h-[300px] md:max-h-[550px] object-cover mt-8"
               src={article?.image?.image}
               alt={article?.main_title}
             />
-            <p className="text-[#afafaf] mt-2">
+            <p className="text-[#afafaf] 829 mt-2">
               {article?.image?.image_description}
             </p>
           </div>

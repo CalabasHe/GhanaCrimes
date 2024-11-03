@@ -18,8 +18,8 @@ const AboutUSContentSM = () => {
         </div>
         {/* <hr className="my-11" /> */}
         {/* About Us Content */}
-        <p className="font-EB mt-5 text-2xl font-black ">ABOUT GHANACRIMES</p>
-        <p className="text-2xl leading-relaxed font-EB">
+        
+        <p className="mt-4 leading-relaxed font-EB">
           GhanaCrimes is a premier news organization committed to providing
           comprehensive coverage of crime-related and breaking news across
           Ghana. Our platform is widely recognized for its authoritative

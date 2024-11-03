@@ -34,7 +34,7 @@ const TopicList = ({ topicData = [] }) => {
             onClick={() => handleTopicClick(topic.slug)}
             className="hover:text-gray-600 transition-colors duration-200 text-left"
           >
-            {topic.name.toUpperCase()}
+            {topic.name}
           </Link>
         ))}
       </div>
