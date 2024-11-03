@@ -183,7 +183,7 @@ const NewsComponent = () => {
           </div>
 
           <div className="md:flex md:justify-between md:items-center md:self-center mt-2 text-[#666666]">
-            <div className="lg:flex lg:flex-1 gap-2 text-xs">
+            <div className="lg:flex lg:flex-1 gap-2 font-medium text-xs">
               <p>
                 Published:{" "}
                 {article?.created_at
