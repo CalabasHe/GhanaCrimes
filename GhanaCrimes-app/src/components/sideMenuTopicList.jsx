@@ -47,7 +47,33 @@ const TopicList = ({ topicData = [] }) => {
           className="text-base md:text-lg font-medium flex items-center gap-1 text-[#f06c00] hover:text-[#cb7e3f] transition-colors duration-200"
         >
           <span>{isExpanded ? "See Less" : "See More"}</span>
-          <span className="text-sm">{isExpanded ? "▲" : "▼"}</span>
+          <span className="text-sm">
+            {isExpanded ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="38"
+                height="38"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="#f06c00"
+                  d="m12 11.828l-2.828 2.829l-1.415-1.414L12 9l4.243 4.243l-1.415 1.414z"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="38"
+                height="38"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="#f06c00"
+                  d="m12 15l-4.243-4.242l1.415-1.414L12 12.172l2.828-2.828l1.415 1.414z"
+                />
+              </svg>
+            )}
+          </span>
         </button>
       )}
     </div>
