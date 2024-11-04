@@ -44,7 +44,7 @@ const TopicList = ({ topicData = [] }) => {
       {hasMoreTopics && (
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="text-base font-medium flex items-center gap-1 text-[#f06c00] hover:text-[#cb7e3f] transition-colors duration-200"
+          className="text-base md:text-lg font-medium flex items-center gap-1 text-[#f06c00] hover:text-[#cb7e3f] transition-colors duration-200"
         >
           <span>{isExpanded ? "See Less" : "See More"}</span>
           <span className="text-sm">{isExpanded ? "▲" : "▼"}</span>
