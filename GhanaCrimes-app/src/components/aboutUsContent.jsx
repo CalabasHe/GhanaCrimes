@@ -27,11 +27,8 @@ const AboutUsContent = () => {
             <p className="text-[#f06c00] font-EB font-black md:text-xl lg:text-2xl z-10">
               ABOUT GHANACRIMES
             </p>
-            <p className="text-white font-bold text-lg  lg:text-4xl lg:w-2/4 lg:leading-normal mt-2 z-10">
-              The GhanaCrimes is one of the world’s leading news organisations,
-              recognised internationally for its authority, integrity and
-              accuracy.
-            </p>
+            
+            
           </div>
         </div>
       </div>

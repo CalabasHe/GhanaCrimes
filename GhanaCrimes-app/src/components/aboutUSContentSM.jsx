@@ -10,11 +10,6 @@ const AboutUSContentSM = () => {
           <p className="text-[#f06c00] font-EB font-bold text-xl mt-4">
             About GhanaCrimes
           </p>
-          <p className="leading-relaxed font-EB">
-            The GhanaCrimes is one of the world’s leading news organisations,
-            recognised internationally for its authority, integrity and
-            accuracy.
-          </p>
         </div>
         {/* <hr className="my-11" /> */}
         {/* About Us Content */}
