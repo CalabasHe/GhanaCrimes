@@ -11,12 +11,10 @@ const BodyGridLG = () => {
   useEffect(() => {
     const getCrimeData = async () => {
       try {
+
         const cachedData = localStorage.getItem('crimeArticles');
         const cacheTime = localStorage.getItem('crimeArticlesTimestamp');
-        
 
-        const CACHE_DURATION = 60 * 60 * 1000;
-        
         if (cachedData && cacheTime) {
           const now = new Date().getTime();
 
@@ -25,17 +23,15 @@ const BodyGridLG = () => {
             return;
           }
         }
-        
 
         const data = await getCrimes();
         setArticles(data.results);
-        
+
+
         localStorage.setItem('crimeArticles', JSON.stringify(data.results));
         localStorage.setItem('crimeArticlesTimestamp', new Date().getTime().toString());
-        
       } catch (err) {
         console.log(err);
-
         const cachedData = localStorage.getItem('crimeArticles');
         if (cachedData) {
           setArticles(JSON.parse(cachedData));
@@ -44,7 +40,30 @@ const BodyGridLG = () => {
     };
 
     getCrimeData();
+
+    const interval = setInterval(checkForUpdates, 60000);
+    return () => clearInterval(interval);
   }, []);
+
+  const checkForUpdates = async () => {
+    try {
+      const data = await getCrimes();
+      const newArticles = data.results;
+      const cachedArticles = JSON.parse(localStorage.getItem('crimeArticles')) || [];
+
+      if (newArticles.length > cachedArticles.length) {
+        setArticles(newArticles);
+        localStorage.setItem('crimeArticles', JSON.stringify(newArticles));
+        localStorage.setItem('crimeArticlesTimestamp', new Date().getTime().toString());
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const capitalizeCharOne = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
 
 
   const capitalizeCharOne = (string) => {
