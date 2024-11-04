@@ -5,7 +5,7 @@ const NewsCard = ({ articleData, className }) => {
 
   return (
     <Link to={`/news/${articleData.slug}`}>
-      <div className="h-[230px] md:h-[190px] border shadow-md">
+      <div className="h-[230px] md:h-[190px] border mt-4 shadow-md ">
         <img
           src={articleData.image?.image}
           alt={articleData.main_title}
