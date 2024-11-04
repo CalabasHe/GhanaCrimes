@@ -330,9 +330,12 @@ const BodyGridLG = () => {
       {/* Other News Section */}
 
       <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3 max-lg:gap-y-8 mt-16">
-        {articles.slice(6, 10)?.map((article) => (
-          <div key={article.id}>
-            <NewsCard articleData={article} />
+        {articles.slice(6, 10)?.map((article, index) => (
+          <div key={article.id} className="lg:col-span-1">
+            <NewsCard
+              articleData={article}
+              className={index === 3 ? "bg-[#f2f2f2] p-2" : ""}
+            />
           </div>
         ))}
       </div>
@@ -341,10 +344,13 @@ const BodyGridLG = () => {
         <AdvertisementSection />
       </div>
 
-      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3">
-        {articles.slice(10, 18)?.map((article) => (
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3 max-lg:gap-y-8 mt-16">
+        {articles.slice(10, 18)?.map((article, index) => (
           <div key={article.id}>
-            <NewsCard articleData={article} />
+            <NewsCard
+              articleData={article}
+              className={[3, 7].includes(index) ? "bg-[#f2f2f2] p-2" : ""}
+            />
           </div>
         ))}
       </div>
