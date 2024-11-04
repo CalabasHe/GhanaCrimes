@@ -26,23 +26,25 @@ const TopicList = ({ topicData = [] }) => {
   return (
     <div className="space-y-4">
       <div className="text-base md:text-lg text-[#828282] items-start text-nowrap font-medium flex-col flex space-y-4">
-        {displayedTopics.map((topic) => (
-          topic.news_count > 0 &&
-          <Link
-            key={topic.id}
-            to={`/topics/${topic.slug}`}
-            onClick={() => handleTopicClick(topic.slug)}
-            className="hover:text-gray-600 transition-colors duration-200 text-left"
-          >
-            {topic.name}
-          </Link>
-        ))}
+        {displayedTopics.map(
+          (topic) =>
+            topic.news_count > 0 && (
+              <Link
+                key={topic.id}
+                to={`/topics/${topic.slug}`}
+                onClick={() => handleTopicClick(topic.slug)}
+                className="hover:text-[#f06c00] transition-colors duration-200 text-left"
+              >
+                {topic.name}
+              </Link>
+            )
+        )}
       </div>
 
       {hasMoreTopics && (
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="text-base flex items-center gap-1 text-[#f06c00] hover:text-[#cb7e3f] transition-colors duration-200"
+          className="text-base font-medium flex items-center gap-1 text-[#f06c00] hover:text-[#cb7e3f] transition-colors duration-200"
         >
           <span>{isExpanded ? "See Less" : "See More"}</span>
           <span className="text-sm">{isExpanded ? "▲" : "▼"}</span>
@@ -52,7 +54,6 @@ const TopicList = ({ topicData = [] }) => {
   );
 };
 
-// Add prop type validation
 TopicList.propTypes = {
   topicData: PropTypes.arrayOf(
     PropTypes.shape({
