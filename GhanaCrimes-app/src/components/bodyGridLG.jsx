@@ -36,11 +36,11 @@ const BodyGridLG = () => {
               <div className="lg:col-span-2 md:col-span-1 ">
                 {articles[2] && (
                   <Link to={`/news/${articles[2].slug}`}>
-                    <div className="h-[190px] border ">
+                    <div className="h-[230px] md:h-[190px] border ">
                       <img
                         src={articles[2].image?.image}
                         alt={articles[2].main_title}
-                        className="w-full h-[190px]  object-cover"
+                        className="w-full h-[230px] md:h-[190px]  object-cover"
                       />
                     </div>
                     <div className="flex items-center text-[0.65rem] mt-2 justify-between">
@@ -76,11 +76,11 @@ const BodyGridLG = () => {
                 {articles[3] && (
                   <div className="mt-11">
                     <Link to={`/news/${articles[3].slug}`}>
-                      <div className=" h-[190px] border ">
+                      <div className="h-[230px] md:h-[190px] border ">
                         <img
                           src={articles[3].image?.image}
                           alt={articles[3].main_title}
-                          className="w-full h-[190px]  object-cover"
+                          className="w-full h-[230px] md:h-[190px]  object-cover"
                         />
                       </div>
                       <div className="flex items-center text-[0.65rem] mt-2 justify-between">
@@ -122,11 +122,11 @@ const BodyGridLG = () => {
                   {/* First Section */}
                   {articles[0] && (
                     <Link to={`/news/${articles[0].slug}`}>
-                      <div className="h-[250px] md:h-[418px]">
+                      <div className="h-[240px] md:h-[418px]">
                         <img
                           src={articles[0].image?.image}
                           alt={articles[0].main_title}
-                          className="w-full h-[250px] md:h-[418px] object-cover"
+                          className="w-full h-[240px] md:h-[418px] object-cover"
                         />
                       </div>
                       <div className="flex items-center mt-2 justify-between">
@@ -218,11 +218,11 @@ const BodyGridLG = () => {
             {articles[4] && (
               <div className="mt-11 md:mt-0">
                 <Link to={`/news/${articles[4].slug}`}>
-                  <div className="h-[190px] border ">
+                  <div className="h-[230px] md:h-[190px] border ">
                     <img
                       src={articles[4].image?.image}
                       alt={articles[4].main_title}
-                      className="w-full h-[190px]  object-cover"
+                      className="w-full h-[230px] md:h-[190px]  object-cover"
                     />
                   </div>
                   <div className="flex items-center text-[0.65rem] mt-2 justify-between">
@@ -260,11 +260,11 @@ const BodyGridLG = () => {
             {articles[5] && (
               <div className="mt-11 md:mt-0">
                 <Link to={`/news/${articles[5].slug}`}>
-                  <div className=" h-[190px]  border ">
+                  <div className=" h-[230px] md:h-[190px]  border ">
                     <img
                       src={articles[5].image?.image}
                       alt={articles[5].main_title}
-                      className="w-full h-[190px]  object-cover"
+                      className="w-full h-[230px] md:h-[190px] object-cover"
                     />
                   </div>
                   <div className="flex items-center text-[0.65rem] mt-2 justify-between">

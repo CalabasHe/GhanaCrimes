@@ -5,11 +5,11 @@ const NewsCard = ({ articleData }) => {
 
   return (
     <Link to={`/news/${articleData.slug}`}>
-      <div className="h-[190px]  lg:h-48 border shadow-md">
+      <div className="h-[230px] md:h-[190px] border shadow-md">
         <img
           src={articleData.image?.image}
           alt={articleData.main_title}
-          className="w-full h-[190px]  object-cover"
+          className="w-full h-[230px] md:h-[190px]  object-cover"
         />
       </div>
       <div className="flex text-[0.65rem] items-center mt-2 justify-between">
