@@ -154,7 +154,7 @@ const BodyGridLG = () => {
                           className="w-full h-[240px] md:h-[418px] object-cover"
                         />
                       </div>
-                      <div className="flex items-center mt-2 justify-between">
+                      <div className="flex items-center justify-between">
                         <p className="text-xs font-medium text-[#f06c00] transition-colors duration-300 ease-in-out hover:text-[#666666]">
                           {articles[0].topic
                             ? articles[0].topic?.toUpperCase()
