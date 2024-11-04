@@ -32,7 +32,7 @@ const TopicsNewsListContent = () => {
   }, [slug]);
 
   return (
-    <main className="overflow-x-hidden px-[9%]">
+    <main className="overflow-x-hidden px-3 md:px-[9%]">
       {/* Topic Heading */}
       {articles.length > 0 && <TopicHeading topic={articles[0].topic} />}
 
