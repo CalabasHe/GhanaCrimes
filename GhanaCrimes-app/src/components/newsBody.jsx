@@ -27,21 +27,16 @@ const NewsComponent = () => {
         setError(null);
 
         const data = await fetchNewsArticle(slug);
-        // console.log('Article Data:', data);
         setArticle(data);
         setArticleId(data.id);
 
-        // Fetch related articles
         if (data.topic) {
           try {
-            // console.log('Fetching related articles for topic:', data.topic);
             const topicData = await fetchNewsTopicsCategory(data.topic);
-
-            if (topicData && Array.isArray(topicData.news)) {
-              const filtered = topicData.news
+            if (topicData && Array.isArray(topicData.results?.news_articles)) {
+              const filtered = topicData.results.news_articles
                 .filter((newsItem) => newsItem.id !== data.id)
                 .slice(0, 4);
-              // console.log('Filtered related articles:', filtered);
               setRelatedArticles(filtered);
             } else {
               console.warn("No related articles found");
@@ -71,7 +66,6 @@ const NewsComponent = () => {
       loadArticle();
     }
   }, [slug]);
-
   const renderRelatedArticles = () => {
     if (loadingRelated) {
       return (
@@ -175,7 +169,7 @@ const NewsComponent = () => {
     return str
       .toLowerCase()
       .split(" ")
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
       .join(" ");
   }
 
@@ -184,7 +178,10 @@ const NewsComponent = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 mt-11 gap-11">
         <div className="lg:col-span-2">
           <div>
-            <p className="text-[#f06c00]"> {article?.topic ? capitalizeWords(article.topic) : ""}</p>
+            <p className="text-[#f06c00]">
+              {" "}
+              {article?.topic ? capitalizeWords(article.topic) : ""}
+            </p>
             <p className="font-EB font-bold text-[#393939] text-2xl md:text-5xl">
               {article?.main_title}
             </p>
@@ -196,7 +193,7 @@ const NewsComponent = () => {
                 Published:{" "}
                 {article?.created_at
                   ? moment(article.created_at)
-                      .utcOffset(0) 
+                      .utcOffset(0)
                       .format("D MMM, YYYY [GMT]")
                   : "N/A"}
               </p>
@@ -345,12 +342,14 @@ const NewsComponent = () => {
             )}
           </div>
           {/* See also / suggested articles */}
-          <div className="mt-8">
-            <p className="font-EB font-bold text-lg">See also</p>
-            <hr className="mb-4 border-b border-[#AEAEAE] border-dotted" />
-          </div>
-          <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3 mt-11">
-            {renderRelatedArticles()}
+          <div>
+            <div className="mt-8">
+              <p className="font-EB font-bold text-lg">See also</p>
+              <hr className="mb-4 border-b border-[#AEAEAE] border-dotted" />
+            </div>
+            <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3 mt-11">
+              {renderRelatedArticles()}
+            </div>
           </div>
         </div>
 
