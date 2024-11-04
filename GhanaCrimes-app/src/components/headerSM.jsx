@@ -294,7 +294,7 @@ const HeaderSM = () => {
           </svg>
         </button>
       </div>
-      <hr className="w-full mt-4" />
+      <hr className="border-b border-[#AEAEAE] border-dotted mt-4" />
       <div
         className={`${
           isOpen ? "translate-x-0" : "-translate-x-full"

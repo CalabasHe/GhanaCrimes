@@ -370,7 +370,7 @@ const HeaderMD = () => {
           </div>
         </div>
 
-        <div className="border-b border-[#AEAEAE] border-[1px] border-dotted mt-4" />
+        <div className="border-b border-[#AEAEAE] border-dotted mt-4" />
 
         {/* Side Menu */}
         <div

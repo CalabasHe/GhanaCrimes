@@ -59,7 +59,7 @@ const AboutUsContent = () => {
       </p>
       {/* Socials */}
       <p className="font-EB my-5 text-2xl font-black">Our socials</p>
-      <div className="border-dotted border border-black" />
+      <div className="border-b border-[#AEAEAE] border-dotted" />
       <div className="mt-4 flex items-center gap-2 text-[#666666] transition-colors duration-300">
         <a href="#" className="text-sm font-semibold hover:text-[#f06c00]">
           <svg
