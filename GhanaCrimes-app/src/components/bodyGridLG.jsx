@@ -7,6 +7,7 @@ import AdvertisementSection from "./adsComponents";
 
 const BodyGridLG = () => {
   const [articles, setArticles] = useState([]);
+  const CACHE_DURATION = 300000
 
   useEffect(() => {
     const getCrimeData = async () => {
