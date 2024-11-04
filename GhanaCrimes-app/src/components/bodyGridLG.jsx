@@ -65,11 +65,6 @@ const BodyGridLG = () => {
     return string.charAt(0).toUpperCase() + string.slice(1);
   };
 
-
-  const capitalizeCharOne = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  };
-
   return (
     <main className="overflow-x-hidden px-3 lg:px-[9%]">
       <div className="mt-9">
