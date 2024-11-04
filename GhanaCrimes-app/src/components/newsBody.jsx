@@ -273,7 +273,7 @@ const NewsComponent = () => {
             <p className="font-EB font-bold text-lg">
               Comments <span>({article?.total_comments})</span>
             </p>
-            <hr className="mb-4" />
+            <hr className="mb-4 border-b border-[#AEAEAE] border-dotted" />
           </div>
 
           {!isLoggedIn ? (
@@ -347,7 +347,7 @@ const NewsComponent = () => {
           {/* See also / suggested articles */}
           <div className="mt-8">
             <p className="font-EB font-bold text-lg">See also</p>
-            <hr className="mb-4" />
+            <hr className="mb-4 border-b border-[#AEAEAE] border-dotted" />
           </div>
           <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-3 mt-11">
             {renderRelatedArticles()}
