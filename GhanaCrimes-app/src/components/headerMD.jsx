@@ -248,6 +248,18 @@ const HeaderMD = () => {
     getTopics();
   }, []);
 
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [isOpen]);
+
   return (
     <main className="hidden md:block sticky bg-white z-30 top-0">
       {/* <AdvertisementSection /> */}
@@ -377,7 +389,20 @@ const HeaderMD = () => {
           className={`${
             isOpen ? "translate-x-0" : "-translate-x-full"
           } fixed top-0 left-0 lg:w-3/12 w-3/6 h-full bg-white overflow-y-scroll text-black transition-transform duration-300 ease-in-out z-50`}
+          style={{
+            scrollbarWidth: isOpen ? "none" : "auto",
+            msOverflowStyle: isOpen ? "none" : "auto",
+          }}
         >
+          {isOpen && (
+            <style>
+              {`
+        .invisible-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+      `}
+            </style>
+          )}
           <div className="flex  mr-3 flex-col items-start p-5 space-y-4">
             {/* {!isLoggedIn ? (
             <div className="flex self-end items-center gap-3">

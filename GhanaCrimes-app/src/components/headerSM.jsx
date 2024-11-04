@@ -226,6 +226,17 @@ const HeaderSM = () => {
     setIsOpen(false);
     navigate(`/topics/${slug}`);
   };
+  useEffect(() => {
+    if (isOpen) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [isOpen]);
 
   return (
     <main className="block md:hidden sticky top-0 z-30 bg-white">
@@ -241,7 +252,7 @@ const HeaderSM = () => {
           </div>
         </div>
       </div>
-      
+
       <div className="flex px-3 items-center mt-6 container flex-wrap">
         {/*Menu Hamburger*/}
         <div className=" flex-auto">
