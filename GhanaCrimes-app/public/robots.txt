@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+Allow: /about-us
+Allow: /contact-us
+Allow: /topics/*
+Allow: /news/*
+Allow: /advertisement-request
+
+Disallow: /my-account
+Disallow: /saved-news
+Disallow: /results
+
+Disallow: /*?q=*
+Disallow: /*?search=*
+Disallow: /*?user=*
+
+Sitemap: https://ghanacrimes.com/sitemap.xml
+
+# Crawl-delay for all bots
+Crawl-delay: 10
