@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import NewsCard from "./newsCard";
 import TopicHeading from "./topicHeading";
+import AdvertisementSection from "./adsComponents";
 
 const TopicsNewsListContent = () => {
   const [articles, setArticles] = useState([]);
@@ -36,24 +37,24 @@ const TopicsNewsListContent = () => {
       {articles.length > 0 && <TopicHeading topic={articles[0].topic} />}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-8 pt-6 gap-4">
-        {articles.map((article, index) => (
-          <div
-            key={article.id}
-            className={`
+  {articles.map((article, index) => (
+    <div
+      key={article.id}
+      className={`
         col-span-1 
-        ${index === 0 ? "lg:col-span-2" : ""} 
-        ${index === 1 ? "lg:col-span-4" : ""} 
-        ${index === 2 ? "lg:col-span-2" : ""}
+        ${index % 3 === 0 ? "lg:col-span-2" : ""} 
+        ${index % 3 === 1 ? "lg:col-span-4" : ""} 
+        ${index % 3 === 2 ? "lg:col-span-2" : ""}
       `}
-          >
-            <NewsCard articleData={article} />
-          </div>
-        ))}
-      </div>
+    >
+      <NewsCard articleData={article} />
+    </div>
+  ))}
+</div>
 
       {/* Advertisement Placeholder */}
-      <div className="h-[310px] bg-[#fafafa] mt-8 flex items-center justify-center">
-        <p className="text-[#666666]">ADVERTISEMENT</p>
+      <div className="mt-8 ">
+        <AdvertisementSection />
       </div>
     </main>
   );
