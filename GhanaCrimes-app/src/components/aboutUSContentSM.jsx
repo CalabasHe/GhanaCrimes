@@ -18,31 +18,29 @@ const AboutUSContentSM = () => {
         </div>
         {/* <hr className="my-11" /> */}
         {/* About Us Content */}
-        
+
         <p className="mt-4 leading-relaxed font-EB">
-          GhanaCrimes is a premier news organization committed to providing
-          comprehensive coverage of crime-related and breaking news across
-          Ghana. Our platform is widely recognized for its authoritative
-          reporting, focusing on delivering timely updates on criminal
-          incidents, ongoing investigations, and significant developments
-          affecting communities nationwide. We aim to inform the public about
-          the issues impacting safety and security with clarity and precision.
+          GhanaCrimes is dedicated to raising awareness and enhancing safety
+          across Ghana through accurate, timely, and comprehensive crime
+          reporting.
           <br />
           {""}
-          At GhanaCrimes, integrity and accuracy are the pillars of our
-          journalism. Our team of dedicated reporters works tirelessly to ensure
-          that every story is thoroughly researched, fact-checked, and presented
-          with the highest ethical standards. By maintaining a strict commitment
-          to impartiality, we offer a reliable source of information that
-          audiences can trust, fostering greater awareness and understanding of
-          critical issues.
+          Specializing in coverage of corruption, robbery, and murder, our
+          platform provides real-time updates and exclusive reports to keep
+          Ghanaians informed about critical issues affecting their communities.
           <br />
           {""}
-          Our mission extends beyond reporting crime; GhanaCrimes seeks to be a
-          voice that highlights societal challenges and promotes accountability.
-          As our readership grows, we continue to expand our reach, creating a
-          platform that not only informs but also encourages community
-          engagement and dialogue.
+          Partnering closely with local law enforcement, we prioritize accuracy
+          and integrity in our reporting, offering insights that go beyond the
+          headlines. At GhanaCrimes, we believe that awareness is a powerful
+          tool for community safety, justice, and accountability.
+          <br />
+          {""}
+          By bringing hidden stories to light and covering high-impact cases,
+          our mission is to foster dialogue, vigilance, and informed action
+          among our readers. Join us in staying alert to the realities of crime
+          and its impact, and together, let’s build a safer, more
+          informed Ghana.
         </p>
         {/* Socials */}
         {/* Socials */}
@@ -93,7 +91,6 @@ const AboutUSContentSM = () => {
             </svg>
           </a>
         </div>
-       
       </main>
     </>
   );
