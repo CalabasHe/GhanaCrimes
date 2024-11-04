@@ -11,16 +11,41 @@ const BodyGridLG = () => {
   useEffect(() => {
     const getCrimeData = async () => {
       try {
+        const cachedData = localStorage.getItem('crimeArticles');
+        const cacheTime = localStorage.getItem('crimeArticlesTimestamp');
+        
+
+        const CACHE_DURATION = 60 * 60 * 1000;
+        
+        if (cachedData && cacheTime) {
+          const now = new Date().getTime();
+
+          if (now - parseInt(cacheTime) < CACHE_DURATION) {
+            setArticles(JSON.parse(cachedData));
+            return;
+          }
+        }
+        
+
         const data = await getCrimes();
-        // console.log(data);
         setArticles(data.results);
+        
+        localStorage.setItem('crimeArticles', JSON.stringify(data.results));
+        localStorage.setItem('crimeArticlesTimestamp', new Date().getTime().toString());
+        
       } catch (err) {
         console.log(err);
+
+        const cachedData = localStorage.getItem('crimeArticles');
+        if (cachedData) {
+          setArticles(JSON.parse(cachedData));
+        }
       }
     };
 
     getCrimeData();
   }, []);
+
 
   const capitalizeCharOne = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1);
