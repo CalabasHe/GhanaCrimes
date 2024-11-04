@@ -80,7 +80,7 @@ const NewsComponent = () => {
 
     if (relatedArticles.length === 0) {
       return (
-        <div className="col-span-full bg-[#f2f2f2] p-6 text-center">
+        <div className="col-span-full bg-[#f2f2f2] p-6">
           <p className="text-gray-600">
             No other articles available in this topic at the moment.
           </p>
