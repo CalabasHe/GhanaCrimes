@@ -249,10 +249,10 @@ const HeaderMD = () => {
   }, []);
 
   return (
-    <main className="hidden md:block  sticky bg-white z-30 -top-[310px]">
+    <main className="hidden md:block sticky bg-white z-30 top-0">
       {/* <AdvertisementSection /> */}
       <div>
-        <div className=" px-[9%]">
+        <div className="px-[9%]">
           {" "}
           <div
             onKeyDown={handleKeyDown}

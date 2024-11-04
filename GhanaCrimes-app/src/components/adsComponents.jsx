@@ -40,7 +40,7 @@ const AdvertisementSection = () => {
   if (loading) {
     return (
       <div className="bg-[#fafafa] h-[310px] w-full flex  justify-center p-4">
-        <p className="text-[#d2d2d2] text-xs">Loading advertisements</p>
+        <p className="text-[#d2d2d2] text-xs">ADVERTISEMENT</p>
       </div>
     );
   }
@@ -73,7 +73,7 @@ const AdvertisementSection = () => {
 
   return (
     <div className="bg-[#fafafa] lg:col-span-1 ">
-      <h2 className="pt-4 text-[#D2D2D2] text-sm text-center">Advertisement</h2>
+      <h2 className="pt-4 text-[#D2D2D2] text-sm text-center">ADVERTISEMENT</h2>
 
       <div className="space-y-6">
         {ads.map((ad) => (

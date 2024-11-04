@@ -210,7 +210,7 @@ const NewsComponent = () => {
               </p>
             </div>
 
-            <div className="flex gap-3 md:text-xs">
+            <div className="flex pt-2 md:pt-0 gap-3 md:text-xs">
               <Link className="flex gap-2 items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
