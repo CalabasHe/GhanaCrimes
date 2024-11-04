@@ -1,60 +1,96 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import NewsCard from "./newsCard";
 import TopicHeading from "./topicHeading";
 import AdvertisementSection from "./adsComponents";
 
 const TopicsNewsListContent = () => {
   const [articles, setArticles] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [hasPreviousPage, setHasPreviousPage] = useState(false);
+  const [hasNextPage, setHasNextPage] = useState(false);
+
   const { slug } = useParams();
-  const articlesPerPage = 12;
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Get the current page from URL params or default to 1
+  const getCurrentPage = () => {
+    const searchParams = new URLSearchParams(location.search);
+    return parseInt(searchParams.get("page") || "1", 10);
+  };
+
+  const [pagination, setPagination] = useState(getCurrentPage());
 
   useEffect(() => {
-    // Reset pagination when topic changes
-    setCurrentPage(1);
-    setArticles([]);
-    setHasMore(true);
-    fetchArticles(1);
-  }, [slug]);
+    const fetchArticles = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch(
+          `https://ghanacrimes-api.onrender.com/api/topics/${slug}/?page=${pagination}`
+        );
+        const data = await response.json();
 
-  const fetchArticles = async (page) => {
-    setIsLoading(true);
-    try {
-      const response = await fetch(
-        `https://ghanacrimes-api.onrender.com/api/topics/${slug}/?page=${page}&per_page=${articlesPerPage}`
-      );
-      const data = await response.json();
+        // Set pagination flags based on API response
+        setHasPreviousPage(!!data.previous);
+        setHasNextPage(!!data.next);
 
-      const uniqueArticles = data.results.news_articles.filter(
-        (article, index, self) =>
-          index === self.findIndex((a) => a.id === article.id)
-      );
-
-      if (page === 1) {
-        setArticles(uniqueArticles);
-      } else {
-        setArticles((prev) => [...prev, ...uniqueArticles]);
+        // Extract and filter unique articles
+        if (
+          Array.isArray(data.results.news_articles) &&
+          data.results.news_articles.length > 0
+        ) {
+          const uniqueArticles = data.results.news_articles.filter(
+            (article, index, self) =>
+              index === self.findIndex((a) => a.id === article.id)
+          );
+          setArticles(uniqueArticles);
+        } else {
+          console.log("No results found");
+        }
+      } catch (err) {
+        console.error("Error fetching news data:", err);
+        setError(err.message);
+      } finally {
+        setIsLoading(false);
       }
+    };
 
-      // Check if there are more articles to load
-      setHasMore(uniqueArticles.length === articlesPerPage);
-    } catch (err) {
-      console.error("Error fetching news data:", err);
-    } finally {
-      setIsLoading(false);
+    fetchArticles();
+    // Update URL with current page
+    navigate(`?page=${pagination}`, { replace: true });
+  }, [pagination, slug, navigate]);
+
+  const handleNextPage = () => {
+    if (hasNextPage) {
+      setPagination((prev) => prev + 1);
     }
   };
 
-  const handleLoadMore = () => {
-    if (!isLoading && hasMore) {
-      const nextPage = currentPage + 1;
-      setCurrentPage(nextPage);
-      fetchArticles(nextPage);
+  const handlePreviousPage = () => {
+    if (hasPreviousPage) {
+      setPagination((prev) => prev - 1);
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="h-[50vh] w-full flex items-center justify-center">
+        <h1 className="text-black text-2xl sm:text-4xl font-bold animate-bounce">
+          Loading...
+        </h1>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="h-[50vh] md:h-[40vh] w-full flex items-center justify-center">
+        {error.split(":")[0]}
+      </div>
+    );
+  }
 
   return (
     <main className="overflow-x-hidden px-3 md:px-[9%]">
@@ -82,28 +118,25 @@ const TopicsNewsListContent = () => {
         <AdvertisementSection />
       </div>
 
-      {/* Pagination */}
+      {/* Pagination Controls */}
       {articles.length > 0 && (
-        <div className="mt-8 mb-12">
-          {isLoading ? (
-            <button
-              disabled
-              className="w-full text-center text-sm font-medium text-gray-400 bg-gray-200 py-2"
-            >
-              Loading...
-            </button>
-          ) : hasMore ? (
-            <button
-              onClick={handleLoadMore}
-              className="w-full text-center text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 py-2 transition duration-200"
-            >
-              Load More Articles
-            </button>
-          ) : (
-            <p className="text-center text-sm text-gray-500">
-              No more articles to load
-            </p>
-          )}
+        <div className="flex mt-4 md:mt-8 mb-12">
+          <button
+            onClick={handlePreviousPage}
+            className={`${
+              hasPreviousPage ? "flex border-r" : "hidden"
+            }bg-[#f06c00] text-white rounded-full px-4 py-2 font-semibold text-sm cursor-pointer`}
+          >
+            Previous
+          </button>
+          <button
+            onClick={handleNextPage}
+            className={`${
+              hasNextPage ? "flex" : "hidden"
+            }bg-[#f06c00] text-white rounded-full px-4 py-2 font-semibold text-sm cursor-pointer`}
+          >
+            More articles &gt;&gt;
+          </button>
         </div>
       )}
     </main>
