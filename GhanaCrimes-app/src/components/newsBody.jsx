@@ -187,6 +187,12 @@ const NewsComponent = () => {
           property="og:url"
           content={`https://www.ghanacrimes.com/news/${article.slug}`}
         />
+        
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={article.main_title} />
+        <meta name="twitter:description" content={article.sub_title} />
+        <meta name="twitter:image" content={article.image.image} />
+
       </Helmet>
       <div className="grid grid-cols-1 lg:grid-cols-3 mt-11 gap-11">
         <div className="lg:col-span-2">
@@ -206,16 +212,16 @@ const NewsComponent = () => {
                 Published:{" "}
                 {article?.created_at
                   ? moment(article.created_at)
-                      .utcOffset(0)
-                      .format("D MMM, YYYY [GMT]")
+                    .utcOffset(0)
+                    .format("D MMM, YYYY [GMT]")
                   : "N/A"}
               </p>
               <p>
                 Updated:{" "}
                 {article?.updated_at
                   ? moment(article.updated_at)
-                      .utcOffset(0)
-                      .format("ddd D MMM YYYY HH:mm [GMT]")
+                    .utcOffset(0)
+                    .format("ddd D MMM YYYY HH:mm [GMT]")
                   : "N/A"}
               </p>
             </div>
