@@ -187,7 +187,6 @@ const NewsComponent = () => {
           property="og:url"
           content={`https://www.ghanacrimes.com/news/${article.slug}`}
         />
-        
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={article.main_title} />
         <meta name="twitter:description" content={article.sub_title} />
