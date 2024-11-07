@@ -1,12 +1,5 @@
 {
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/" }
-  ],
-  "build": {
-    "commands": [
-      "apt-get update",
-      "apt-get install -y libnss3",
-      "npm run build"
+    "rewrites": [
+      { "source": "/(.*)", "destination": "/" }
     ]
   }
-}
