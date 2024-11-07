@@ -9,7 +9,7 @@ const ContactUsFormSM = () => {
         <p className="text-[#f06c00] font-EB font-bold text-xl mt-4">
           Contact us
         </p>
-        <p>
+        <p className=" font-EB   mt-4">
           We are always happy to hear from you. Please feel free to contact us
           with any questions, comments, or inquiries.
         </p>

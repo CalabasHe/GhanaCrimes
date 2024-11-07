@@ -94,6 +94,7 @@ const NewsComponent = () => {
       <Link
         to={`/news/${relatedArticle.slug}`}
         className="group block lg:block" 
+        key={relatedArticle.id}
       >
         {/* Desktop Layout (hidden on mobile) */}
         <div className="hidden md:block">
