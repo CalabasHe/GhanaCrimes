@@ -92,23 +92,48 @@ const NewsComponent = () => {
 
     return relatedArticles.map((relatedArticle) => (
       <Link
-        key={relatedArticle.id}
         to={`/news/${relatedArticle.slug}`}
-        className="group"
+        className="group block lg:block" 
       >
-        <div
-          className="h-40 object-cover bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
-          style={{
-            backgroundImage: `url(${relatedArticle.image?.image || ""})`,
-            backgroundColor: "#f2f2f2",
-          }}
-        />
-        <p className="text-sm text-[#f06c00] mt-2">
-          {relatedArticle.topic?.toUpperCase()}
-        </p>
-        <p className="text-[#393939] text-xl lg:text-2xl leading-tight group-hover:text-[#f06c00] font-EB font-semibold transition-colors duration-300">
-          {relatedArticle.main_title}
-        </p>
+        {/* Desktop Layout (hidden on mobile) */}
+        <div className="hidden md:block">
+          <div
+            className="h-40 object-cover bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
+            style={{
+              backgroundImage: `url(${relatedArticle.image?.image || ""})`,
+              backgroundColor: "#f2f2f2",
+            }}
+          />
+          <p className="text-sm text-[#f06c00] mt-2">
+            {relatedArticle.topic?.toUpperCase()}
+          </p>
+          <p className="text-[#393939] text-xl lg:text-2xl leading-tight group-hover:text-[#f06c00] font-EB font-semibold transition-colors duration-300">
+            {relatedArticle.main_title}
+          </p>
+        </div>
+
+        {/* Mobile Layout (hidden on desktop) */}
+        <div className="flex mt-3 relative md:hidden gap-3">
+          <div className="w-[125px] h-[125px] flex-shrink-0">
+            <img
+              src={relatedArticle.image?.image}
+              alt={relatedArticle.main_title}
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="flex-1 relative top-0">
+            <div className="flex text-xs">
+              <p className="font-medium text-[#f06c00] transition-colors duration-300 hover:text-[#666666]">
+                {relatedArticle.topic
+                  ? relatedArticle.topic?.toUpperCase()
+                  : "General News".toUpperCase()}
+              </p>
+            </div>
+            <p className="text-[#393939] text-xl leading-tight transition-colors pt-1 duration-300 group-hover:text-[#f06c00] font-EB font-semibold">
+              {relatedArticle.main_title}
+            </p>
+          </div>
+        </div>
       </Link>
     ));
   };
@@ -191,7 +216,6 @@ const NewsComponent = () => {
         <meta name="twitter:title" content={article.main_title} />
         <meta name="twitter:description" content={article.sub_title} />
         <meta name="twitter:image" content={article.image.image} />
-
       </Helmet>
       <div className="grid grid-cols-1 lg:grid-cols-3 mt-11 gap-11">
         <div className="lg:col-span-2">
@@ -211,16 +235,16 @@ const NewsComponent = () => {
                 Published:{" "}
                 {article?.created_at
                   ? moment(article.created_at)
-                    .utcOffset(0)
-                    .format("D MMM, YYYY [GMT]")
+                      .utcOffset(0)
+                      .format("D MMM, YYYY [GMT]")
                   : "N/A"}
               </p>
               <p>
                 Updated:{" "}
                 {article?.updated_at
                   ? moment(article.updated_at)
-                    .utcOffset(0)
-                    .format("ddd D MMM YYYY HH:mm [GMT]")
+                      .utcOffset(0)
+                      .format("ddd D MMM YYYY HH:mm [GMT]")
                   : "N/A"}
               </p>
             </div>

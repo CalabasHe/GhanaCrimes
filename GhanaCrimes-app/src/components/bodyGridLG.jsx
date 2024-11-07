@@ -207,9 +207,9 @@ const BodyGridLG = () => {
                   {articles[1] && (
                     <Link
                       to={`/news/${articles[1].slug}`}
-                      className="flex items-center gap-3"
+                      className="flex gap-3"
                     >
-                      <div className=" w-[105px] h-[105px] lg:justify-end flex-shrink-0">
+                      <div className=" w-[125px] h-[125px] lg:justify-end flex-shrink-0">
                         <img
                           src={articles[1].image?.image}
                           alt={articles[1].main_title}
@@ -217,7 +217,7 @@ const BodyGridLG = () => {
                         />
                       </div>
                       <div className="">
-                        <div className="flex items-center text-[0.65rem] mt-2 justify-between">
+                        <div className="flex items-center text-[0.65rem]  justify-between">
                           <p className="text-xs font-medium text-[#f06c00] transition-colors duration-300 ease-in-out hover:text-[#666666]">
                             {articles[1].topic
                               ? articles[1].topic?.toUpperCase()
