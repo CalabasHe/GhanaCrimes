@@ -115,7 +115,7 @@ const NewsComponent = () => {
 
         {/* Mobile Layout (hidden on desktop) */}
         <div className="flex mt-3 relative md:hidden gap-3">
-          <div className="w-[125px] h-[125px] flex-shrink-0">
+          <div className="w-[130px] h-[130px] flex-shrink-0">
             <img
               src={relatedArticle.image?.image}
               alt={relatedArticle.main_title}

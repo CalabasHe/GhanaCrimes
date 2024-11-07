@@ -209,7 +209,7 @@ const BodyGridLG = () => {
                       to={`/news/${articles[1].slug}`}
                       className="flex gap-3"
                     >
-                      <div className=" w-[125px] h-[125px] lg:justify-end flex-shrink-0">
+                      <div className=" w-[130px] h-[130px] lg:justify-end flex-shrink-0">
                         <img
                           src={articles[1].image?.image}
                           alt={articles[1].main_title}
