@@ -207,9 +207,9 @@ const BodyGridLG = () => {
                   {articles[1] && (
                     <Link
                       to={`/news/${articles[1].slug}`}
-                      className="flex items-center gap-3"
+                      className="flex  gap-3"
                     >
-                      <div className=" w-[105px] h-[105px] lg:justify-end flex-shrink-0">
+                      <div className=" w-[125px] h-[125px] lg:justify-end flex-shrink-0">
                         <img
                           src={articles[1].image?.image}
                           alt={articles[1].main_title}
