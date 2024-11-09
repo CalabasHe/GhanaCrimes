@@ -74,15 +74,15 @@ const TopicsNewsListContent = () => {
     }
   };
 
-  if (isLoading) {
-    return (
-      <div className="h-[50vh] w-full flex items-center justify-center">
-        <h1 className="text-black text-2xl sm:text-4xl font-bold animate-bounce">
-          Loading...
-        </h1>
-      </div>
-    );
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div className="h-[50vh] w-full flex items-center justify-center">
+  //       <h1 className="text-black text-2xl sm:text-4xl font-bold animate-bounce">
+  //         Loading...
+  //       </h1>
+  //     </div>
+  //   );
+  // }
 
   if (error) {
     return (
@@ -96,7 +96,7 @@ const TopicsNewsListContent = () => {
     <main className="overflow-x-hidden px-3 md:px-[9%]">
       {/* Topic Heading */}
       {articles.length > 0 && <TopicHeading topic={articles[0].topic} />}
-
+      {/* News Content */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-8 pt-6 gap-4">
         {articles.map((article, index) => (
           <div
