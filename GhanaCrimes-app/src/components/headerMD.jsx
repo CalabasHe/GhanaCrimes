@@ -3,6 +3,8 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useContext } from "react";
 import AdvertisementSection from "../components/adsComponents";
+import Logo from "../assets/svg/logo-GhanaCrimes.svg";
+
 
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/context";
@@ -280,9 +282,7 @@ const HeaderMD = () => {
           </div>
           {/* Logo */}
           <Link className="flex justify-center mt-6" to="/">
-            <p className="font-EB font-black lg:text-[44px] text-[#f06c00]">
-              GhanaCrimes
-            </p>
+          <img src={Logo} alt="GhanaCrimes Logo" className="h-10 lg:h-12" />
           </Link>
           {/* Navbar Wrapper */}
           <div className="flex flex-wrap justify-between space-x-4 items-center text-lg">
