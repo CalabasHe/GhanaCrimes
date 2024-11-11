@@ -4,6 +4,7 @@ import axios from "axios";
 import { useContext } from "react";
 import TopicList from "../components/sideMenuTopicList";
 import AdvertisementSection from "../components/adsComponents";
+import Logo from "../assets/images/Logo-Header.png";
 
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/context";
@@ -275,9 +276,9 @@ const HeaderSM = () => {
         </div>
         <Link
           to="/"
-          className="text-3xl flex-auto font-EB font-bold text-[#f06c00]"
+          className=" flex-auto"
         >
-          GhanaCrimes
+          <img src={Logo} alt="GhanaCrimes Logo" className="w-[230px] h-[40px]" />
         </Link>
         <button
           onClick={() => {
