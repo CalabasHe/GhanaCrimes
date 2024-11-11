@@ -5,7 +5,6 @@ import { fetchNewsArticle, fetchNewsTopicsCategory } from "../api/newsReadAPI";
 import { AuthContext } from "../context/context";
 import AdvertisementSection from "../components/adsComponents";
 import moment from "moment";
-import { Helmet } from "react-helmet-async";
 
 const NewsComponent = () => {
   const [article, setArticle] = useState(null);
@@ -178,7 +177,7 @@ const NewsComponent = () => {
 
   return (
     <main className="relative px-3 md:px-[9%]">
-      <Helmet>
+      {/* <Helmet>
         <title>{article.main_title}</title>
         <meta name="description" content={article.sub_title} />
         <meta property="og:title" content={article.main_title} />
@@ -193,7 +192,7 @@ const NewsComponent = () => {
         <meta name="twitter:description" content={article.sub_title} />
         <meta name="twitter:image" content={article.image.image} />
 
-      </Helmet>
+      </Helmet> */}
       <div className="grid grid-cols-1 lg:grid-cols-3 mt-11 gap-11">
         <div className="lg:col-span-2">
           <div>
