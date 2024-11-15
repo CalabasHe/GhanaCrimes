@@ -440,7 +440,7 @@ const HeaderSM = () => {
               <p className="text-lg text-[#828282]">Our socials</p>
               <div className="mt-4 flex items-center gap-2 text-[#666666] transition-colors duration-300">
                 <a
-                  href="#"
+                  href="https://www.facebook.com/GhanaCrimes"
                   className="text-sm font-semibold hover:text-[#f06c00]"
                 >
                   <svg
