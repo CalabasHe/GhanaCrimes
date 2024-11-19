@@ -28,6 +28,7 @@ const NewsComponent = () => {
 
         const data = await fetchNewsArticle(slug);
         setArticle(data);
+        console.log(data);
 
         setArticleId(data.id);
 
@@ -95,19 +96,37 @@ const NewsComponent = () => {
         to={`/news/${relatedArticle.slug}`}
         className="group"
       >
-        <div
-          className="h-52 object-cover bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
-          style={{
-            backgroundImage: `url(${relatedArticle.image?.image || ""})`,
-            backgroundColor: "#f2f2f2",
-          }}
-        />
-        {/* <p className="text-sm text-[#f06c00] mt-2">
+        <div>
+          {" "}
+          <div
+            className="h-52 object-cover bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
+            style={{
+              backgroundImage: `url(${relatedArticle.image?.image || ""})`,
+              backgroundColor: "#f2f2f2",
+            }}
+          />
+          {/* <p className="text-sm text-[#f06c00] mt-2">
           {relatedArticle.topic?.toUpperCase()}
         </p> */}
-        <p className="text-[#393939] pt-3 text-xl lg:text-2xl leading-tight group-hover:text-[#f06c00] font-EB font-semibold transition-colors duration-300">
-          {relatedArticle.main_title}
-        </p>
+          <p className="text-[#393939] pt-3 text-xl lg:text-2xl leading-tight group-hover:text-[#f06c00] font-EB font-semibold transition-colors duration-300">
+            {relatedArticle.main_title}
+          </p>
+        </div>
+        <div>
+          <div
+            className="h-52 object-cover bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
+            style={{
+              backgroundImage: `url(${relatedArticle.image?.image || ""})`,
+              backgroundColor: "#f2f2f2",
+            }}
+          />
+          {/* <p className="text-sm text-[#f06c00] mt-2">
+          {relatedArticle.topic?.toUpperCase()}
+        </p> */}
+          <p className="text-[#393939] pt-3 text-xl lg:text-2xl leading-tight group-hover:text-[#f06c00] font-EB font-semibold transition-colors duration-300">
+            {relatedArticle.main_title}
+          </p>
+        </div>
       </Link>
     ));
   };
@@ -211,16 +230,16 @@ const NewsComponent = () => {
                 Published:{" "}
                 {article?.created_at
                   ? moment(article.created_at)
-                    .utcOffset(0)
-                    .format("D MMM, YYYY [GMT]")
+                      .utcOffset(0)
+                      .format("D MMM, YYYY [GMT]")
                   : "N/A"}
               </p>
               <p>
                 Updated:{" "}
                 {article?.updated_at
                   ? moment(article.updated_at)
-                    .utcOffset(0)
-                    .format("ddd D MMM YYYY HH:mm [GMT]")
+                      .utcOffset(0)
+                      .format("ddd D MMM YYYY HH:mm [GMT]")
                   : "N/A"}
               </p>
             </div>
@@ -283,6 +302,12 @@ const NewsComponent = () => {
             className="mt-5 text-[#393939] font-EB lg:text-2xl leading-loose"
             dangerouslySetInnerHTML={{ __html: article?.description }}
           />
+
+          <div>
+            {article?.video && (
+              <video src={article.video} controls className="w-full h-auto" />
+            )}
+          </div>
 
           <div id="comments" className="mt-8">
             <p className="font-EB font-bold text-lg">
