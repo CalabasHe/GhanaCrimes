@@ -19,7 +19,7 @@ const Footer = () => {
                 commitment to integrity, and dedication to accuracy in
                 reporting.
               </article>
-              <div className="flex md:flex-col gap-4 font-bold">
+              <div className="flex md:flex-col mt-8 md:mt-0 gap-4 font-bold">
                 <Link to={"/about-us"} className="hover:text-[#f06c00]">
                   About us
                 </Link>
