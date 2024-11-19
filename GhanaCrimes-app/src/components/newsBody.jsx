@@ -91,15 +91,16 @@ const NewsComponent = () => {
     }
 
     return relatedArticles.map((relatedArticle) => (
-      <Link
-        key={relatedArticle.id}
-        to={`/news/${relatedArticle.slug}`}
-        className="group"
-      >
-        <div>
+      <>
+        {/* Mobile */}
+        <Link
+          key={relatedArticle.id}
+          to={`/news/${relatedArticle.slug}`}
+          className="group md:hidden flex gap-3 border-b pb-7 mt-3"
+        >
           {" "}
           <div
-            className="h-52 object-cover bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
+            className=" w-full h-[125px] object-contain bg-cover bg-center transition-transform duration-300 group-hover:scale-75"
             style={{
               backgroundImage: `url(${relatedArticle.image?.image || ""})`,
               backgroundColor: "#f2f2f2",
@@ -108,11 +109,36 @@ const NewsComponent = () => {
           {/* <p className="text-sm text-[#f06c00] mt-2">
           {relatedArticle.topic?.toUpperCase()}
         </p> */}
-          <p className="text-[#393939] pt-3 text-xl lg:text-2xl leading-tight group-hover:text-[#f06c00] font-EB font-semibold transition-colors duration-300">
-            {relatedArticle.main_title}
-          </p>
-        </div>
-      </Link>
+          <div>
+            <p className="text-[#393939] text-xl lg:text-2xl leading-tight group-hover:text-[#f06c00] font-EB font-semibold transition-colors duration-300">
+              {relatedArticle.main_title}
+            </p>
+          </div>
+        </Link>
+        {/* Tablet, Desktop */}
+        <Link
+          key={relatedArticle.id}
+          to={`/news/${relatedArticle.slug}`}
+          className="group hidden md:block"
+        >
+          <div>
+            {" "}
+            <div
+              className=" h-52 object-cover bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
+              style={{
+                backgroundImage: `url(${relatedArticle.image?.image || ""})`,
+                backgroundColor: "#f2f2f2",
+              }}
+            />
+            {/* <p className="text-sm text-[#f06c00] mt-2">
+          {relatedArticle.topic?.toUpperCase()}
+        </p> */}
+            <p className="text-[#393939] pt-3 text-xl lg:text-2xl leading-tight group-hover:text-[#f06c00] font-EB font-semibold transition-colors duration-300">
+              {relatedArticle.main_title}
+            </p>
+          </div>
+        </Link>
+      </>
     ));
   };
 
