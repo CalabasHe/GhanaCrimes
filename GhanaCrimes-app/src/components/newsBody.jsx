@@ -28,7 +28,7 @@ const NewsComponent = () => {
 
         const data = await fetchNewsArticle(slug);
         setArticle(data);
-        console.log(data);
+        // console.log(data);
 
         setArticleId(data.id);
 
