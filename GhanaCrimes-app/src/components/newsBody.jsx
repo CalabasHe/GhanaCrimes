@@ -146,12 +146,12 @@ const NewsComponent = () => {
     e.preventDefault();
     try {
       if (!message.trim()) {
-        alert("Please enter a message");
+        alert("Please enter your comment message");
         return;
       }
 
       await handleComment(message, articleId);
-      alert("Your message has been sent successfully!");
+      alert("Your comment has been added successfully!");
       setMessage("");
       window.location.reload();
     } catch (error) {
@@ -327,39 +327,6 @@ const NewsComponent = () => {
             <hr className="mb-4 border-b border-[#AEAEAE] border-dotted" />
           </div>
 
-          {!isLoggedIn ? (
-            <p>
-              Log in{" "}
-              <span
-                className="cursor-pointer text-[#f06c00]"
-                onClick={() => setIsLoginOpen(true)}
-              >
-                here
-              </span>{" "}
-              to leave a comment
-            </p>
-          ) : (
-            <div className="mt-4">
-              <p>Leave a comment down below</p>
-              <div>
-                <textarea
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  className="border px-3 py-2 w-full outline-none h-52 mt-4"
-                  required
-                  placeholder="Write your comment here..."
-                />
-                <button
-                  onClick={handleSubmit}
-                  type="submit"
-                  className="bg-[#f06c00] text-white px-4 py-2 font-semibold text-sm cursor-pointer hover:bg-[#d65c00]"
-                >
-                  Comment
-                </button>
-              </div>
-            </div>
-          )}
-
           <div className="space-y-4 mt-4">
             {Array.isArray(article?.comments) && article.comments.length > 0 ? (
               article.comments.map((comment) => (
@@ -395,6 +362,40 @@ const NewsComponent = () => {
               </div>
             )}
           </div>
+
+          {isLoggedIn ? (
+            <div className="mt-4">
+              <p>Leave a comment down below</p>
+              <div>
+                <textarea
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  className="border px-3 py-2 w-full outline-none h-52 mt-4"
+                  required
+                  placeholder="Write your comment here"
+                />
+                <button
+                  onClick={handleSubmit}
+                  type="submit"
+                  className="bg-[#f06c00] text-white px-4 py-2 font-semibold text-sm cursor-pointer hover:bg-[#d65c00]"
+                >
+                  Comment
+                </button>
+              </div>
+            </div>
+          ) : (
+            <p className="mt-4">
+              Log in{" "}
+              <span
+                className="cursor-pointer text-[#f06c00]"
+                onClick={() => setIsLoginOpen(true)}
+              >
+                here
+              </span>{" "}
+              to leave a comment
+            </p>
+          )}
+
           {/* See also / suggested articles */}
           <div>
             <div className="mt-8">
