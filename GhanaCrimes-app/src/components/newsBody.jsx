@@ -12,7 +12,10 @@ const NewsComponent = () => {
   const [loadingRelated, setLoadingRelated] = useState(true);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [fullName, setFullName] = useState("");
   const [message, setMessage] = useState("");
+  const [showCommentOverlay, setShowCommentOverlay] = useState(false);
+
   const { slug } = useParams();
   const [articleId, setArticleId] = useState();
 
@@ -28,7 +31,6 @@ const NewsComponent = () => {
 
         const data = await fetchNewsArticle(slug);
         setArticle(data);
-        // console.log(data);
 
         setArticleId(data.id);
 
@@ -79,7 +81,7 @@ const NewsComponent = () => {
         </div>
       );
     }
-
+  
     if (relatedArticles.length === 0) {
       return (
         <div className="col-span-full bg-[#f2f2f2] p-6">
@@ -89,16 +91,14 @@ const NewsComponent = () => {
         </div>
       );
     }
-
+  
     return relatedArticles.map((relatedArticle) => (
-      <>
+      <React.Fragment key={`related-${relatedArticle.id}`}>
         {/* Mobile */}
         <Link
-          key={relatedArticle.id}
           to={`/news/${relatedArticle.slug}`}
           className="group md:hidden flex gap-3 border-b pb-7 mt-3"
         >
-          {" "}
           <div
             className=" w-full h-[125px] object-contain bg-cover bg-center transition-transform duration-300 group-hover:scale-75"
             style={{
@@ -106,9 +106,6 @@ const NewsComponent = () => {
               backgroundColor: "#f2f2f2",
             }}
           />
-          {/* <p className="text-sm text-[#f06c00] mt-2">
-          {relatedArticle.topic?.toUpperCase()}
-        </p> */}
           <div>
             <p className="text-[#393939] text-xl lg:text-2xl leading-tight group-hover:text-[#f06c00] font-EB font-semibold transition-colors duration-300">
               {relatedArticle.main_title}
@@ -117,12 +114,10 @@ const NewsComponent = () => {
         </Link>
         {/* Tablet, Desktop */}
         <Link
-          key={relatedArticle.id}
           to={`/news/${relatedArticle.slug}`}
           className="group hidden md:block"
         >
           <div>
-            {" "}
             <div
               className=" h-52 object-cover bg-cover bg-center transition-transform duration-300 group-hover:scale-105"
               style={{
@@ -130,37 +125,31 @@ const NewsComponent = () => {
                 backgroundColor: "#f2f2f2",
               }}
             />
-            {/* <p className="text-sm text-[#f06c00] mt-2">
-          {relatedArticle.topic?.toUpperCase()}
-        </p> */}
             <p className="text-[#393939] pt-3 text-xl lg:text-2xl leading-tight group-hover:text-[#f06c00] font-EB font-semibold transition-colors duration-300">
               {relatedArticle.main_title}
             </p>
           </div>
         </Link>
-      </>
+      </React.Fragment>
     ));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (!message.trim()) {
-        alert("Please enter your comment message");
+      if (!message.trim() || !fullName.trim()) {
+        alert("Please enter your name and comment message");
         return;
       }
 
-      await handleComment(message, articleId);
+      await handleComment(fullName, message, article.id);
       alert("Your comment has been added successfully!");
+      setFullName("");
       setMessage("");
       window.location.reload();
     } catch (error) {
-      if (error.message === "Please login to add a comment") {
-        setIsLoginOpen(true);
-      } else {
-        console.error("Comment error:", error);
-        alert("Error posting comment. Please try again.");
-      }
+      console.error("Comment error:", error);
+      alert("Error posting comment. Please try again.");
     }
   };
 
@@ -331,7 +320,7 @@ const NewsComponent = () => {
             {Array.isArray(article?.comments) && article.comments.length > 0 ? (
               article.comments.map((comment) => (
                 <div
-                  key={comment.id}
+                key={comment.id}
                   className="bg-[#f2f2f2] p-3 md:p-6 shadow-sm hover:shadow-md transition-shadow"
                 >
                   <div className="flex items-center justify-between mb-3">
@@ -362,39 +351,75 @@ const NewsComponent = () => {
               </div>
             )}
           </div>
-
-          {isLoggedIn ? (
-            <div className="mt-4">
-              <p>Leave a comment down below</p>
-              <div>
-                <textarea
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  className="border px-3 py-2 w-full outline-none h-52 mt-4"
-                  required
-                  placeholder="Write your comment here"
-                />
-                <button
-                  onClick={handleSubmit}
-                  type="submit"
-                  className="bg-[#f06c00] text-white px-4 py-2 font-semibold text-sm cursor-pointer hover:bg-[#d65c00]"
+          {/* Input section for comment */}
+          <div
+            className={`fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 transition-opacity duration-300 ${
+              showCommentOverlay
+                ? "opacity-100"
+                : "opacity-0 pointer-events-none"
+            }`}
+          >
+            <div className="bg-white mx-6 p-6 shadow-lg w-full max-w-[700px] relative">
+              <button
+                className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+                onClick={() => setShowCommentOverlay(false)}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
                 >
-                  Comment
-                </button>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+              <div className="mt-4">
+                <p>Leave a comment down below</p>
+                <div>
+                  <input
+                    value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                    className={`border-4 px-3 py-2 w-full outline-none mt-4 ${
+                      fullName ? "border-[#f06c00]" : "border"
+                    }`}
+                    required
+                    placeholder="Full Name"
+                  />
+                  <textarea
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    className={`border-4 px-3 py-2 w-full outline-none h-auto mt-4 ${
+                      message ? "border-[#f06c00]" : "border"
+                    }`}
+                    required
+                    placeholder="Write your comment here"
+                  />
+                  <div className="text-center mt-8">
+                    <button
+                      onClick={handleSubmit}
+                      type="submit"
+                      className="bg-[#f06c00] text-white text-center px-4 py-2 font-semibold text-sm cursor-pointer hover:bg-[#d65c00]"
+                    >
+                      Submit Comment
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
-          ) : (
-            <p className="mt-4">
-              Log in{" "}
-              <span
-                className="cursor-pointer text-[#f06c00]"
-                onClick={() => setIsLoginOpen(true)}
-              >
-                here
-              </span>{" "}
-              to leave a comment
-            </p>
-          )}
+          </div>
+
+          <button
+            className="bg-[#f06c00] mt-4 text-white px-4 py-2 font-semibold text-sm cursor-pointer hover:bg-[#d65c00]"
+            onClick={() => setShowCommentOverlay(true)}
+          >
+            Leave Comment
+          </button>
 
           {/* See also / suggested articles */}
           <div>

@@ -35,57 +35,26 @@ export const AuthProvider = ({ children }) => {
     checkAuth();
   }, []);
 
-  const handleComment = async (message, newsSlug) => {
-    const commentAPI = `https://ghanacrimes-api.onrender.com/api/comments/`;
-
-    if (!isAuthenticated()) {
-      console.error("User not authenticated");
-      throw new Error("Please login to add a comment");
-    }
-
+  const handleComment = async (fullName, message, newsId) => {
+    const commentAPI = "https://ghanacrimes-api.onrender.com/api/comments/";
+  
     try {
-      const token = localStorage.getItem("faccess_token");
-      console.log("Sending comment data:", {
-        news_article: newsSlug,
-        message,
-        url: commentAPI,
+      const response = await axios.post(commentAPI, {
+        news_article: newsId,
+        full_name: fullName,
+        message: message,
       });
-
-      const response = await axios({
-        method: "post",
-        url: commentAPI,
-        data: {
-          news_article: newsSlug,
-          message: message,
-        },
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      });
-
+  
       return response.data;
     } catch (error) {
-      console.error("Error details:", error.response?.data); // Log the detailed error response
-      if (error.response?.status === 401) {
-        localStorage.removeItem("faccess_token");
-        localStorage.removeItem("refresh_token");
-        setIsLoggedIn(false);
-        throw new Error("Authentication expired. Please login again");
-      } else if (error.response) {
-        // Log the server's error message
-        throw new Error(
-          error.response.data.message ||
-            "An error occurred while posting the comment. Please try again."
-        );
-      } else {
-        // Handle other types of errors
-        throw new Error(
+      console.error("Error details:", error.response.data);
+      throw new Error(
+        error.response?.data?.message ||
           "An error occurred while posting the comment. Please try again."
-        );
-      }
+      );
     }
   };
+
 
   // Login function (used by components)
   const handleLogin = async (e) => {
