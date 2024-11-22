@@ -359,7 +359,7 @@ const NewsComponent = () => {
                 : "opacity-0 pointer-events-none"
             }`}
           >
-            <div className="bg-white mx-6 p-6 shadow-lg w-full max-w-[700px] relative">
+            <div className="bg-white mx-6 p-6 shadow-lg w-full max-w-[700px] max-h-96 relative">
               <button
                 className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
                 onClick={() => setShowCommentOverlay(false)}
