@@ -10,7 +10,7 @@ import AdsRequest from "./pages/adsRequest";
 import SearchResults from "./pages/results";
 import MyAccount from "./pages/myAccount";
 import SavedNews from "./pages/savedNews";
-import Whistleblower from "./pages/whistleblower";
+import Insider from "./pages/insider";
 
 function PageWrapper({ children }) {
   // The PageWrapper component is no longer handling loading state
@@ -22,27 +22,109 @@ function AppRoutes() {
 
   return (
     <Routes>
-      <Route index element={<PageWrapper><HomePage /></PageWrapper>} />
-      <Route path="/" element={<PageWrapper><HomePage /></PageWrapper>} />
-      <Route path="/news" element={<PageWrapper><HomePage /></PageWrapper>} />
-      <Route path="/news/:slug" element={<PageWrapper><NewsPage /></PageWrapper>} />
-      <Route path="/about-us" element={<PageWrapper><AboutUs /></PageWrapper>} />
-      <Route path="/contact-us" element={<PageWrapper><ContactUs /></PageWrapper>} />
-      <Route path="/results" element={<PageWrapper><SearchResults/></PageWrapper>} />
-      <Route path="/topics/:slug" element={<PageWrapper><TopicsNewsList /></PageWrapper>} />
-      <Route path="/advertisement-request" element={<PageWrapper><AdsRequest /></PageWrapper>} />
-      <Route path="/my-account" element={<PageWrapper><MyAccount/></PageWrapper>} />
-      <Route path="/saved-news" element={<PageWrapper><SavedNews/></PageWrapper>} />
-      <Route path="/whistle-blower" element={<PageWrapper><Whistleblower/></PageWrapper>} />
+      <Route
+        index
+        element={
+          <PageWrapper>
+            <HomePage />
+          </PageWrapper>
+        }
+      />
+      <Route
+        path="/"
+        element={
+          <PageWrapper>
+            <HomePage />
+          </PageWrapper>
+        }
+      />
+      <Route
+        path="/news"
+        element={
+          <PageWrapper>
+            <HomePage />
+          </PageWrapper>
+        }
+      />
+      <Route
+        path="/news/:slug"
+        element={
+          <PageWrapper>
+            <NewsPage />
+          </PageWrapper>
+        }
+      />
+      <Route
+        path="/about-us"
+        element={
+          <PageWrapper>
+            <AboutUs />
+          </PageWrapper>
+        }
+      />
+      <Route
+        path="/contact-us"
+        element={
+          <PageWrapper>
+            <ContactUs />
+          </PageWrapper>
+        }
+      />
+      <Route
+        path="/results"
+        element={
+          <PageWrapper>
+            <SearchResults />
+          </PageWrapper>
+        }
+      />
+      <Route
+        path="/topics/:slug"
+        element={
+          <PageWrapper>
+            <TopicsNewsList />
+          </PageWrapper>
+        }
+      />
+      <Route
+        path="/advertisement-request"
+        element={
+          <PageWrapper>
+            <AdsRequest />
+          </PageWrapper>
+        }
+      />
+      <Route
+        path="/my-account"
+        element={
+          <PageWrapper>
+            <MyAccount />
+          </PageWrapper>
+        }
+      />
+      <Route
+        path="/saved-news"
+        element={
+          <PageWrapper>
+            <SavedNews />
+          </PageWrapper>
+        }
+      />
+      <Route
+        path="/insider"
+        element={
+          <PageWrapper>
+            <Insider />
+          </PageWrapper>
+        }
+      />
     </Routes>
   );
 }
 
 function App() {
   // Removed LoadingProvider since it’s no longer needed
-  return (
-    <AppRoutes />
-  );
+  return <AppRoutes />;
 }
 
 export default App;

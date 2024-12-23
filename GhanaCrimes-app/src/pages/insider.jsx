@@ -1,16 +1,16 @@
 import Header from "../components/header";
 import Footer from "../components/footer";
-import WhistleblowerBody from "../components/whistleblowerBody";
+import InsiderBody from "../components/insiderBody";
 
-const Whistleblower = () => {
+const Insider = () => {
     return (
          <div className="">
             <Header />
-            <WhistleblowerBody />
+            <InsiderBody />
             <Footer />
 
 
     </div> );
 }
  
-export default Whistleblower;
+export default Insider;
