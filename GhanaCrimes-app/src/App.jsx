@@ -10,6 +10,7 @@ import AdsRequest from "./pages/adsRequest";
 import SearchResults from "./pages/results";
 import MyAccount from "./pages/myAccount";
 import SavedNews from "./pages/savedNews";
+import Whistleblower from "./pages/whistleblower";
 
 function PageWrapper({ children }) {
   // The PageWrapper component is no longer handling loading state
@@ -32,6 +33,7 @@ function AppRoutes() {
       <Route path="/advertisement-request" element={<PageWrapper><AdsRequest /></PageWrapper>} />
       <Route path="/my-account" element={<PageWrapper><MyAccount/></PageWrapper>} />
       <Route path="/saved-news" element={<PageWrapper><SavedNews/></PageWrapper>} />
+      <Route path="/whistle-blower" element={<PageWrapper><Whistleblower/></PageWrapper>} />
     </Routes>
   );
 }
