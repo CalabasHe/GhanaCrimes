@@ -63,7 +63,7 @@ const InsiderBody = () => {
               </div>
               <div className="flex flex-col gap-4 mt-5">
                 <label className="font-semibold" htmlFor="">
-                  Subject <span className="text-red-600">*</span>
+                  Subject<span className="text-red-600">*</span>
                 </label>
                 <input
                   className="border-4 px-3 py-2 outline-none border-[#828282]"
