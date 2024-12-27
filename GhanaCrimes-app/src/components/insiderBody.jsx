@@ -1,11 +1,60 @@
 import AdvertisementSection from "./adsComponents";
 import { useState } from "react";
+import axios from "axios";
+
 const InsiderBody = () => {
   const [name, SetName] = useState("");
   const [video, SetVideo] = useState("");
   const [email, SetEmail] = useState("");
   const [subject, SetSubject] = useState("");
   const [message, SetMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    setSuccess(false);
+
+    // Log form data before submission
+    const formData = {
+      video_link: video || null,
+      name: name || null,
+      email: email || null,
+      subject,
+      message,
+    };
+    //console.log("Form Data:", formData);
+
+    try {
+      const response = await axios.post(
+        "https://ghanacrimes-api.onrender.com/api/insider",
+        formData
+      );
+
+      if (response.data) {
+        setSuccess(true);
+        // console.log("Submission successful!", response.data);
+        // Clear form
+        SetVideo("");
+        SetName("");
+        SetEmail("");
+        SetSubject("");
+        SetMessage("");
+      }
+    } catch (err) {
+      // console.log(err)
+      // const errorMessage = err.response?.data?.message || "Something went wrong";
+      // console.error("Submission failed:", errorMessage);
+      // setError(errorMessage);
+    } finally {
+      setLoading(false);
+     // console.log("Form submission completed");
+    }
+  };
+
   return (
     <main className="px-3 lg:px-[9%]">
       <div className="grid grid-cols-1 lg:grid-cols-3 mt-11 gap-11">
@@ -17,14 +66,13 @@ const InsiderBody = () => {
             </p>
             <p className="mt-9">
               <p>
-                {" "}
                 Do you have any credible information or evidence that can help
                 us investigate an issue of public interest?{" "}
               </p>{" "}
               <br /> <p>*Your identity will remain private!</p> <br />{" "}
               <p className="font-bold">Information:</p>{" "}
               <p>
-                To upload video files, please go here or to a similar file
+                To upload video files, please go here or to a similar file
                 transfer service of your choice. After the upload is ready,
                 please send the link at{" "}
                 <a
@@ -33,15 +81,19 @@ const InsiderBody = () => {
                 >
                   ghanacrimes@gmail.com
                 </a>{" "}
-                 or enter it in the form below:
+                or enter it in the form below:
               </p>
             </p>
           </div>
           <div className="mt-9">
-            <form action="">
-              {" "}
+            {error && <p className="text-red-500 mb-4">{error}</p>}
+            {success && (
+              <p className="text-green-500 mb-4">
+                Your message has been sent successfully!
+              </p>
+            )}
+            <form onSubmit={handleSubmit}>
               <div className="flex flex-col gap-4">
-                {" "}
                 <label className="font-semibold" htmlFor="">
                   Paste external video link here (optional)
                 </label>
@@ -56,7 +108,7 @@ const InsiderBody = () => {
               </div>
               <div className="flex flex-col gap-4 mt-5">
                 <label className="font-semibold" htmlFor="">
-                  Your name <span className="text-red-600">*</span>
+                  Your name
                 </label>
                 <input
                   value={name}
@@ -65,7 +117,6 @@ const InsiderBody = () => {
                     name ? "border-[#f06c00]" : "border-[#828282]"
                   }`}
                   type="text"
-                  required
                 />
               </div>
               <div className="flex flex-col gap-4 mt-5">
@@ -85,7 +136,7 @@ const InsiderBody = () => {
               </div>
               <div className="flex flex-col gap-4 mt-5">
                 <label className="font-semibold" htmlFor="">
-                  Subject <span className="text-red-600">*</span>
+                  Subject <span className="text-red-600">*</span>
                 </label>
                 <input
                   value={subject}
@@ -151,8 +202,11 @@ const InsiderBody = () => {
                   type="file"
                 />
               </div>
-              <button className="bg-[#F06C00] text-white mt-8 px-8 py-1">
-                Submit
+              <button
+                className="bg-[#F06C00] text-white mt-8 px-8 py-1 disabled:opacity-50"
+                disabled={loading}
+              >
+                {loading ? "Submitting..." : "Submit"}
               </button>
             </form>
           </div>
