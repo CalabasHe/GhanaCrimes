@@ -2,6 +2,10 @@ import AdvertisementSection from "./adsComponents";
 import { useState } from "react";
 const InsiderBody = () => {
   const [name, SetName] = useState("");
+  const [video, SetVideo] = useState("");
+  const [email, SetEmail] = useState("");
+  const [subject, SetSubject] = useState("");
+  const [message, SetMessage] = useState("");
   return (
     <main className="px-3 lg:px-[9%]">
       <div className="grid grid-cols-1 lg:grid-cols-3 mt-11 gap-11">
@@ -23,7 +27,10 @@ const InsiderBody = () => {
                 To upload video files, please go here or to a similar file
                 transfer service of your choice. After the upload is ready,
                 please send the link at{" "}
-                <a href="mailto:ghanacrimes@gmail.com" className="text-orange-500 underline">
+                <a
+                  href="mailto:ghanacrimes@gmail.com"
+                  className="text-orange-500 underline"
+                >
                   ghanacrimes@gmail.com
                 </a>{" "}
                  or enter it in the form below:
@@ -39,7 +46,11 @@ const InsiderBody = () => {
                   Paste external video link here (optional)
                 </label>
                 <input
-                  className="border-4 px-3 py-2 outline-none border-[#828282] "
+                  value={video}
+                  onChange={(e) => SetVideo(e.target.value)}
+                  className={`border-4 px-3 py-2 w-full outline-none mt-4 ${
+                    video ? "border-[#f06c00]" : "border-[#828282]"
+                  }`}
                   type="text"
                 />
               </div>
@@ -48,14 +59,25 @@ const InsiderBody = () => {
                   Your name <span className="text-red-600">*</span>
                 </label>
                 <input
-                  className="border-4 px-3 py-2 outline-none border-[#828282]"
-                  type="text" required
+                  value={name}
+                  onChange={(e) => SetName(e.target.value)}
+                  className={`border-4 px-3 py-2 w-full outline-none mt-4 ${
+                    name ? "border-[#f06c00]" : "border-[#828282]"
+                  }`}
+                  type="text"
+                  required
                 />
               </div>
               <div className="flex flex-col gap-4 mt-5">
-                <label className="font-semibold" htmlFor="">Your email (optional)</label>
+                <label className="font-semibold" htmlFor="">
+                  Your email (optional)
+                </label>
                 <input
-                  className="border-4 px-3 py-2 outline-none border-[#828282]"
+                  value={email}
+                  onChange={(e) => SetEmail(e.target.value)}
+                  className={`border-4 px-3 py-2 w-full outline-none mt-4 ${
+                    email ? "border-[#f06c00]" : "border-[#828282]"
+                  }`}
                   type="email"
                   name=""
                   id=""
@@ -63,11 +85,16 @@ const InsiderBody = () => {
               </div>
               <div className="flex flex-col gap-4 mt-5">
                 <label className="font-semibold" htmlFor="">
-                  Subject<span className="text-red-600">*</span>
+                  Subject <span className="text-red-600">*</span>
                 </label>
                 <input
-                  className="border-4 px-3 py-2 outline-none border-[#828282]"
-                  type="text" required
+                  value={subject}
+                  onChange={(e) => SetSubject(e.target.value)}
+                  className={`border-4 px-3 py-2 w-full outline-none mt-4 ${
+                    subject ? "border-[#f06c00]" : "border-[#828282]"
+                  }`}
+                  type="text"
+                  required
                 />
               </div>
               <div className="flex flex-col gap-4 mt-5">
@@ -75,13 +102,21 @@ const InsiderBody = () => {
                   Your message <span className="text-red-600">*</span>
                 </label>
                 <textarea
-                  className="border-4 px-3 py-3 h-40 outline-none border-[#828282]"
+                  value={message}
+                  onChange={(e) => SetMessage(e.target.value)}
+                  className={`border-4 px-3 py-2 w-full outline-none mt-4 h-40 ${
+                    message ? "border-[#f06c00]" : "border-[#828282]"
+                  }`}
                   name=""
-                  id="" required
+                  id=""
+                  required
                 ></textarea>
               </div>
               <div className="flex flex-col gap-4 mt-5">
-                <label className="space-y-5 font-semibold" htmlFor="attachimage">
+                <label
+                  className="space-y-5 font-semibold"
+                  htmlFor="attachimage"
+                >
                   <p>Attach an image (optional)</p>
                   <div className="border-dashed border-[#828282] border w-full h-52 flex justify-center items-center flex-col gap-2">
                     <svg
@@ -116,7 +151,9 @@ const InsiderBody = () => {
                   type="file"
                 />
               </div>
-              <button className="bg-[#F06C00] text-white mt-8 px-8 py-1">Submit</button>
+              <button className="bg-[#F06C00] text-white mt-8 px-8 py-1">
+                Submit
+              </button>
             </form>
           </div>
         </div>
