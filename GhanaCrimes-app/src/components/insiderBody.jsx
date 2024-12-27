@@ -169,7 +169,7 @@ const InsiderBody = () => {
                   htmlFor="attachimage"
                 >
                   <p>Attach an image (optional)</p>
-                  <div className="border-dashed border-[#828282] border w-full h-52 flex justify-center items-center flex-col gap-2">
+                  <div className="border-dashed border-[#828282] border w-full h-52 flex justify-center items-center flex-col gap-2 cursor-pointer">
                     <svg
                       width="51"
                       height="51"
