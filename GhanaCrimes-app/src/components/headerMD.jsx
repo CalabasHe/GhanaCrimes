@@ -484,7 +484,7 @@ const HeaderMD = () => {
                   to={"/insider"}
                   className="ml-9 text-lg text-[#828282] font-medium hover:text-[#f06c00] transition-colors duration-200"
                 >
-                  INSIDER
+                  Insider
                 </Link>
                 <hr />
               </div>
