@@ -281,7 +281,11 @@ const HeaderMD = () => {
           </div>
           {/* Logo */}
           <Link className="flex justify-center mt-6" to="/">
-            <img src={Logo} alt="GhanaCrimes Logo" className="w-[350px] h-[60px]" />
+            <img
+              src={Logo}
+              alt="GhanaCrimes Logo"
+              className="w-[350px] h-[60px]"
+            />
           </Link>
           {/* Navbar Wrapper */}
           <div className="flex flex-wrap justify-between space-x-4 items-center text-lg">
@@ -331,7 +335,7 @@ const HeaderMD = () => {
             </div>
 
             {/* Nav Links */}
-            <nav className="flex-1 justify-start text-xs md:text-sm hidden xl:flex">
+            <nav className="flex-1 justify-start items-center text-xs md:text-sm hidden xl:flex">
               <div className="space-x-5 text-[#828282] font-semibold ">
                 {topicData.length > 0 &&
                   topicData.slice(0, 6).map(
@@ -346,6 +350,24 @@ const HeaderMD = () => {
                         </Link>
                       )
                   )}
+              </div>
+              {/* Whistle Blower */}
+              <div className="items-center flex ml-4 gap-4">
+                <div>
+                  {" "}
+                  <svg
+                    width="2"
+                    height="28"
+                    viewBox="0 0 2 28"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path d="M1 0.75V27.25" stroke="#828282" />
+                  </svg>
+                </div>
+                <Link to={"/insider"} className="text-[#f06c00] font-semibold">
+                  WHISTLE BLOWER
+                </Link>
               </div>
             </nav>
 
@@ -454,7 +476,20 @@ const HeaderMD = () => {
               </div>
 
               <hr />
+
+              {/* Whistle Blower */}
+              <div className="space-y-4">
+                <Link
+                  onClick={handleLinksClose}
+                  to={"/insider"}
+                  className="ml-9 text-lg text-[#828282] font-medium hover:text-[#f06c00] transition-colors duration-200"
+                >
+                  Whistle blower
+                </Link>
+                <hr />
+              </div>
             </nav>
+
             <div className="ml-9 space-y-4">
               <Link
                 onClick={handleLinksClose}
