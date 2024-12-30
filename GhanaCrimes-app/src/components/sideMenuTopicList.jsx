@@ -25,7 +25,7 @@ const TopicList = ({ topicData = [] }) => {
 
   return (
     <div className="space-y-4">
-      <div className="text-base md:text-lg text-[#828282] items-start text-nowrap font-medium flex-col flex space-y-4">
+      <div className="text-base md:text-lg text-[#828282] items-start font-medium flex-col flex space-y-4">
         {displayedTopics.map(
           (topic) =>
             topic.news_count > 0 && (
