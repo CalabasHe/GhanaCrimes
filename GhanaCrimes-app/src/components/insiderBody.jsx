@@ -206,7 +206,7 @@ const InsiderBody = () => {
                 className="bg-[#F06C00] text-white mt-8 px-8 py-2 disabled:opacity-50"
                 disabled={loading}
               >
-                {loading ? "Submitting..." : "Submit"}
+                {loading ? "Submitting" : "Submit"}
               </button>
             </form>
           </div>
