@@ -51,7 +51,7 @@ const InsiderBody = () => {
       // setError(errorMessage);
     } finally {
       setLoading(false);
-     // console.log("Form submission completed");
+      // console.log("Form submission completed");
     }
   };
 
@@ -86,12 +86,6 @@ const InsiderBody = () => {
             </p>
           </div>
           <div className="mt-9">
-            {error && <p className="text-red-500 mb-4">{error}</p>}
-            {success && (
-              <p className="text-green-500 mb-4">
-                Your message has been sent successfully!
-              </p>
-            )}
             <form onSubmit={handleSubmit}>
               <div className="flex flex-col gap-2">
                 <label className="font-semibold" htmlFor="">
@@ -209,6 +203,12 @@ const InsiderBody = () => {
                 {loading ? "Submitting" : "Submit"}
               </button>
             </form>
+            {error && <p className="text-red-500 mb-4">{error}</p>}
+            {success && (
+              <p className="text-green-500 mt-4">
+                Your message has been sent successfully!
+              </p>
+            )}
           </div>
         </div>
         <div className="relative">
