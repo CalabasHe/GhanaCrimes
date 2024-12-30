@@ -93,40 +93,40 @@ const InsiderBody = () => {
               </p>
             )}
             <form onSubmit={handleSubmit}>
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-2">
                 <label className="font-semibold" htmlFor="">
                   Paste external video link here (optional)
                 </label>
                 <input
                   value={video}
                   onChange={(e) => SetVideo(e.target.value)}
-                  className={`border-4 px-3 py-2 w-full outline-none mt-4 ${
+                  className={`border-4 px-3 py-2 w-full outline-none  ${
                     video ? "border-[#f06c00]" : "border-[#828282]"
                   }`}
                   type="text"
                 />
               </div>
-              <div className="flex flex-col gap-4 mt-5">
+              <div className="flex flex-col gap-2 mt-5">
                 <label className="font-semibold" htmlFor="">
                   Your name
                 </label>
                 <input
                   value={name}
                   onChange={(e) => SetName(e.target.value)}
-                  className={`border-4 px-3 py-2 w-full outline-none mt-4 ${
+                  className={`border-4 px-3 py-2 w-full outline-none  ${
                     name ? "border-[#f06c00]" : "border-[#828282]"
                   }`}
                   type="text"
                 />
               </div>
-              <div className="flex flex-col gap-4 mt-5">
+              <div className="flex flex-col gap-2 mt-5">
                 <label className="font-semibold" htmlFor="">
                   Your email (optional)
                 </label>
                 <input
                   value={email}
                   onChange={(e) => SetEmail(e.target.value)}
-                  className={`border-4 px-3 py-2 w-full outline-none mt-4 ${
+                  className={`border-4 px-3 py-2 w-full outline-none  ${
                     email ? "border-[#f06c00]" : "border-[#828282]"
                   }`}
                   type="email"
@@ -134,28 +134,28 @@ const InsiderBody = () => {
                   id=""
                 />
               </div>
-              <div className="flex flex-col gap-4 mt-5">
+              <div className="flex flex-col gap-2 mt-5">
                 <label className="font-semibold" htmlFor="">
                   Subject <span className="text-red-600">*</span>
                 </label>
                 <input
                   value={subject}
                   onChange={(e) => SetSubject(e.target.value)}
-                  className={`border-4 px-3 py-2 w-full outline-none mt-4 ${
+                  className={`border-4 px-3 py-2 w-full outline-none  ${
                     subject ? "border-[#f06c00]" : "border-[#828282]"
                   }`}
                   type="text"
                   required
                 />
               </div>
-              <div className="flex flex-col gap-4 mt-5">
+              <div className="flex flex-col gap-2 mt-5">
                 <label className="font-semibold" htmlFor="">
                   Your message <span className="text-red-600">*</span>
                 </label>
                 <textarea
                   value={message}
                   onChange={(e) => SetMessage(e.target.value)}
-                  className={`border-4 px-3 py-2 w-full outline-none mt-4 h-40 ${
+                  className={`border-4 px-3 py-2 w-full outline-none  h-40 ${
                     message ? "border-[#f06c00]" : "border-[#828282]"
                   }`}
                   name=""
@@ -163,7 +163,7 @@ const InsiderBody = () => {
                   required
                 ></textarea>
               </div>
-              <div className="flex flex-col gap-4 mt-5">
+              <div className="flex flex-col gap-2 mt-5">
                 <label
                   className="space-y-5 font-semibold"
                   htmlFor="attachimage"
