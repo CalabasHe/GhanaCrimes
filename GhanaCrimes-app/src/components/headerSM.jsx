@@ -374,7 +374,7 @@ const HeaderSM = () => {
                   to={"/insider"}
                   className="ml-9 text-base md:text-lg text-[#828282] font-semibold hover:text-[#f06c00] transition-colors duration-200"
                 >
-                  Whistle blower
+                  Insider
                 </Link>
                 <hr />
               </div>
