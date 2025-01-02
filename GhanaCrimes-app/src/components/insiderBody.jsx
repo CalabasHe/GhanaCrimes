@@ -11,6 +11,17 @@ const InsiderBody = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setSelectedFile(file ? file.name : null);
+  };
+
+  const handleRemoveFile = () => {
+    setSelectedFile(null);
+    document.getElementById("attachimage").value = "";
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -93,9 +104,7 @@ const InsiderBody = () => {
                 />
               </div>
               <div className="flex flex-col gap-2 mt-5">
-                <label className="font-semibold">
-                  Your name
-                </label>
+                <label className="font-semibold">Your name</label>
                 <input
                   value={name}
                   onChange={(e) => SetName(e.target.value)}
@@ -106,9 +115,7 @@ const InsiderBody = () => {
                 />
               </div>
               <div className="flex flex-col gap-2 mt-5">
-                <label className="font-semibold">
-                  Your email (optional)
-                </label>
+                <label className="font-semibold">Your email (optional)</label>
                 <input
                   value={email}
                   onChange={(e) => SetEmail(e.target.value)}
@@ -147,11 +154,11 @@ const InsiderBody = () => {
               </div>
               <div className="flex flex-col gap-2 mt-5">
                 <label
-                  className="space-y-5 font-semibold"
+                  className="space-y-5 font-semibold cursor-pointer"
                   htmlFor="attachimage"
                 >
                   <p>Attach an image (optional)</p>
-                  <div className="border-dashed border-[#828282] border w-full h-52 flex justify-center items-center flex-col gap-2 cursor-pointer">
+                  <div className="border-dashed border-[#828282] border w-full h-52 flex justify-center items-center flex-col gap-2">
                     <svg
                       width="51"
                       height="51"
@@ -175,15 +182,40 @@ const InsiderBody = () => {
                         strokeLinejoin="round"
                       />
                     </svg>
-                    Drop your file here or click here to upload
+                    <p>Drop your file here or click to upload</p>
                   </div>
                 </label>
                 <input
-                  className="border-[#828282] w-full h-12 hidden"
+                  className="hidden"
                   id="attachimage"
                   type="file"
+                  onChange={handleFileChange}
                 />
+                {selectedFile && (
+                  <div className="mt-2 flex items-center gap-5 font-EB">
+                    <p className="text-lg text-green-600">
+                      Selected File: {selectedFile}
+                    </p>
+                    <button
+                      onClick={handleRemoveFile}
+                      className="text-red-500 text-lg font-semibold"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fill="#000"
+                          d="M2.93 17.07A10 10 0 1 1 17.07 2.93A10 10 0 0 1 2.93 17.07M11.4 10l2.83-2.83l-1.41-1.41L10 8.59L7.17 5.76L5.76 7.17L8.59 10l-2.83 2.83l1.41 1.41L10 11.41l2.83 2.83l1.41-1.41L11.41 10z"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                )}
               </div>
+
               <button
                 className="bg-[#F06C00] text-white mt-8 px-8 py-2 disabled:opacity-50"
                 disabled={loading}
