@@ -151,7 +151,6 @@ const InsiderBody = () => {
                   Subject <span className="text-red-600">*</span>
                 </label>
                 <input
-                  required
                   ref={subjectRef}
                   value={subject}
                   onChange={(e) => SetSubject(e.target.value)}
@@ -166,7 +165,6 @@ const InsiderBody = () => {
                   Your message <span className="text-red-600">*</span>
                 </label>
                 <textarea
-                  required
                   ref={messageRef}
                   value={message}
                   onChange={(e) => SetMessage(e.target.value)}
