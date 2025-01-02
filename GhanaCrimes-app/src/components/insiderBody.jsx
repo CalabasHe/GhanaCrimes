@@ -1,5 +1,5 @@
 import AdvertisementSection from "./adsComponents";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import axios from "axios";
 
 const InsiderBody = () => {
@@ -13,6 +13,10 @@ const InsiderBody = () => {
   const [success, setSuccess] = useState(false);
   const [selectedFile, setSelectedFile] = useState(null);
 
+  // Create refs for required fields
+  const subjectRef = useRef(null);
+  const messageRef = useRef(null);
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setSelectedFile(file ? file.name : null);
@@ -23,8 +27,25 @@ const InsiderBody = () => {
     document.getElementById("attachimage").value = "";
   };
 
+  const scrollToField = (ref) => {
+    ref.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    ref.current?.focus();
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Check required fields
+    if (!subject) {
+      scrollToField(subjectRef);
+      return;
+    }
+
+    if (!message) {
+      scrollToField(messageRef);
+      return;
+    }
+
     setLoading(true);
     setError("");
     setSuccess(false);
@@ -130,13 +151,14 @@ const InsiderBody = () => {
                   Subject <span className="text-red-600">*</span>
                 </label>
                 <input
+                  required
+                  ref={subjectRef}
                   value={subject}
                   onChange={(e) => SetSubject(e.target.value)}
                   className={`border-4 px-3 py-2 w-full outline-none  ${
                     subject ? "border-[#f06c00]" : "border-[#828282]"
                   }`}
                   type="text"
-                  required
                 />
               </div>
               <div className="flex flex-col gap-2 mt-5">
@@ -144,12 +166,13 @@ const InsiderBody = () => {
                   Your message <span className="text-red-600">*</span>
                 </label>
                 <textarea
+                  required
+                  ref={messageRef}
                   value={message}
                   onChange={(e) => SetMessage(e.target.value)}
                   className={`border-4 px-3 py-2 w-full outline-none  h-40 ${
                     message ? "border-[#f06c00]" : "border-[#828282]"
                   }`}
-                  required
                 ></textarea>
               </div>
               <div className="flex flex-col gap-2 mt-5">

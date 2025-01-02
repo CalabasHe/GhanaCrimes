@@ -1,5 +1,5 @@
 import { sendContactData } from "../api/contactUsAPI";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/context";
@@ -14,6 +14,12 @@ const ContactFormField = () => {
     description: "",
   });
 
+  // Create refs for required fields
+  const fullNameRef = useRef(null);
+  const emailRef = useRef(null);
+  const titleRef = useRef(null);
+  const descriptionRef = useRef(null);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -21,9 +27,36 @@ const ContactFormField = () => {
     });
   };
 
+  const scrollToField = (ref) => {
+    ref.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    ref.current?.focus();
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Check each required field and scroll to the first empty one
+    if (!formData.full_name) {
+      scrollToField(fullNameRef);
+      return;
+    }
+
+    if (!formData.email) {
+      scrollToField(emailRef);
+      return;
+    }
+
+    if (!formData.title) {
+      scrollToField(titleRef);
+      return;
+    }
+
+    if (!formData.description) {
+      scrollToField(descriptionRef);
+      return;
+    }
+
+    // If all validations pass, submit the form
     sendContactData(formData);
     alert("Your message has been sent successfully!");
     setFormData({
@@ -44,42 +77,42 @@ const ContactFormField = () => {
           <p className="my-4">Tell us why you want to contact us</p>
           <form onSubmit={handleSubmit} className="space-y-4" action="">
             <input
+              ref={fullNameRef}
               className="border px-3 py-2 w-full outline-none"
               type="text"
               name="full_name"
               value={formData.full_name}
               onChange={handleChange}
-              required
               minLength={1}
               maxLength={100}
               placeholder="Full name"
             />
             <input
+              ref={emailRef}
               className="border px-3 py-2 w-full outline-none"
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
-              required
               maxLength={254}
               placeholder="Email"
             />
             <input
+              ref={titleRef}
               className="border px-3 py-2 w-full outline-none"
               placeholder="Title"
               type="text"
               name="title"
               value={formData.title}
               onChange={handleChange}
-              required
               maxLength={200}
             />
             <textarea
+              ref={descriptionRef}
               className="border px-3 py-2 w-full outline-none h-52"
               name="description"
               value={formData.description}
               onChange={handleChange}
-              required
             />
             <button
               type="submit"
@@ -120,7 +153,7 @@ const ContactFormField = () => {
                   d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2m0 4l-8 5l-8-5V6l8 5l8-5z"
                 ></path>
               </svg>
-              <p>GhanaCrimes@gmail.com</p>
+              <p>ghanacrimes@gmail.com</p>
             </div>
           </div>
           <p>
