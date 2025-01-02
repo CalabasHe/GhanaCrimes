@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const api = "https://ghanacrimes-api.onrender.com/api";
+const api = "https://api.ghanacrimes.com/api";
 
 export const getCrimes = async () => {
   try {

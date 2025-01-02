@@ -32,7 +32,7 @@ const TopicsNewsListContent = () => {
       try {
         setIsLoading(true);
         const response = await fetch(
-          `https://ghanacrimes-api.onrender.com/api/topics/${slug}/?page=${pagination}`
+          `https://api.ghanacrimes.com/api/topics/${slug}/?page=${pagination}`
         );
         const data = await response.json();
 

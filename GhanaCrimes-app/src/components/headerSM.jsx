@@ -76,7 +76,7 @@ const HeaderSM = () => {
 
       // Make the POST request to the server with email and password
       const response = await axios.post(
-        "https://ghanacrimes-api.onrender.com/api/auth/login/",
+        "https://api.ghanacrimes.com/api/auth/login/",
         {
           email: loginEmail,
           password: loginPassword,
@@ -169,7 +169,7 @@ const HeaderSM = () => {
     SetLoading(true);
     try {
       const response = await axios.post(
-        "https://ghanacrimes-api.onrender.com/api/auth/signup/",
+        "https://api.ghanacrimes.com/api/auth/signup/",
         {
           first_name,
           last_name,

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://ghanacrimes-api.onrender.com/api";
+const BASE_URL = "https://api.ghanacrimes.com/api";
 
 export const fetchNewsArticle = async (slug) => {
   try {

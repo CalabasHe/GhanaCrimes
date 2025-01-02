@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const contactAPI = "https://ghanacrimes-api.onrender.com/api/contact-us";
+const contactAPI = "https://api.ghanacrimes.com/api/contact-us";
 
 export const sendContactData = async (formData) => {
   try {

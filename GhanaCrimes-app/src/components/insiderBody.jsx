@@ -60,7 +60,7 @@ const InsiderBody = () => {
 
     try {
       const response = await axios.post(
-        "https://ghanacrimes-api.onrender.com/api/insider",
+        "https://api.ghanacrimes.com/api/insider",
         formData
       );
 
